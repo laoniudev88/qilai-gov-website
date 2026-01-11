@@ -158,7 +158,7 @@ export default function Home() {
           <div className="col-span-4 h-full flex flex-col shadow-sm border border-gray-200 bg-white group cursor-pointer"
                onClick={(e) => { if (!(e.target as HTMLElement).closest('button')) setLocation(`/news/${liSlides[currentLiSlide].id}`); }}>
             {/* 上半部分：照片 */}
-            <div className="h-[60%] overflow-hidden relative">
+            <div className="h-[75%] overflow-hidden relative">
               <img 
                 src={liSlides[currentLiSlide].image} 
                 alt={liSlides[currentLiSlide].title} 
@@ -167,13 +167,13 @@ export default function Home() {
             </div>
             
             {/* 下半部分：内容 */}
-            <div className="h-[40%] bg-[#ce1126] p-6 text-white flex flex-col justify-center relative overflow-hidden">
+            <div className="h-[25%] bg-[#ce1126] p-6 text-white flex flex-col justify-center relative overflow-hidden">
               {/* 装饰性背景纹理 */}
               <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" 
                    style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '10px 10px' }}>
               </div>
               
-              <h2 className="text-xl font-bold mb-4 leading-tight font-song relative z-10 line-clamp-3">
+              <h2 className="text-lg font-bold mb-2 leading-tight font-song relative z-10 line-clamp-2">
                 {liSlides[currentLiSlide].title}
               </h2>
               
