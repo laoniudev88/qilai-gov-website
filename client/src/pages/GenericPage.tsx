@@ -1,40 +1,42 @@
 import { useRoute, Link } from "wouter";
 import { policyDocuments } from "@/lib/newsData";
 import { ChevronRight, ArrowRight, ChevronLeft } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function GenericPage() {
+  const { t } = useLanguage();
   const [match, params] = useRoute("/page/:id");
   const pageId = match ? params.id : "overview";
 
   const pageContent: Record<string, { title: string; content: React.ReactNode }> = {
     overview: {
-      title: "集团概况",
+      title: t('group_overview_title'),
       content: (
         <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
           <p className="indent-8">
-            企来集团（Qilai Group）是国内领先的数字经济产业服务商，致力于通过大数据、人工智能、区块链等前沿技术，为各级政府及企业提供全方位的数字化转型解决方案。
+            {t('group_overview_p1')}
           </p>
           <p className="indent-8">
-            集团紧密围绕国家“数字中国”战略，深耕数据要素市场化配置改革，构建了从数据采集、治理、流通到应用的全产业链服务体系。我们始终坚持“赋能实体经济、服务国家战略”的使命，助力地方政府优化营商环境，推动区域经济高质量发展。
+            {t('group_overview_p2')}
           </p>
           <div className="bg-gray-50 p-6 border border-gray-200 rounded-sm mt-8">
-            <h3 className="text-xl font-bold text-[#b91c1c] mb-4">核心业务板块</h3>
+            <h3 className="text-xl font-bold text-[#b91c1c] mb-4">{t('core_business_segments')}</h3>
             <ul className="grid grid-cols-2 gap-4">
-              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> 数字政府建设与运营</li>
-              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> 数据要素资产化服务</li>
-              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> 产业园区数字化招商</li>
-              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> 跨境数据流通与交易</li>
+              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> {t('digital_government_construction')}</li>
+              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> {t('data_element_assetization')}</li>
+              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> {t('industrial_park_digital_investment')}</li>
+              <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> {t('cross_border_data_circulation')}</li>
             </ul>
           </div>
         </div>
       )
     },
     policy: {
-      title: "政策要闻",
+      title: t('policy_news_title'),
       content: (
         <div className="space-y-6">
           <p className="text-lg leading-loose text-gray-800 font-song indent-8 mb-8">
-            深入贯彻落实党中央、国务院关于构建数据基础制度、更好发挥数据要素作用的决策部署，及时发布国家部委最新政策文件，为数字经济发展提供政策指引。
+            {t('policy_news_intro')}
           </p>
           <div className="border-t border-gray-200">
             <ul className="divide-y divide-dashed divide-gray-200">
@@ -45,7 +47,7 @@ export default function GenericPage() {
                       <h4 className="text-lg font-song text-gray-800 group-hover:text-[#b91c1c] group-hover:font-bold transition-all">
                         {doc.title}
                       </h4>
-                      <span className="text-sm text-gray-500 mt-1 block">来源：{doc.source}</span>
+                      <span className="text-sm text-gray-500 mt-1 block">{t('source')}{doc.source}</span>
                     </div>
                     <span className="text-gray-400 font-song">{doc.date}</span>
                   </a>
@@ -57,11 +59,11 @@ export default function GenericPage() {
       )
     },
     service: {
-      title: "数字服务",
+      title: t('digital_services_title'),
       content: (
         <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
           <p className="indent-8">
-            企来集团数字服务平台，旨在为政府部门提供高效、便捷的数字化服务工具。我们通过“互联网+数字服务”模式，助力政府实现“一网通办”、“跨省通办”，提升行政效能和公共服务水平。
+            {t('digital_services_intro')}
           </p>
           <div className="grid grid-cols-3 gap-6 mt-8">
             {[
@@ -82,38 +84,38 @@ export default function GenericPage() {
       )
     },
     interaction: {
-      title: "互动交流",
+      title: t('interaction_title'),
       content: (
         <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
           <p className="indent-8">
-            搭建政企沟通桥梁，倾听各界声音。欢迎各级政府领导、专家学者及企业家朋友莅临企来集团考察指导，共商数字经济发展大计。
+            {t('interaction_intro')}
           </p>
           <div className="bg-[#fff9f9] border border-[#ffcccc] p-8 rounded-sm mt-6 text-center">
-            <h3 className="text-2xl font-bold text-[#b91c1c] mb-4">预约考察 / 商务合作</h3>
-            <p className="text-gray-700 mb-6">请通过以下官方渠道提交您的合作意向，我们将有专人与您对接。</p>
+            <h3 className="text-2xl font-bold text-[#b91c1c] mb-4">{t('appointment_cooperation')}</h3>
+            <p className="text-gray-700 mb-6">{t('submit_intent')}</p>
             <button className="bg-[#b91c1c] text-white px-8 py-3 rounded-sm font-bold hover:bg-[#a11818] transition-colors shadow-md">
-              在线提交意向书
+              {t('submit_button')}
             </button>
-            <p className="text-sm text-gray-500 mt-4">（系统正在维护中，请稍后访问）</p>
+            <p className="text-sm text-gray-500 mt-4">{t('system_maintenance')}</p>
           </div>
         </div>
       )
     },
     data: {
-      title: "数据开放",
+      title: t('open_data_title'),
       content: (
         <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
           <p className="indent-8">
-            依托国家数据局相关政策，企来集团积极推动公共数据资源的开发利用。本栏目将定期发布脱敏后的行业分析报告、宏观经济指数及产业发展白皮书。
+            {t('open_data_intro')}
           </p>
           <div className="border border-gray-200 rounded-sm overflow-hidden mt-6">
             <table className="w-full text-left">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="p-4 font-bold text-gray-700">数据名称</th>
-                  <th className="p-4 font-bold text-gray-700">发布日期</th>
-                  <th className="p-4 font-bold text-gray-700">格式</th>
-                  <th className="p-4 font-bold text-gray-700">操作</th>
+                  <th className="p-4 font-bold text-gray-700">{t('data_name')}</th>
+                  <th className="p-4 font-bold text-gray-700">{t('release_date')}</th>
+                  <th className="p-4 font-bold text-gray-700">{t('format')}</th>
+                  <th className="p-4 font-bold text-gray-700">{t('operation')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -127,7 +129,7 @@ export default function GenericPage() {
                     <td className="p-4 text-gray-600">{row.date}</td>
                     <td className="p-4 text-gray-600"><span className="bg-gray-100 px-2 py-1 text-xs rounded">{row.fmt}</span></td>
                     <td className="p-4">
-                      <button className="text-[#b91c1c] hover:underline text-sm">申请下载</button>
+                      <button className="text-[#b91c1c] hover:underline text-sm">{t('apply_download')}</button>
                     </td>
                   </tr>
                 ))}
@@ -138,20 +140,20 @@ export default function GenericPage() {
       )
     },
     cooperation: {
-      title: "地方合作",
+      title: t('local_cooperation_title'),
       content: (
         <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
           <p className="indent-8">
-            企来集团已与全国多个省市建立了深度交流对接合作关系，通过“数字+产业”双轮驱动对接，助力地方经济腾飞。
+            {t('local_cooperation_intro')}
           </p>
           <div className="grid grid-cols-2 gap-6 mt-6">
             {[
-              { city: "湖南省岳阳市", desc: "建设长江中游城市群数字经济创新发展示范区，推动传统产业数字化升级。" },
-              { city: "甘肃省兰州市", desc: "共建西部数字经济产业园，打造‘东数西算’重要节点与数据要素流通枢纽。" },
-              { city: "广东省珠海市", desc: "深化粤港澳大湾区产业协同，推动海洋经济与智慧城市的数字化转型。" },
-              { city: "浙江省长兴县", desc: "聚焦新能源与智能制造，构建长三角绿色智造高地与县域数字治理样板。" },
-              { city: "福建省厦门市", desc: "探索跨境数据流动试点，建设数字自贸区与两岸数字经济融合发展示范区。" },
-              { city: "江苏省常州市", desc: "打造长三角工业互联网与数字制造融合发展标杆，赋能新能源之都建设。" }
+              { city: "湖南省岳阳市", desc: t('yueyang_desc') },
+              { city: "甘肃省兰州市", desc: t('lanzhou_desc') },
+              { city: "广东省珠海市", desc: t('zhuhai_desc') },
+              { city: "浙江省长兴县", desc: t('changxing_desc') },
+              { city: "福建省厦门市", desc: t('xiamen_desc') },
+              { city: "江苏省常州市", desc: t('changzhou_desc') }
             ].map((item, idx) => (
               <div key={idx} className="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:border-[#b91c1c] transition-colors group cursor-pointer">
                 <h4 className="text-xl font-bold text-gray-800 group-hover:text-[#b91c1c] mb-2">{item.city}</h4>
@@ -182,11 +184,11 @@ export default function GenericPage() {
           <div className="flex items-center gap-4">
             <img src="/images/logo.png" alt="国徽" className="w-16 h-16" />
             <div>
-              <h1 className="text-4xl font-bold text-[#b91c1c] font-song">企来集团</h1>
+              <h1 className="text-4xl font-bold text-[#b91c1c] font-song">{t('company_name')}</h1>
             </div>
           </div>
           <Link href="/" className="text-[#b91c1c] font-bold hover:underline flex items-center gap-1">
-            <ChevronLeft className="w-4 h-4" /> 返回首页
+            <ChevronLeft className="w-4 h-4" /> {t('nav_home')}
           </Link>
         </div>
       </div>
@@ -197,7 +199,7 @@ export default function GenericPage() {
           <div className="col-span-3">
             <div className="bg-white border border-gray-200 shadow-sm rounded-sm overflow-hidden">
               <div className="bg-[#b91c1c] text-white p-4 font-bold text-lg font-song">
-                栏目导航
+                {t('column_navigation')}
               </div>
               <ul className="divide-y divide-gray-100">
                 {Object.entries(pageContent).map(([key, item]) => (
@@ -236,7 +238,7 @@ export default function GenericPage() {
 
       {/* 页脚 */}
       <footer className="bg-[#f0f0f0] border-t border-gray-300 mt-12 py-8 font-song text-center text-gray-500 text-sm">
-        <p>主办单位：企来集团 &nbsp;&nbsp; 版权所有：企来集团</p>
+        <p>{t('sponsor')} &nbsp;&nbsp; {t('copyright')}</p>
       </footer>
     </div>
   );

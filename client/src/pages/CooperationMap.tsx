@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // 中国地图 GeoJSON 数据 URL (使用阿里云 DataV 的公开数据)
 const CHINA_GEO_URL = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/china/china-provinces.json";

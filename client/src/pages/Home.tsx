@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { newsData, policyDocuments, leaderSlides } from "@/lib/newsData";
 import { ChevronLeft, ChevronRight, Search, Building2, FileText, BarChart3, Globe, ShieldCheck, Cpu } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Home() {
+  const { t, language, setLanguage } = useLanguage();
   const [currentXiSlide, setCurrentXiSlide] = useState(0);
   const [currentLiSlide, setCurrentLiSlide] = useState(0);
   const [currentNewsSlide, setCurrentNewsSlide] = useState(0);
@@ -63,9 +65,25 @@ export default function Home() {
             {/* 顶部导航已移除 */}
           </div>
           <div className="flex space-x-4">
-            <span className="cursor-pointer hover:underline">English</span>
-            <span className="cursor-pointer hover:underline">Français</span>
-            <span className="cursor-pointer hover:underline">无障碍</span>
+            <span 
+              className={`cursor-pointer hover:underline ${language === 'en' ? 'font-bold underline' : ''}`}
+              onClick={() => setLanguage('en')}
+            >
+              English
+            </span>
+            <span 
+              className={`cursor-pointer hover:underline ${language === 'fr' ? 'font-bold underline' : ''}`}
+              onClick={() => setLanguage('fr')}
+            >
+              Français
+            </span>
+            <span 
+              className={`cursor-pointer hover:underline ${language === 'zh' ? 'font-bold underline' : ''}`}
+              onClick={() => setLanguage('zh')}
+            >
+              中文
+            </span>
+            <span className="cursor-pointer hover:underline">{t('accessibility')}</span>
           </div>
         </div>
       </div>
@@ -76,10 +94,10 @@ export default function Home() {
           {/* 左侧Logo */}
           <div>
             <h1 className="text-[72px] font-bold text-[#ce1126] tracking-widest font-song leading-none" style={{ fontFamily: '"FZXiaoBiaoSong-B05S", "FangSong", serif', textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
-              企来集团
+              {t('company_name')}
             </h1>
             <p className="text-xl text-gray-600 mt-2 tracking-[0.3em] font-sans uppercase">
-              QILAI GROUP OFFICIAL WEBSITE
+              {t('official_website')}
             </p>
           </div>
           
@@ -88,11 +106,11 @@ export default function Home() {
             <div className="relative flex border border-gray-300 rounded-sm overflow-hidden">
               <input
                 type="text"
-                placeholder="请输入关键字"
+                placeholder={t('search_placeholder')}
                 className="pl-3 pr-2 py-2 w-64 text-sm focus:outline-none font-song"
               />
               <button className="bg-white text-[#ce1126] px-4 py-2 text-sm font-bold font-song hover:bg-gray-50 transition-colors">
-                搜索
+                {t('search_button')}
               </button>
             </div>
           </div>
@@ -103,13 +121,13 @@ export default function Home() {
       <nav className="bg-[#ce1126] text-white shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-14 text-lg font-bold font-song">
-            <Link href="/" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">首页</Link>
-            <Link href="/page/about" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">集团概况</Link>
-            <Link href="/page/policy" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">政策要闻</Link>
-            <Link href="/page/service" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">数字服务</Link>
-            <Link href="/page/interaction" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">互动交流</Link>
-            <Link href="/page/data" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">数据开放</Link>
-            <Link href="/page/cooperation" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">地方合作</Link>
+            <Link href="/" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_home')}</Link>
+            <Link href="/page/about" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_about')}</Link>
+            <Link href="/page/policy" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('policy_news_title')}</Link>
+            <Link href="/page/service" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_services')}</Link>
+            <Link href="/page/interaction" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_interaction')}</Link>
+            <Link href="/page/data" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_data')}</Link>
+            <Link href="/page/cooperation" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_cooperation')}</Link>
           </div>
         </div>
       </nav>
@@ -200,9 +218,9 @@ export default function Home() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-[#ce1126] font-song flex items-center">
               <span className="w-2 h-8 bg-[#ce1126] mr-3"></span>
-              地方合作
+              {t('local_cooperation_title')}
             </h2>
-            <Link href="/page/cooperation" className="text-sm text-gray-600 hover:text-[#ce1126] font-song">查看全国合作网络 &gt;</Link>
+            <Link href="/page/cooperation" className="text-sm text-gray-600 hover:text-[#ce1126] font-song">{t('view_national_network')}</Link>
           </div>
           
           <div className="grid grid-cols-6 gap-4">
@@ -236,7 +254,7 @@ export default function Home() {
           {/* 左侧：要闻聚焦 (仅展示集团新闻) */}
           <div className="col-span-8">
             <div className="flex items-center mb-6 border-b-2 border-[#ce1126] pb-2">
-              <h2 className="text-2xl font-bold text-[#ce1126] font-song">要闻聚焦</h2>
+              <h2 className="text-2xl font-bold text-[#ce1126] font-song">{t('news_focus')}</h2>
             </div>
             
             <div className="relative h-[350px] overflow-hidden rounded-sm shadow-sm group cursor-pointer"
