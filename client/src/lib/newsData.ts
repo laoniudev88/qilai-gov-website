@@ -70,7 +70,7 @@ export const leaderSlides = [
     id: 1,
     leader: "习近平",
     title: "习近平：不断做强做优做大我国数字经济",
-    image: "/images/xi_original.jpg", // Original first image restored
+    image: "/images/xi_jinping_1.jpg", // Reverted to original user-preferred image
     summary: "习近平总书记强调，要不断做强做优做大我国数字经济。数字技术、数字经济可以推动各类资源要素快捷流动、各类市场主体加速融合，帮助市场主体重构组织模式。",
     date: "2021-10-18",
     source: "新华社",
@@ -100,7 +100,7 @@ export const leaderSlides = [
     id: 2,
     leader: "李强",
     title: "李强：中国是世界第二大“数据富矿”",
-    image: "/images/li_original.jpg", // Original first image restored
+    image: "/images/li_qiang_1.jpg", // Reverted to original user-preferred image
     summary: "李强总理在世界经济论坛2024年年会开幕式上指出，中国的数据产量巨大，数据资源丰富，是世界第二大“数据富矿”。",
     date: "2024-01-16",
     source: "中国政府网",
