@@ -95,47 +95,27 @@ export const leaderSlides = [
     link: "#"
   },
   {
-    id: 2,
+    id: 1,
     leader: "习近平",
-    title: "习近平：发展新质生产力是推动高质量发展的内在要求",
-    image: "/images/xi_2025_hd_1.jpg", // New HD image 1
-    summary: "习近平指出，发展新质生产力是推动高质量发展的内在要求和重要着力点；新质生产力已经在实践中形成并展示出对高质量发展的强劲推动力、支撑力。",
-    date: "2024-05-25",
-    source: "人民日报",
-    link: "#"
-  },
-  {
-    id: 3,
-    leader: "习近平",
-    title: "习近平：构建开放、公平、非歧视的数字营商环境",
-    image: "/images/xi_2025_hd_new_1.jpg", // Corrected HD image
-    summary: "习近平强调，要努力构建开放、公平、非歧视的数字营商环境，支持平台企业在引领发展、创造就业、国际竞争中大显身手。",
-    date: "2024-11-25",
-    source: "央视新闻",
-    link: "#"
-  },
-  {
-    id: 4,
-    leader: "习近平",
-    title: "习近平：构建更加普惠繁荣的网络空间",
-    image: "/images/xi_2025_hd_new_2.jpg", // Corrected HD image
-    summary: "习近平指出，要构建更加普惠繁荣的网络空间，深化数字领域国际交流合作，加快数字中国建设，以信息化培育新动能，用新动能推动新发展。",
-    date: "2025-09-12",
+    title: "习近平：努力讲好中国科技创新故事",
+    image: "/images/xi_2025_newyear.jpg", // New HD image 1
+    summary: "习近平总书记在2025年新年贺词中强调，要努力讲好中国科技创新故事，为建设科技强国贡献力量。他指出，科技自立自强是国家强盛之基、安全之要。",
+    date: "2025-01-01",
     source: "新华社",
     link: "#"
   },
   {
-    id: 5,
+    id: 1,
     leader: "习近平",
-    title: "习近平：没有网络安全就没有国家安全",
-    image: "/images/xi_2025_hd_new_3.jpg", // Corrected HD image
-    summary: "习近平强调，没有网络安全就没有国家安全，没有信息化就没有现代化。要实现中国式现代化，互联网这一关必须要过。",
-    date: "2024-11-25",
-    source: "人民日报",
+    title: "习近平：加快推进数据科技创新赋能",
+    image: "/images/xi_speech_2024.jpg", // New HD image 2
+    summary: "习近平指出，要进一步强化数据科技创新顶层设计，加快关键数据技术攻关和高水平应用，在推动创新资源集聚，完善基础制度保障等方面下功夫。",
+    date: "2025-12-25",
+    source: "科技日报",
     link: "#"
   },
   {
-    id: 6,
+    id: 2,
     leader: "李强",
     title: "李强：中国是世界第二大“数据富矿”",
     image: "/images/li_original.jpg", // Original first image restored
@@ -145,42 +125,22 @@ export const leaderSlides = [
     link: "#"
   },
   {
-    id: 7,
+    id: 2,
     leader: "李强",
-    title: "李强：协同完善数据基础制度和数字基础设施",
-    image: "/images/li_2025_hd_1.jpg", // New HD image 1
-    summary: "李强在国务院常务会议上要求，要坚持改革创新和开放合作，持续优化数字经济发展环境，协同完善数据基础制度和数字基础设施，推进数据要素市场化配置。",
-    date: "2024-07-15",
-    source: "新华社",
-    link: "#"
-  },
-  {
-    id: 8,
-    leader: "李强",
-    title: "李强：只有加强创新合作，才能形成良性竞争",
-    image: "/images/li_2025_hd_2.jpg", // New HD image 2
-    summary: "李强强调，新一轮科技革命和产业变革带来国与国间新的竞合关系，只有加强创新合作，才能形成良性竞争，激发最大活力。",
-    date: "2024-01-16",
-    source: "人民日报",
-    link: "#"
-  },
-  {
-    id: 9,
-    leader: "李强",
-    title: "李强：加快完善数据基础制度",
-    image: "/images/li_2025_hd_3.jpg", // New HD image 3
-    summary: "李强在政府工作报告中指出，要加快完善数据基础制度，深化数据资源开发利用，促进和规范数据跨境流动。",
+    title: "李强：2025年政府工作报告强调数字经济",
+    image: "/images/li_gov_report_2025.jpg", // New HD image 1
+    summary: "李强总理在2025年政府工作报告中提出，要制定支持数字经济高质量发展政策，积极推进数字产业化、产业数字化，促进数字技术和实体经济深度融合。",
     date: "2025-03-05",
-    source: "央视新闻",
+    source: "人民网",
     link: "#"
   },
   {
-    id: 10,
+    id: 2,
     leader: "李强",
-    title: "李强：持续推进“人工智能+”行动",
-    image: "/images/li_2025_hd_4.jpg", // New HD image 4
-    summary: "李强强调，要激发数字经济创新活力，持续推进“人工智能+”行动，利用互联网新技术新应用对传统产业进行全方位、全角度、全链条的改造。",
-    date: "2025-03-05",
+    title: "李强：人工智能全球治理高级别会议致辞",
+    image: "/images/li_waic_2025.jpg", // New HD image 2
+    summary: "李强出席2025世界人工智能大会暨人工智能全球治理高级别会议并致辞，强调要深化大数据、人工智能等研发应用，开展“人工智能+”行动。",
+    date: "2025-07-04",
     source: "新华社",
     link: "#"
   }
