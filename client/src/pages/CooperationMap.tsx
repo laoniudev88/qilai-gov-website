@@ -94,6 +94,80 @@ const allCities = [...coreCities, ...extendedCities];
 export default function CooperationMap() {
   const { t } = useLanguage();
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
+  
+  // Get translated city name from Chinese city name
+  const getCityName = (chineseCityName: string): string => {
+    const cityMap: {[key: string]: string} = {
+      "岳阳市": t('city_yueyang'),
+      "兰州市": t('city_lanzhou'),
+      "珠海市": t('city_zhuhai'),
+      "长兴县": t('city_changxing'),
+      "厦门市": t('city_xiamen'),
+      "常州市": t('city_changzhou'),
+      "都江堰市": t('city_dujiangyan'),
+      "温州市": t('city_wenzhou'),
+      "绍兴市": t('city_shaoxing'),
+      "南通市": t('city_nantong'),
+      "扬州市": t('city_yangzhou'),
+      "徐州市": t('city_xuzhou'),
+      "青岛市": t('city_qingdao'),
+      "烟台市": t('city_yantai'),
+      "福州市": t('city_fuzhou'),
+      "泉州市": t('city_quanzhou'),
+      "海口市": t('city_haikou'),
+      "绵阳市": t('city_mianyang'),
+      "天水市": t('city_tianshui'),
+      "贵阳市": t('city_guiyang'),
+      "遵义市": t('city_zunyi'),
+      "昆明市": t('city_kunming'),
+      "大理州": t('city_dali'),
+      "银川市": t('city_yinchuan'),
+      "西宁市": t('city_xining'),
+      "乌鲁木齐": t('city_urumqi'),
+      "柳州市": t('city_liuzhou'),
+      "哈尔滨市": t('city_harbin'),
+      "长春市": t('city_changchun'),
+      "沈阳市": t('city_shenyang'),
+      "大连市": t('city_dalian'),
+      "呼和浩特市": t('city_hohhot'),
+      "包头市": t('city_baotou'),
+      "西安市": t('city_xian'),
+      "宝鸡市": t('city_baoji'),
+      "咸阳市": t('city_xianyang'),
+      "汉中市": t('city_hanzhong'),
+      "成都市": t('city_chengdu'),
+      "重庆市": t('city_chongqing'),
+      "南宁市": t('city_nanning'),
+      "桂林市": t('city_guilin'),
+      "北海市": t('city_beihai'),
+      "拉萨市": t('city_lhasa'),
+      "日喀则市": t('city_shigatse'),
+      "喀什地区": t('city_kashgar'),
+      "伊犁州": t('city_yili'),
+      "酒泉市": t('city_jiuquan'),
+      "合肥市": t('city_hefei'),
+      "芜湖市": t('city_wuhu'),
+      "南昌市": t('city_nanchang'),
+      "赣州市": t('city_ganzhou'),
+      "太原市": t('city_taiyuan'),
+      "大同市": t('city_datong'),
+      "郑州市": t('city_zhengzhou'),
+      "洛阳市": t('city_luoyang'),
+      "武汉市": t('city_wuhan'),
+      "宜昌市": t('city_yichang'),
+      "长沙市": t('city_changsha'),
+      "衡阳市": t('city_hengyang'),
+      "石家庄市": t('city_shijiazhuang'),
+      "唐山市": t('city_tangshan'),
+      "济南市": t('city_jinan'),
+      "潍坊市": t('city_weifang'),
+      "林芝市": t('city_nyingchi'),
+      "昌都市": t('city_chamdo'),
+      "延安市": t('city_yanan'),
+      "榆林市": t('city_yulin')
+    };
+    return cityMap[chineseCityName] || chineseCityName;
+  };
 
   return (
     <div className="min-h-screen bg-[#f9f9f9] font-song">
@@ -219,11 +293,13 @@ export default function CooperationMap() {
                     </Geographies>
                     
                     {/* 城市标记 */}
-                    {allCities.map((city) => (
+                    {allCities.map((city, idx) => {
+                      const displayName = getCityName(city.name);
+                      return (
                       <Marker 
-                        key={city.name} 
+                        key={idx} 
                         coordinates={city.coordinates as [number, number]}
-                        onMouseEnter={() => setHoveredCity(city.name)}
+                        onMouseEnter={() => setHoveredCity(displayName)}
                         onMouseLeave={() => setHoveredCity(null)}
                       >
                         <g className="cursor-pointer group">
@@ -243,7 +319,7 @@ export default function CooperationMap() {
                           />
                           
                           {/* 悬停或核心城市显示名称 */}
-                          {(city.type === 'core' || hoveredCity === city.name) && (
+                          {(city.type === 'core' || hoveredCity === displayName) && (
                             <text
                               textAnchor="middle"
                               y={city.type === 'core' ? -12 : -8}
@@ -255,12 +331,13 @@ export default function CooperationMap() {
                                 textShadow: "0px 0px 2px #fff"
                               }}
                             >
-                              {city.name}
+                              {displayName}
                             </text>
                           )}
                         </g>
                       </Marker>
-                    ))}
+                    );
+                    })}
                   </ZoomableGroup>
                 </ComposableMap>
                 
@@ -269,7 +346,7 @@ export default function CooperationMap() {
                   <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-sm p-4 rounded shadow-lg border border-gray-200 max-w-xs">
                     <h4 className="font-bold text-[#ce1126] mb-1">{hoveredCity}</h4>
                     <p className="text-xs text-gray-600">
-                      {coreCities.find(c => c.name === hoveredCity) 
+                      {coreCities.find(c => getCityName(c.name) === hoveredCity) 
                         ? t('core_strategic_partner_desc') 
                         : t('key_expansion_area_desc')}
                     </p>

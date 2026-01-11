@@ -800,6 +800,356 @@ const translations: Translations = {
     zh: "常州市",
     en: "Changzhou",
     fr: "Changzhou"
+  },
+  "city_yueyang": {
+    zh: "岳阳市",
+    en: "Yueyang",
+    fr: "Yueyang"
+  },
+  "city_lanzhou": {
+    zh: "兰州市",
+    en: "Lanzhou",
+    fr: "Lanzhou"
+  },
+  "city_zhuhai": {
+    zh: "珠海市",
+    en: "Zhuhai",
+    fr: "Zhuhai"
+  },
+  "city_changxing": {
+    zh: "长兴县",
+    en: "Changxing",
+    fr: "Changxing"
+  },
+  "city_xiamen": {
+    zh: "厦门市",
+    en: "Xiamen",
+    fr: "Xiamen"
+  },
+  "city_dujiangyan": {
+    zh: "都江堰市",
+    en: "Dujiangyan",
+    fr: "Dujiangyan"
+  },
+  "city_wenzhou": {
+    zh: "温州市",
+    en: "Wenzhou",
+    fr: "Wenzhou"
+  },
+  "city_shaoxing": {
+    zh: "绍兴市",
+    en: "Shaoxing",
+    fr: "Shaoxing"
+  },
+  "city_nantong": {
+    zh: "南通市",
+    en: "Nantong",
+    fr: "Nantong"
+  },
+  "city_yangzhou": {
+    zh: "扬州市",
+    en: "Yangzhou",
+    fr: "Yangzhou"
+  },
+  "city_xuzhou": {
+    zh: "徐州市",
+    en: "Xuzhou",
+    fr: "Xuzhou"
+  },
+  "city_qingdao": {
+    zh: "青岛市",
+    en: "Qingdao",
+    fr: "Qingdao"
+  },
+  "city_yantai": {
+    zh: "烟台市",
+    en: "Yantai",
+    fr: "Yantai"
+  },
+  "city_fuzhou": {
+    zh: "福州市",
+    en: "Fuzhou",
+    fr: "Fuzhou"
+  },
+  "city_quanzhou": {
+    zh: "泉州市",
+    en: "Quanzhou",
+    fr: "Quanzhou"
+  },
+  "city_haikou": {
+    zh: "海口市",
+    en: "Haikou",
+    fr: "Haikou"
+  },
+  "city_mianyang": {
+    zh: "绵阳市",
+    en: "Mianyang",
+    fr: "Mianyang"
+  },
+  "city_tianshui": {
+    zh: "天水市",
+    en: "Tianshui",
+    fr: "Tianshui"
+  },
+  "city_guiyang": {
+    zh: "贵阳市",
+    en: "Guiyang",
+    fr: "Guiyang"
+  },
+  "city_zunyi": {
+    zh: "遵义市",
+    en: "Zunyi",
+    fr: "Zunyi"
+  },
+  "city_kunming": {
+    zh: "昆明市",
+    en: "Kunming",
+    fr: "Kunming"
+  },
+  "city_dali": {
+    zh: "大理州",
+    en: "Dali",
+    fr: "Dali"
+  },
+  "city_yinchuan": {
+    zh: "银川市",
+    en: "Yinchuan",
+    fr: "Yinchuan"
+  },
+  "city_xining": {
+    zh: "西宁市",
+    en: "Xining",
+    fr: "Xining"
+  },
+  "city_urumqi": {
+    zh: "乌鲁木齐",
+    en: "Urumqi",
+    fr: "Urumqi"
+  },
+  "city_liuzhou": {
+    zh: "柳州市",
+    en: "Liuzhou",
+    fr: "Liuzhou"
+  },
+  "city_harbin": {
+    zh: "哈尔滨市",
+    en: "Harbin",
+    fr: "Harbin"
+  },
+  "city_changchun": {
+    zh: "长春市",
+    en: "Changchun",
+    fr: "Changchun"
+  },
+  "city_shenyang": {
+    zh: "沈阳市",
+    en: "Shenyang",
+    fr: "Shenyang"
+  },
+  "city_dalian": {
+    zh: "大连市",
+    en: "Dalian",
+    fr: "Dalian"
+  },
+  "city_hohhot": {
+    zh: "呼和浩特市",
+    en: "Hohhot",
+    fr: "Hohhot"
+  },
+  "city_baotou": {
+    zh: "包头市",
+    en: "Baotou",
+    fr: "Baotou"
+  },
+  "city_xian": {
+    zh: "西安市",
+    en: "Xian",
+    fr: "Xian"
+  },
+  "city_baoji": {
+    zh: "宝鸡市",
+    en: "Baoji",
+    fr: "Baoji"
+  },
+  "city_xianyang": {
+    zh: "咸阳市",
+    en: "Xianyang",
+    fr: "Xianyang"
+  },
+  "city_hanzhong": {
+    zh: "汉中市",
+    en: "Hanzhong",
+    fr: "Hanzhong"
+  },
+  "city_chengdu": {
+    zh: "成都市",
+    en: "Chengdu",
+    fr: "Chengdu"
+  },
+  "city_chongqing": {
+    zh: "重庆市",
+    en: "Chongqing",
+    fr: "Chongqing"
+  },
+  "city_nanning": {
+    zh: "南宁市",
+    en: "Nanning",
+    fr: "Nanning"
+  },
+  "city_guilin": {
+    zh: "桂林市",
+    en: "Guilin",
+    fr: "Guilin"
+  },
+  "city_beihai": {
+    zh: "北海市",
+    en: "Beihai",
+    fr: "Beihai"
+  },
+  "city_lhasa": {
+    zh: "拉萨市",
+    en: "Lhasa",
+    fr: "Lhasa"
+  },
+  "city_shigatse": {
+    zh: "日喀则市",
+    en: "Shigatse",
+    fr: "Shigatse"
+  },
+  "city_kashgar": {
+    zh: "喀什地区",
+    en: "Kashgar",
+    fr: "Kashgar"
+  },
+  "city_yili": {
+    zh: "伊犁州",
+    en: "Yili",
+    fr: "Yili"
+  },
+  "city_jiuquan": {
+    zh: "酒泉市",
+    en: "Jiuquan",
+    fr: "Jiuquan"
+  },
+  "city_hefei": {
+    zh: "合肥市",
+    en: "Hefei",
+    fr: "Hefei"
+  },
+  "city_wuhu": {
+    zh: "芜湖市",
+    en: "Wuhu",
+    fr: "Wuhu"
+  },
+  "city_nanchang": {
+    zh: "南昌市",
+    en: "Nanchang",
+    fr: "Nanchang"
+  },
+  "city_ganzhou": {
+    zh: "赣州市",
+    en: "Ganzhou",
+    fr: "Ganzhou"
+  },
+  "city_taiyuan": {
+    zh: "太原市",
+    en: "Taiyuan",
+    fr: "Taiyuan"
+  },
+  "city_datong": {
+    zh: "大同市",
+    en: "Datong",
+    fr: "Datong"
+  },
+  "city_zhengzhou": {
+    zh: "郑州市",
+    en: "Zhengzhou",
+    fr: "Zhengzhou"
+  },
+  "city_luoyang": {
+    zh: "洛阳市",
+    en: "Luoyang",
+    fr: "Luoyang"
+  },
+  "city_wuhan": {
+    zh: "武汉市",
+    en: "Wuhan",
+    fr: "Wuhan"
+  },
+  "city_yichang": {
+    zh: "宜昌市",
+    en: "Yichang",
+    fr: "Yichang"
+  },
+  "city_changsha": {
+    zh: "长沙市",
+    en: "Changsha",
+    fr: "Changsha"
+  },
+  "city_hengyang": {
+    zh: "衡阳市",
+    en: "Hengyang",
+    fr: "Hengyang"
+  },
+  "city_shijiazhuang": {
+    zh: "石家庄市",
+    en: "Shijiazhuang",
+    fr: "Shijiazhuang"
+  },
+  "city_tangshan": {
+    zh: "唐山市",
+    en: "Tangshan",
+    fr: "Tangshan"
+  },
+  "city_jinan": {
+    zh: "济南市",
+    en: "Jinan",
+    fr: "Jinan"
+  },
+  "city_weifang": {
+    zh: "潍坊市",
+    en: "Weifang",
+    fr: "Weifang"
+  },
+  "city_nyingchi": {
+    zh: "林芝市",
+    en: "Nyingchi",
+    fr: "Nyingchi"
+  },
+  "city_chamdo": {
+    zh: "昌都市",
+    en: "Chamdo",
+    fr: "Chamdo"
+  },
+  "city_yanan": {
+    zh: "延安市",
+    en: "Yanan",
+    fr: "Yanan"
+  },
+  "city_yulin": {
+    zh: "榆林市",
+    en: "Yulin",
+    fr: "Yulin"
+  },
+  "news_category_local_cooperation": {
+    zh: "地方合作",
+    en: "Local Cooperation",
+    fr: "Coopération Locale"
+  },
+  "news_category_news_focus": {
+    zh: "要闻聚焦",
+    en: "News Focus",
+    fr: "Actualités"
+  },
+  "news_source_qilai": {
+    zh: "企来集团",
+    en: "Qilai Group",
+    fr: "Groupe Qilai"
+  },
+  "news_source_xinhua": {
+    zh: "新华社",
+    en: "Xinhua News Agency",
+    fr: "Agence de presse Xinhua"
   }
 };
 
