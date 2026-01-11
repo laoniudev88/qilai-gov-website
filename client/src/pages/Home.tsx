@@ -76,61 +76,61 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section with Leaders */}
-      <section className="bg-white border-b border-gray-200">
-        <div className="container mx-auto py-8">
-          <div className="grid grid-cols-12 gap-8">
-            {/* Main Leader Photos - Taking up significant space */}
-            <div className="col-span-8 relative">
-              <div className="grid grid-cols-2 gap-4 h-[500px]">
-                <div className="relative overflow-hidden border border-gray-200 shadow-sm group">
-                  <img 
-                    src="/images/xi_jinping_1.jpg" 
-                    alt="习近平总书记" 
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                    <h3 className="text-white text-xl font-bold text-center">紧跟国家战略 践行数字中国</h3>
-                  </div>
-                </div>
-                <div className="relative overflow-hidden border border-gray-200 shadow-sm group">
-                  <img 
-                    src="/images/li_qiang_1.jpg" 
-                    alt="李强总理" 
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                    <h3 className="text-white text-xl font-bold text-center">深化政企混改 赋能区域经济</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Hero Section with Xi Jinping Background */}
+      <section className="relative w-full h-[600px] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/xi_jinping_bg.jpg" 
+            alt="习近平总书记" 
+            className="w-full h-full object-cover object-top"
+          />
+          {/* Overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent"></div>
+        </div>
 
-            {/* Right Side: Important Headlines */}
-            <div className="col-span-4 flex flex-col justify-between">
-              <div className="bg-white border border-gray-200 p-6 h-full shadow-sm">
-                <h2 className="text-2xl font-bold text-[#C50F1F] mb-4 border-b-2 border-[#C50F1F] pb-2 inline-block">
-                  要闻聚焦
-                </h2>
-                <ul className="space-y-6">
-                  {sortedNews.slice(0, 4).map((news) => (
-                    <li key={news.id} className="group">
-                      <a href="#" className="block">
-                        <h3 className="text-lg font-bold text-gray-800 group-hover:text-[#C50F1F] transition-colors line-clamp-2 mb-1 leading-snug">
-                          {news.title}
-                        </h3>
-                        <p className="text-sm text-gray-500">{news.date}</p>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto pt-6">
-                  <Button variant="outline" className="w-full border-[#C50F1F] text-[#C50F1F] hover:bg-[#C50F1F] hover:text-white rounded-none">
-                    查看更多 <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
+        {/* Content Overlay */}
+        <div className="container mx-auto h-full relative z-10 flex items-center">
+          <div className="max-w-2xl text-white pl-8 border-l-8 border-[#C50F1F]">
+            <h2 className="text-5xl font-bold mb-6 leading-tight tracking-wide" style={{textShadow: "2px 2px 4px rgba(0,0,0,0.5)"}}>
+              紧跟国家战略<br/>践行数字中国
+            </h2>
+            <p className="text-2xl font-light mb-8 tracking-widest opacity-90">
+              深化政企混改 · 赋能区域经济
+            </p>
+            <Button className="bg-[#C50F1F] hover:bg-[#a00c19] text-white px-8 py-6 text-lg rounded-none border-2 border-transparent hover:border-white transition-all">
+              了解更多 <ChevronRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Important Headlines Section (Moved below Hero) */}
+      <section className="bg-white border-b border-gray-200 py-8">
+        <div className="container mx-auto">
+          <div className="flex items-center justify-between mb-6 border-b border-gray-200 pb-2">
+            <h2 className="text-2xl font-bold text-[#C50F1F] border-l-4 border-[#C50F1F] pl-4">
+              要闻聚焦
+            </h2>
+            <a href="#" className="text-sm text-gray-600 hover:text-[#C50F1F] flex items-center">
+              更多新闻 <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+          
+          <div className="grid grid-cols-4 gap-6">
+            {sortedNews.slice(0, 4).map((news) => (
+              <div key={news.id} className="group cursor-pointer">
+                <div className="bg-gray-50 p-4 h-full border border-gray-100 hover:border-[#C50F1F] hover:shadow-md transition-all">
+                  <h3 className="text-lg font-bold text-gray-800 group-hover:text-[#C50F1F] transition-colors line-clamp-2 mb-3 leading-snug h-12">
+                    {news.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-3">{news.date}</p>
+                  <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed text-justify">
+                    {news.content.substring(0, 80)}...
+                  </p>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
