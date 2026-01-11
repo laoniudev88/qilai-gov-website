@@ -1,409 +1,310 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { sortedNews, policyDocuments } from "@/lib/newsData";
-import { ChevronRight, Search, Globe, FileText, ExternalLink } from "lucide-react";
-import { useState } from "react";
-import { Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
+import { newsData, sortedNews } from "@/lib/newsData";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("all");
-  const { language, setLanguage, t } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [, setLocation] = useLocation();
 
-  // 模拟数据：企来集团在全国各地的合作项目增长趋势
-  const projectData = [
-    { year: '2021', projects: 12, investment: 3.5 },
-    { year: '2022', projects: 28, investment: 8.2 },
-    { year: '2023', projects: 45, investment: 15.6 },
-    { year: '2024', projects: 86, investment: 32.4 },
-    { year: '2025', projects: 130, investment: 58.9 },
-  ];
+  // 筛选出有图片的“要闻聚焦”新闻（排除六盘水，只保留兰州、厦门、心之力、珠海）
+  const featuredNews = newsData.filter(
+    (item) => item.image && item.category !== "政策要闻"
+  );
 
-  // 过滤新闻列表
-  const filteredNews = activeTab === "all" 
-    ? sortedNews 
-    : sortedNews.filter(news => news.category === activeTab);
+  // 自动轮播
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % featuredNews.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [featuredNews.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % featuredNews.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + featuredNews.length) % featuredNews.length);
+  };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-serif text-[#333]">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-gray-200 py-2">
-        <div className="container mx-auto flex justify-between items-center text-sm text-gray-600">
-          <div className="flex space-x-4">
-            <span>{t('date_format')}</span>
-            <span>{t('lunar_date')}</span>
+    <div className="min-h-screen bg-white font-song">
+      {/* 顶部导航 */}
+      <header className="bg-[#b91c1c] text-white">
+        <div className="container mx-auto px-4 py-2 flex justify-between items-center text-sm">
+          <div className="flex gap-4">
+            <span className="hover:underline cursor-pointer">国务院首页</span>
+            <span className="hover:underline cursor-pointer">政策</span>
+            <span className="hover:underline cursor-pointer">服务</span>
+            <span className="hover:underline cursor-pointer">互动</span>
           </div>
-          <div className="flex space-x-4 items-center">
-            <div className="flex items-center space-x-2 mr-4 border-r border-gray-300 pr-4">
-              <Globe className="w-4 h-4" />
-              <button 
-                onClick={() => setLanguage('zh')} 
-                className={`hover:text-[#C50F1F] ${language === 'zh' ? 'font-bold text-[#C50F1F]' : ''}`}
-              >
-                CN
-              </button>
-              <span>/</span>
-              <button 
-                onClick={() => setLanguage('en')} 
-                className={`hover:text-[#C50F1F] ${language === 'en' ? 'font-bold text-[#C50F1F]' : ''}`}
-              >
-                EN
-              </button>
-              <span>/</span>
-              <button 
-                onClick={() => setLanguage('fr')} 
-                className={`hover:text-[#C50F1F] ${language === 'fr' ? 'font-bold text-[#C50F1F]' : ''}`}
-              >
-                FR
-              </button>
-            </div>
-            <span className="cursor-pointer hover:text-[#C50F1F]">{t('accessibility')}</span>
-            {/* 移除所有登录注册入口，保持纯净 */}
-          </div>
-        </div>
-      </div>
-
-      {/* Header / Logo Area */}
-      <header className="bg-white py-10 relative overflow-hidden">
-        {/* Decorative background pattern */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none" 
-             style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23C50F1F\\' fill-opacity=\\'1\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}>
-        </div>
-        
-        <div className="container mx-auto flex flex-col items-center justify-center relative z-10">
-          {/* 品牌字体升级：72px 方正小标宋/仿宋体，加粗带阴影 */}
-          <h1 className="text-[72px] font-bold tracking-widest text-[#C50F1F] mb-4 leading-none" 
-              style={{
-                fontFamily: "'FangSong', 'STFangsong', 'SimSun', serif",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.15), 1px 1px 0px rgba(255,255,255,0.5)"
-              }}>
-            {t('company_name')}
-          </h1>
-          <p className="text-xl tracking-[0.8em] text-gray-600 uppercase font-serif">Qilai Group</p>
-          
-          <div className="mt-8 w-full max-w-3xl flex items-center border-2 border-[#C50F1F] rounded-none overflow-hidden shadow-sm">
-            <input 
-              type="text" 
-              placeholder={t('search_placeholder')}
-              className="flex-1 px-6 py-3 outline-none text-gray-700 placeholder-gray-400 text-lg"
-            />
-            <button className="bg-[#C50F1F] text-white px-10 py-3 font-bold hover:bg-[#a00c19] transition-colors flex items-center text-lg">
-              <Search className="w-6 h-6 mr-2" />
-              {t('search_button')}
-            </button>
+          <div className="flex gap-4">
+            <span className="cursor-pointer hover:text-yellow-200">English</span>
+            <span className="cursor-pointer hover:text-yellow-200">Français</span>
+            <span className="cursor-pointer hover:text-yellow-200">无障碍</span>
           </div>
         </div>
       </header>
 
-      {/* Navigation Bar */}
-      <nav className="bg-[#C50F1F] text-white shadow-md sticky top-0 z-50 border-t border-[#a00c19]">
-        <div className="container mx-auto">
-          <ul className="flex justify-center space-x-0">
+      {/* Logo区域 */}
+      <div className="bg-white border-b-4 border-[#b91c1c] shadow-sm relative z-10">
+        <div className="container mx-auto px-4 py-8 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <img 
+              src="/images/logo.png" 
+              alt="国徽" 
+              className="w-24 h-24 drop-shadow-md"
+            />
+            <div>
+              <h1 className="text-[72px] font-bold tracking-wider text-[#b91c1c] font-song leading-none drop-shadow-sm" style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.1)" }}>
+                企来集团
+              </h1>
+              <p className="text-xl text-gray-600 mt-2 tracking-[0.2em] font-song font-bold">
+                QILAI GROUP OFFICIAL WEBSITE
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 border border-gray-300 rounded px-3 py-1.5 bg-gray-50">
+            <input 
+              type="text" 
+              placeholder="请输入关键字" 
+              className="outline-none text-sm w-48 bg-transparent font-song"
+            />
+            <button className="text-[#b91c1c] font-bold">搜索</button>
+          </div>
+        </div>
+      </div>
+
+      {/* 主导航栏 */}
+      <nav className="bg-[#b91c1c] text-white shadow-lg sticky top-0 z-50">
+        <div className="container mx-auto px-4">
+          <ul className="flex justify-between items-center h-14 text-lg font-bold font-song">
+            <li className="flex-1 text-center hover:bg-[#a11818] h-full flex items-center justify-center cursor-pointer transition-colors border-r border-[#a11818]/50">
+              <Link href="/">首页</Link>
+            </li>
             {[
-              { name: t('nav_home'), link: "/" },
-              { name: t('nav_about'), link: "/page/about" },
-              { name: "政策要闻", link: "/#news" },
-              { name: t('nav_services'), link: "/page/services" },
-              { name: t('nav_policy'), link: "/page/policy" },
-              { name: t('nav_interaction'), link: "/page/interaction" },
-              { name: t('nav_data'), link: "/page/data" }
-            ].map((item, index) => (
-              <li key={index} className="flex-1 text-center group relative">
-                <a href={item.link} className="block py-4 text-xl font-medium hover:bg-[#a00c19] transition-colors border-r border-[#d6303e] last:border-r-0 font-serif tracking-wide">
-                  {item.name}
-                </a>
-                {/* Dropdown indicator */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              { name: "集团概况", path: "/page/overview" },
+              { name: "政策要闻", path: "/page/policy" },
+              { name: "政务服务", path: "/page/service" },
+              { name: "互动交流", path: "/page/interaction" },
+              { name: "数据开放", path: "/page/data" },
+              { name: "地方合作", path: "/page/cooperation" }
+            ].map((item) => (
+              <li key={item.name} className="flex-1 text-center hover:bg-[#a11818] h-full flex items-center justify-center cursor-pointer transition-colors border-r border-[#a11818]/50">
+                <Link href={item.path}>{item.name}</Link>
               </li>
             ))}
           </ul>
         </div>
       </nav>
 
-      {/* Hero Section with Xi Jinping Background */}
-      <section className="relative w-full h-[650px] overflow-hidden bg-gray-100">
-        {/* Background Image - 习近平总书记2025年新年贺词高清照 */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/xi_jinping_2025_hero.jpg" 
-            alt="习近平总书记2025年新年贺词" 
-            className="w-full h-full object-cover object-top"
-          />
-          {/* Overlay for text readability - 渐变遮罩 */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/50 to-transparent"></div>
-        </div>
-
-        {/* Content Overlay */}
-        <div className="container mx-auto h-full relative z-10 flex items-center">
-          <div className="max-w-3xl text-white pl-10 border-l-[10px] border-[#C50F1F] ml-10">
-            <h2 className="text-6xl font-bold mb-8 leading-tight tracking-wide font-serif" 
-                style={{textShadow: "2px 2px 4px rgba(0,0,0,0.8)"}} 
-                dangerouslySetInnerHTML={{__html: t('hero_title')}}>
-            </h2>
-            <p className="text-3xl font-light mb-10 tracking-widest opacity-95 font-serif" style={{textShadow: "1px 1px 2px rgba(0,0,0,0.8)"}}>
-              {t('hero_subtitle')}
-            </p>
-            <Button className="bg-[#C50F1F] hover:bg-[#a00c19] text-white px-10 py-7 text-xl rounded-none border-2 border-transparent hover:border-white transition-all shadow-lg">
-              {t('hero_button')} <ChevronRight className="ml-2 h-6 w-6" />
-            </Button>
+      {/* 核心内容区 */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-12 gap-8">
+          {/* 左侧：习近平总书记照片 (占8列) */}
+          <div className="col-span-8 relative group cursor-pointer overflow-hidden rounded-sm shadow-md border border-gray-200">
+            <img 
+              src="/images/xi_jinping_2025.jpg" 
+              alt="习近平主席发表2025年新年贺词" 
+              className="w-full h-[600px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-8 pt-24">
+              <h2 className="text-4xl font-bold text-white mb-4 font-song leading-tight drop-shadow-lg">
+                习近平发表二〇二五年新年贺词
+              </h2>
+              <p className="text-xl text-gray-100 font-song leading-relaxed drop-shadow-md max-w-4xl">
+                新年前夕，国家主席习近平通过中央广播电视总台和互联网，发表了二〇二五年新年贺词。
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Important Headlines Section */}
-      <section className="bg-white border-b border-gray-200 py-10">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-8 border-b-2 border-[#C50F1F] pb-2">
-            <h2 className="text-3xl font-bold text-[#C50F1F] flex items-center">
-              <span className="w-2 h-8 bg-[#C50F1F] mr-3"></span>
-              {t('news_focus')}
-            </h2>
-            <a href="#" className="text-base text-gray-600 hover:text-[#C50F1F] flex items-center font-serif">
-              {t('more_news')} <ChevronRight className="w-4 h-4" />
-            </a>
-          </div>
-          
-          <div className="grid grid-cols-4 gap-8">
-            {sortedNews.slice(0, 4).map((news) => (
-              <div key={news.id} className="group cursor-pointer h-full">
-                <div className="bg-white h-full border border-gray-200 hover:border-[#C50F1F] hover:shadow-lg transition-all flex flex-col">
-                  {/* 如果有图片则显示图片，否则显示默认占位 */}
-                  <div className="h-48 bg-gray-100 overflow-hidden relative">
-                    {news.category === "政策要闻" ? (
-                      <div className="w-full h-full bg-[#C50F1F]/5 flex items-center justify-center text-[#C50F1F]">
-                        <FileText className="w-16 h-16 opacity-20" />
-                        <span className="absolute bottom-2 right-2 bg-[#C50F1F] text-white text-xs px-2 py-1">权威发布</span>
-                      </div>
-                    ) : (
-                      <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
-                        <span className="text-4xl font-serif text-gray-300">Qilai</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-5 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-[#C50F1F] transition-colors line-clamp-2 mb-3 leading-snug font-serif">
-                      {news.title}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-4 font-serif border-b border-gray-100 pb-2">{news.date}</p>
-                    <p className="text-base text-gray-600 line-clamp-3 leading-relaxed text-justify font-serif flex-1">
-                      {news.content.substring(0, 80)}...
-                    </p>
-                  </div>
+          {/* 右侧：李强总理照片 & 地方合作 (占4列) */}
+          <div className="col-span-4 flex flex-col gap-6">
+            {/* 李强总理板块 */}
+            <div className="bg-white border border-gray-200 shadow-sm rounded-sm overflow-hidden group">
+              <div className="relative h-[320px] overflow-hidden">
+                <img 
+                  src="/images/li_qiang_2025.jpg" 
+                  alt="李强总理工作照" 
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                  <h3 className="text-xl font-bold text-white font-song">
+                    李强主持召开国务院常务会议
+                  </h3>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content Area */}
-      <main className="container mx-auto py-12">
-        <div className="grid grid-cols-12 gap-10">
-          {/* Left Column: News List */}
-          <div className="col-span-8">
-            <div className="flex items-center justify-between mb-8 border-b border-gray-200 pb-0">
-              <div className="flex space-x-8">
-                {["全部", "政策要闻", "集团动态", "地方合作"].map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab === "全部" ? "all" : tab)}
-                    className={`text-xl font-bold pb-4 border-b-4 transition-colors font-serif ${
-                      (activeTab === "all" && tab === "全部") || activeTab === tab
-                        ? "text-[#C50F1F] border-[#C50F1F]" 
-                        : "text-gray-600 border-transparent hover:text-[#C50F1F]"
-                    }`}
-                  >
-                    {tab}
-                  </button>
-                ))}
+              <div className="p-4 bg-gray-50 border-t border-gray-100">
+                <ul className="space-y-3 text-sm font-song">
+                  <li className="flex items-start gap-2 text-gray-700 hover:text-[#b91c1c] cursor-pointer transition-colors">
+                    <span className="text-[#b91c1c] mt-1">●</span>
+                    研究部署进一步优化营商环境有关工作
+                  </li>
+                  <li className="flex items-start gap-2 text-gray-700 hover:text-[#b91c1c] cursor-pointer transition-colors">
+                    <span className="text-[#b91c1c] mt-1">●</span>
+                    审议通过《关于促进数据产业高质量发展的指导意见》
+                  </li>
+                </ul>
               </div>
             </div>
 
-            <div className="space-y-8">
-              {filteredNews.map((news) => (
-                <div key={news.id} className="flex gap-8 border-b border-gray-100 pb-8 group cursor-pointer hover:bg-gray-50 p-6 -mx-6 transition-colors rounded-sm">
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#C50F1F] transition-colors font-serif">
-                      {news.title}
-                    </h3>
-                    <p className="text-gray-600 line-clamp-3 mb-4 leading-loose text-justify text-lg font-serif indent-8">
-                      {news.content.substring(0, 180)}...
-                    </p>
-                    <div className="flex items-center text-sm text-gray-500 space-x-6 font-serif">
-                      <span className={`px-3 py-1 ${news.category === "政策要闻" ? "bg-red-50 text-[#C50F1F]" : "bg-gray-100 text-gray-600"}`}>
-                        {news.category}
-                      </span>
-                      <span>{news.date}</span>
-                      {news.source && <span>来源：{news.source}</span>}
-                      {news.url && (
-                        <a href={news.url} target="_blank" rel="noopener noreferrer" className="flex items-center text-[#C50F1F] hover:underline">
-                          阅读原文 <ExternalLink className="w-3 h-3 ml-1" />
-                        </a>
-                      )}
+            {/* 地方合作列表（实化链接） */}
+            <div className="bg-white border border-gray-200 shadow-sm rounded-sm p-5 flex-1">
+              <h3 className="text-xl font-bold text-[#b91c1c] mb-4 pb-2 border-b-2 border-[#b91c1c] font-song flex items-center gap-2">
+                <span className="w-1.5 h-6 bg-[#b91c1c] block"></span>
+                地方合作
+              </h3>
+              <ul className="space-y-0 divide-y divide-dashed divide-gray-200">
+                {[
+                  { name: "甘肃省兰州市", id: "2" },
+                  { name: "广东省珠海市", id: "news-zh-cx" },
+                  { name: "浙江省长兴县", id: "news-zh-cx" },
+                  { name: "福建省厦门市", id: "news-xm" },
+                  { name: "江苏省常州市", id: "news-xm" },
+                  { name: "四川省都江堰市", id: "news-xm" }
+                ].map((city) => (
+                  <li key={city.name} className="group">
+                    <Link href={`/news/${city.id}`}>
+                      <div className="flex items-center justify-between py-3 px-2 hover:bg-red-50 cursor-pointer transition-colors rounded-sm">
+                        <span className="text-gray-700 font-song text-lg group-hover:text-[#b91c1c] group-hover:font-bold transition-all">
+                          {city.name}
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-[#b91c1c] transition-colors" />
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* 要闻聚焦（全图片轮播重构） */}
+        <div className="mt-12 mb-12">
+          <div className="flex items-center justify-between mb-6 border-b-2 border-[#b91c1c] pb-2">
+            <h2 className="text-3xl font-bold text-[#b91c1c] font-song flex items-center gap-3">
+              <span className="w-2 h-8 bg-[#b91c1c] block"></span>
+              要闻聚焦
+            </h2>
+            <div className="flex gap-2">
+              <button 
+                onClick={prevSlide}
+                className="p-2 bg-gray-100 hover:bg-[#b91c1c] hover:text-white transition-colors rounded-sm border border-gray-300"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={nextSlide}
+                className="p-2 bg-gray-100 hover:bg-[#b91c1c] hover:text-white transition-colors rounded-sm border border-gray-300"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="relative h-[500px] bg-gray-100 rounded-sm overflow-hidden shadow-lg group">
+            {featuredNews.map((news, index) => (
+              <div
+                key={news.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
+              >
+                <Link href={`/news/${news.id}`}>
+                  <div className="relative w-full h-full cursor-pointer">
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-8 pt-32">
+                      <div className="container mx-auto px-4">
+                        <span className="inline-block bg-[#b91c1c] text-white px-3 py-1 text-sm mb-3 rounded-sm font-bold">
+                          {news.category}
+                        </span>
+                        <h3 className="text-3xl font-bold text-white mb-2 font-song leading-tight drop-shadow-lg hover:underline decoration-2 underline-offset-4">
+                          {news.title}
+                        </h3>
+                        <p className="text-gray-200 text-lg font-song line-clamp-2 max-w-4xl drop-shadow-md">
+                          {news.content.substring(0, 120)}...
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
+              </div>
+            ))}
+            
+            {/* 轮播指示器 */}
+            <div className="absolute bottom-6 right-8 z-20 flex gap-2">
+              {featuredNews.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide 
+                      ? "bg-[#b91c1c] w-8" 
+                      : "bg-white/50 hover:bg-white"
+                  }`}
+                />
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Right Column: Services & Links */}
-          <div className="col-span-4 space-y-10">
-            
-            {/* Premier Li Qiang Photo Section */}
-            <div className="w-full mb-6 shadow-md border border-gray-200">
-              <div className="relative">
-                <img 
-                  src="/images/li_qiang_2025_side.jpg" 
-                  alt="李强总理2025年工作照" 
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                  <p className="text-white font-bold text-lg font-serif">国务院总理李强主持召开国务院常务会议</p>
-                </div>
-              </div>
+        {/* 政策文件列表（实化链接） */}
+        <div className="grid grid-cols-12 gap-8 mt-12">
+          <div className="col-span-12">
+            <div className="flex items-center justify-between mb-6 border-b border-gray-200 pb-2">
+              <h2 className="text-2xl font-bold text-[#333] font-song flex items-center gap-2">
+                <span className="w-1.5 h-6 bg-[#b91c1c] block"></span>
+                政策文件
+              </h2>
+              <Link href="/page/policy">
+                <span className="text-sm text-gray-500 hover:text-[#b91c1c] cursor-pointer flex items-center gap-1">
+                  更多政策 <ArrowRight className="w-3 h-3" />
+                </span>
+              </Link>
             </div>
-
-            {/* Policy Documents Links - Direct to Ministries */}
-            <Card className="rounded-none border-t-4 border-t-[#C50F1F] shadow-sm bg-white">
-              <CardHeader className="pb-3 border-b border-gray-100">
-                <CardTitle className="text-xl font-bold text-[#C50F1F] flex items-center font-serif">
-                  <FileText className="w-5 h-5 mr-2" />
-                  国家政策文件库
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-4">
-                <ul className="space-y-3">
-                  {policyDocuments.slice(0, 8).map((doc, idx) => (
-                    <li key={idx} className="border-b border-gray-100 last:border-0 pb-2 last:pb-0">
-                      <a href={doc.url} target="_blank" rel="noopener noreferrer" className="group block">
-                        <p className="text-base text-gray-700 group-hover:text-[#C50F1F] line-clamp-1 font-serif mb-1 transition-colors">
-                          {doc.title}
-                        </p>
-                        <div className="flex justify-between text-xs text-gray-400">
-                          <span>{doc.source}</span>
-                          <span>{doc.date}</span>
+            <div className="bg-white p-6 border border-gray-200 shadow-sm rounded-sm">
+              <ul className="grid grid-cols-2 gap-x-12 gap-y-4">
+                {sortedNews
+                  .filter(item => item.category === "政策要闻")
+                  .slice(0, 6)
+                  .map((news) => (
+                    <li key={news.id} className="flex items-start gap-3 group">
+                      <span className="text-[#b91c1c] mt-1.5 text-xs">■</span>
+                      <Link href={`/news/${news.id}`}>
+                        <div className="flex-1 cursor-pointer">
+                          <h4 className="text-lg text-gray-800 group-hover:text-[#b91c1c] font-song leading-snug transition-colors">
+                            {news.title}
+                          </h4>
+                          <span className="text-sm text-gray-400 mt-1 block">{news.date}</span>
                         </div>
-                      </a>
+                      </Link>
                     </li>
                   ))}
-                </ul>
-                <Button variant="ghost" className="w-full mt-4 text-[#C50F1F] hover:text-[#a00c19] hover:bg-red-50 font-serif">
-                  查看更多政策 <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Local Cooperation Links - Direct to News */}
-            <Card className="rounded-none border-t-4 border-t-[#1E3A8A] shadow-sm bg-white">
-              <CardHeader className="pb-3 border-b border-gray-100">
-                <CardTitle className="text-xl font-bold text-[#1E3A8A] flex items-center font-serif">
-                  <Globe className="w-5 h-5 mr-2" />
-                  地方合作动态
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-4">
-                <div className="grid grid-cols-1 gap-3">
-                  {[
-                    { city: "兰州市", title: "兰州市政府投资项目座谈会成功举办", id: "2" },
-                    { city: "岳阳市", title: "岳阳市政府共话新消费试点新机遇", id: "1" },
-                    { city: "六盘水", title: "六盘水市政府考察团莅临企来集团调研", id: "news-lps" }, // 需确保ID存在
-                    { city: "厦门市", title: "厦门市考察团深化政企合作交流", id: "news-xm" },
-                    { city: "常州市", title: "常州市政府代表团考察数字经济项目", id: "news-cz" }
-                  ].map((item, idx) => (
-                    <a 
-                      key={idx} 
-                      href={`#news`} // 实际应跳转到具体详情页，此处简化为锚点
-                      onClick={() => setActiveTab("地方合作")}
-                      className="flex items-center p-3 bg-blue-50 border-l-4 border-[#1E3A8A] hover:bg-blue-100 transition-colors group"
-                    >
-                      <span className="font-bold text-[#1E3A8A] mr-3 whitespace-nowrap">{item.city}</span>
-                      <span className="text-sm text-gray-600 group-hover:text-[#1E3A8A] line-clamp-1 font-serif">
-                        {item.title}
-                      </span>
-                      <ChevronRight className="w-4 h-4 ml-auto text-gray-400 group-hover:text-[#1E3A8A]" />
-                    </a>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Data Visualization Card */}
-            <Card className="rounded-none border-t-4 border-t-[#C50F1F] shadow-sm bg-white">
-              <CardHeader className="pb-2 border-b border-gray-100">
-                <CardTitle className="text-xl font-bold text-[#C50F1F] font-serif">发展数据概览</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-4">
-                <div className="h-[250px] w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={projectData}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
-                      <XAxis dataKey="year" tick={{fontSize: 12, fontFamily: 'serif'}} axisLine={false} tickLine={false} />
-                      <YAxis yAxisId="left" tick={{fontSize: 12, fontFamily: 'serif'}} axisLine={false} tickLine={false} />
-                      <YAxis yAxisId="right" orientation="right" tick={{fontSize: 12, fontFamily: 'serif'}} axisLine={false} tickLine={false} />
-                      <Tooltip 
-                        contentStyle={{borderRadius: '0px', border: '1px solid #eee', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', fontFamily: 'serif'}}
-                        itemStyle={{fontSize: '12px'}}
-                      />
-                      <Legend wrapperStyle={{fontSize: '12px', fontFamily: 'serif', paddingTop: '10px'}} />
-                      <Line yAxisId="left" type="monotone" dataKey="projects" name="合作项目数" stroke="#C50F1F" strokeWidth={2} dot={{r: 4, fill: '#C50F1F'}} activeDot={{r: 6}} />
-                      <Line yAxisId="right" type="monotone" dataKey="investment" name="投资额(亿元)" stroke="#1E3A8A" strokeWidth={2} dot={{r: 4, fill: '#1E3A8A'}} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-                <p className="text-xs text-gray-400 mt-2 text-center font-serif">数据来源：企来集团战略发展部</p>
-              </CardContent>
-            </Card>
-
+              </ul>
+            </div>
           </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#333] text-white py-16 border-t-[6px] border-[#C50F1F]">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-4 gap-12 mb-12">
-            <div>
-              <h4 className="text-xl font-bold mb-6 border-b border-gray-600 pb-3 inline-block font-serif">关于企来</h4>
-              <ul className="space-y-3 text-gray-400 text-base font-serif">
-                <li><a href="#" className="hover:text-white transition-colors">集团简介</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">组织架构</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">发展历程</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-bold mb-6 border-b border-gray-600 pb-3 inline-block font-serif">政务公开</h4>
-              <ul className="space-y-3 text-gray-400 text-base font-serif">
-                <li><a href="#" className="hover:text-white transition-colors">政策法规</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">规划计划</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">统计数据</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-bold mb-6 border-b border-gray-600 pb-3 inline-block font-serif">互动交流</h4>
-              <ul className="space-y-3 text-gray-400 text-base font-serif">
-                <li><a href="#" className="hover:text-white transition-colors">在线访谈</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">意见征集</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">网上调查</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-bold mb-6 border-b border-gray-600 pb-3 inline-block font-serif">相关链接</h4>
-              <ul className="space-y-3 text-gray-400 text-base font-serif">
-                <li><a href="https://www.gov.cn" target="_blank" className="hover:text-white transition-colors">中国政府网</a></li>
-                <li><a href="https://www.ndrc.gov.cn" target="_blank" className="hover:text-white transition-colors">国家发展改革委</a></li>
-                <li><a href="https://www.miit.gov.cn" target="_blank" className="hover:text-white transition-colors">工业和信息化部</a></li>
-              </ul>
-            </div>
+      {/* 页脚 */}
+      <footer className="bg-[#f0f0f0] border-t border-gray-300 mt-12 py-12 font-song">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex justify-center gap-8 mb-6 text-gray-600 text-sm">
+            <Link href="/page/overview"><span className="hover:text-[#b91c1c] cursor-pointer">关于我们</span></Link>
+            <span className="text-gray-300">|</span>
+            <Link href="/page/policy"><span className="hover:text-[#b91c1c] cursor-pointer">法律声明</span></Link>
+            <span className="text-gray-300">|</span>
+            <Link href="/page/service"><span className="hover:text-[#b91c1c] cursor-pointer">网站地图</span></Link>
           </div>
-          <Separator className="bg-gray-700 mb-8" />
-          <div className="text-center text-gray-400 text-sm space-y-3 font-serif">
-            <p>{t('footer_copyright')} | 粤ICP备XXXXXXXX号</p>
-            <p>建议使用 1920*1080 分辨率浏览本站</p>
-            {/* 彻底移除所有联系方式 */}
-          </div>
+          <p className="text-gray-500 text-sm leading-loose">
+            主办单位：企来集团 &nbsp;&nbsp; 版权所有：企来集团 <br />
+            备案号：粤ICP备20250001号 &nbsp;&nbsp; 网站标识码：4403000001
+          </p>
         </div>
       </footer>
     </div>
