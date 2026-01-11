@@ -67,9 +67,9 @@ export default function GenericPage() {
           </p>
           <div className="grid grid-cols-3 gap-6 mt-8">
             {[
-              { title: "数字招商", desc: "产业分析、项目匹配、全流程跟踪" },
-              { title: "营商环境", desc: "政策推送、诉求直达、满意度测评" },
-              { title: "数字监管", desc: "数据监测、风险预警、协同执法" }
+              { title: t('digital_investment_promotion'), desc: t('digital_investment_promotion_desc') },
+              { title: t('business_environment_service'), desc: t('business_environment_service_desc') },
+              { title: t('digital_supervision_service'), desc: t('digital_supervision_service_desc') }
             ].map((item, idx) => (
               <div key={idx} className="bg-white border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow text-center">
                 <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -120,9 +120,9 @@ export default function GenericPage() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {[
-                  { name: "2025年中国数字经济发展白皮书", date: "2025-12-01", fmt: "PDF" },
-                  { name: "全国各省市营商环境指数报告", date: "2025-11-15", fmt: "PDF" },
-                  { name: "数据要素市场化配置改革案例集", date: "2025-10-20", fmt: "PDF" }
+                  { name: t('digital_economy_white_paper'), date: "2025-12-01", fmt: "PDF" },
+                  { name: t('business_environment_index_report'), date: "2025-11-15", fmt: "PDF" },
+                  { name: t('data_element_reform_cases'), date: "2025-10-20", fmt: "PDF" }
                 ].map((row, idx) => (
                   <tr key={idx} className="hover:bg-gray-50">
                     <td className="p-4 text-gray-800">{row.name}</td>
@@ -148,12 +148,12 @@ export default function GenericPage() {
           </p>
           <div className="grid grid-cols-2 gap-6 mt-6">
             {[
-              { city: "湖南省岳阳市", desc: t('yueyang_desc') },
-              { city: "甘肃省兰州市", desc: t('lanzhou_desc') },
-              { city: "广东省珠海市", desc: t('zhuhai_desc') },
-              { city: "浙江省长兴县", desc: t('changxing_desc') },
-              { city: "福建省厦门市", desc: t('xiamen_desc') },
-              { city: "江苏省常州市", desc: t('changzhou_desc') }
+              { city: t('yueyang_city'), desc: t('yueyang_desc') },
+              { city: t('lanzhou_city'), desc: t('lanzhou_desc') },
+              { city: t('zhuhai_city'), desc: t('zhuhai_desc') },
+              { city: t('changxing_city'), desc: t('changxing_desc') },
+              { city: t('xiamen_city'), desc: t('xiamen_desc') },
+              { city: t('changzhou_city'), desc: t('changzhou_desc') }
             ].map((item, idx) => (
               <div key={idx} className="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:border-[#b91c1c] transition-colors group cursor-pointer">
                 <h4 className="text-xl font-bold text-gray-800 group-hover:text-[#b91c1c] mb-2">{item.city}</h4>

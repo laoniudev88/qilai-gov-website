@@ -505,6 +505,161 @@ const translations: Translations = {
     zh: "数据开放",
     en: "Open Data",
     fr: "Données Ouvertes"
+  },
+  "digital_investment_promotion": {
+    zh: "数字招商",
+    en: "Digital Investment Promotion",
+    fr: "Promotion de l'Investissement Numérique"
+  },
+  "digital_investment_promotion_desc": {
+    zh: "产业分析、项目匹配、全流程跟踪",
+    en: "Industry analysis, project matching, full process tracking",
+    fr: "Analyse industrielle, correspondance de projets, suivi complet du processus"
+  },
+  "business_environment_service": {
+    zh: "营商环境",
+    en: "Business Environment",
+    fr: "Environnement des Affaires"
+  },
+  "business_environment_service_desc": {
+    zh: "政策推送、诉求直达、满意度测评",
+    en: "Policy push, direct appeal, satisfaction evaluation",
+    fr: "Poussée politique, appel direct, évaluation de la satisfaction"
+  },
+  "digital_supervision_service": {
+    zh: "数字监管",
+    en: "Digital Supervision",
+    fr: "Supervision Numérique"
+  },
+  "digital_supervision_service_desc": {
+    zh: "数据监测、风险预警、协同执法",
+    en: "Data monitoring, risk warning, collaborative law enforcement",
+    fr: "Surveillance des données, avertissement de risque, application collaborative de la loi"
+  },
+  "digital_economy_white_paper": {
+    zh: "2025年中国数字经济发展白皮书",
+    en: "2025 China Digital Economy Development White Paper",
+    fr: "Livre Blanc sur le Développement de l'Économie Numérique de la Chine 2025"
+  },
+  "business_environment_index_report": {
+    zh: "全国各省市营商环境指数报告",
+    en: "National Business Environment Index Report",
+    fr: "Rapport d'Indice d'Environnement des Affaires National"
+  },
+  "data_element_reform_cases": {
+    zh: "数据要素市场化配置改革案例集",
+    en: "Data Element Market-oriented Allocation Reform Cases",
+    fr: "Recueil de Cas de Réforme de l'Allocation Orientée vers le Marché des Éléments de Données"
+  },
+  "cooperation_overview": {
+    zh: "合作概览",
+    en: "Cooperation Overview",
+    fr: "Aperçu de la Coopération"
+  },
+  "covered_cities_count": {
+    zh: "覆盖城市",
+    en: "Covered Cities",
+    fr: "Villes Couvertes"
+  },
+  "landed_projects_count": {
+    zh: "落地项目",
+    en: "Landed Projects",
+    fr: "Projets Atterris"
+  },
+  "driven_investment_count": {
+    zh: "带动投资",
+    en: "Driven Investment",
+    fr: "Investissement Généré"
+  },
+  "national_network_layout": {
+    zh: "全国合作网络格局",
+    en: "National Cooperation Network Layout",
+    fr: "Configuration du Réseau National de Coopération"
+  },
+  "core_strategic_node": {
+    zh: "核心战略节点",
+    en: "Core Strategic Node",
+    fr: "Nœud Stratégique Principal"
+  },
+  "expansion_cooperation_node": {
+    zh: "拓展合作节点",
+    en: "Expansion Cooperation Node",
+    fr: "Nœud de Coopération d'Expansion"
+  },
+  "return_to_home": {
+    zh: "返回首页",
+    en: "Return to Home",
+    fr: "Retour à l'Accueil"
+  },
+  "column_navigation_title": {
+    zh: "栏目导航",
+    en: "Navigation",
+    fr: "Navigation"
+  },
+  "group_overview_nav": {
+    zh: "集团概况",
+    en: "Group Overview",
+    fr: "Aperçu du Groupe"
+  },
+  "local_cooperation_nav": {
+    zh: "地方合作",
+    en: "Local Cooperation",
+    fr: "Coopération Locale"
+  },
+  "core_strategic_partner_desc": {
+    zh: "企来集团核心战略合作伙伴，已落地数字经济产业园项目。",
+    en: "Core strategic partner of Qilai Group, Digital Economy Industrial Park project has landed.",
+    fr: "Partenaire stratégique principal du Groupe Qilai, le projet de Parc Industriel d'Économie Numérique a atterri."
+  },
+  "key_expansion_area_desc": {
+    zh: "企来集团重点拓展区域，正在推进数据要素市场化配置改革合作。",
+    en: "Key expansion area of Qilai Group, promoting cooperation in market-oriented allocation reform of data elements.",
+    fr: "Zone d'expansion clé du Groupe Qilai, promouvant la coopération dans la réforme de l'allocation orientée vers le marché des éléments de données."
+  },
+  "sponsor_unit": {
+    zh: "主办单位：企来集团",
+    en: "Sponsor: Qilai Group",
+    fr: "Commanditaire : Groupe Qilai"
+  },
+  "copyright_unit": {
+    zh: "版权所有：企来集团",
+    en: "Copyright: Qilai Group",
+    fr: "Droit d'auteur : Groupe Qilai"
+  },
+  "national_emblem_alt": {
+    zh: "国徽",
+    en: "National Emblem",
+    fr: "Emblème National"
+  },
+  "yueyang_city": {
+    zh: "湖南省岳阳市",
+    en: "Yueyang, Hunan Province",
+    fr: "Yueyang, Province du Hunan"
+  },
+  "lanzhou_city": {
+    zh: "甘肃省兰州市",
+    en: "Lanzhou, Gansu Province",
+    fr: "Lanzhou, Province du Gansu"
+  },
+  "zhuhai_city": {
+    zh: "广东省珠海市",
+    en: "Zhuhai, Guangdong Province",
+    fr: "Zhuhai, Province du Guangdong"
+  },
+  "changxing_city": {
+    zh: "浙江省长兴县",
+    en: "Changxing County, Zhejiang Province",
+    fr: "Comté de Changxing, Province du Zhejiang"
+  },
+  "xiamen_city": {
+    zh: "福建省厦门市",
+    en: "Xiamen, Fujian Province",
+    fr: "Xiamen, Province du Fujian"
+  },
+  "changzhou_city": {
+    zh: "江苏省常州市",
+    en: "Changzhou, Jiangsu Province",
+    fr: "Changzhou, Province du Jiangsu"
   }
 };
 

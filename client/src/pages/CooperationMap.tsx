@@ -92,6 +92,7 @@ const extendedCities = [
 const allCities = [...coreCities, ...extendedCities];
 
 export default function CooperationMap() {
+  const { t } = useLanguage();
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
 
   return (
@@ -108,13 +109,13 @@ export default function CooperationMap() {
       <div className="bg-white border-b-4 border-[#b91c1c] shadow-sm">
         <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src="/images/logo.png" alt="国徽" className="w-16 h-16" />
+            <img src="/images/logo.png" alt={t('national_emblem_alt')} className="w-16 h-16" />
             <div>
-              <h1 className="text-4xl font-bold text-[#b91c1c] font-song">企来集团</h1>
+              <h1 className="text-4xl font-bold text-[#b91c1c] font-song">{t('company_name')}</h1>
             </div>
           </div>
           <Link href="/" className="text-[#b91c1c] font-bold hover:underline flex items-center gap-1">
-            <ChevronLeft className="w-4 h-4" /> 返回首页
+            <ChevronLeft className="w-4 h-4" /> {t('return_to_home')}
           </Link>
         </div>
       </div>
@@ -124,22 +125,22 @@ export default function CooperationMap() {
           {/* 侧边导航 */}
           <div className="col-span-3">
             <div className="bg-white border border-gray-200 shadow-sm rounded-sm overflow-hidden">
-              <div className="bg-[#b91c1c] text-white p-4 font-bold text-lg font-song">
-                栏目导航
+                <div className="bg-[#b91c1c] text-white p-4 font-bold text-lg font-song">
+                {t('column_navigation_title')}
               </div>
               <ul className="divide-y divide-gray-100">
                 <li>
                   <Link href="/page/overview">
-                    <div className="block p-4 hover:bg-gray-50 hover:text-[#b91c1c] transition-colors flex justify-between items-center cursor-pointer text-gray-700">
-                      集团概况 <ChevronRight className="w-4 h-4" />
-                    </div>
+                      <div className="block p-4 hover:bg-gray-50 hover:text-[#b91c1c] transition-colors flex justify-between items-center cursor-pointer text-gray-700">
+                       {t('group_overview_nav')} <ChevronRight className="w-4 h-4" />
+                     </div>
                   </Link>
                 </li>
                 <li>
                   <Link href="/page/cooperation">
-                    <div className="block p-4 text-[#b91c1c] font-bold bg-gray-50 border-l-4 border-l-[#b91c1c] flex justify-between items-center cursor-pointer">
-                      地方合作 <ChevronRight className="w-4 h-4" />
-                    </div>
+                     <div className="block p-4 text-[#b91c1c] font-bold bg-gray-50 border-l-4 border-l-[#b91c1c] flex justify-between items-center cursor-pointer">
+                       {t('local_cooperation_nav')} <ChevronRight className="w-4 h-4" />
+                     </div>
                   </Link>
                 </li>
                 {/* 其他导航项... */}
@@ -148,19 +149,19 @@ export default function CooperationMap() {
             
             {/* 统计数据卡片 */}
             <div className="mt-6 bg-white border border-gray-200 shadow-sm rounded-sm p-6">
-              <h3 className="text-lg font-bold text-[#b91c1c] mb-4 border-b border-gray-100 pb-2">合作概览</h3>
+              <h3 className="text-lg font-bold text-[#b91c1c] mb-4 border-b border-gray-100 pb-2">{t('cooperation_overview')}</h3>
               <div className="space-y-4">
                 <div>
                   <div className="text-3xl font-bold text-gray-800">27+</div>
-                  <div className="text-sm text-gray-500">覆盖城市</div>
+                  <div className="text-sm text-gray-500">{t('covered_cities_count')}</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-gray-800">150+</div>
-                  <div className="text-sm text-gray-500">落地项目</div>
+                  <div className="text-sm text-gray-500">{t('landed_projects_count')}</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-gray-800">500亿+</div>
-                  <div className="text-sm text-gray-500">带动投资</div>
+                  <div className="text-sm text-gray-500">{t('driven_investment_count')}</div>
                 </div>
               </div>
             </div>
@@ -173,16 +174,16 @@ export default function CooperationMap() {
               <div className="border-b border-gray-200 px-12 py-8 bg-gray-50 flex justify-between items-center">
                 <h2 className="text-3xl font-bold text-[#b91c1c] font-song flex items-center gap-3">
                   <span className="w-2 h-8 bg-[#b91c1c] block"></span>
-                  全国合作网络格局
+                  {t('national_network_layout')}
                 </h2>
                 <div className="flex gap-4 text-sm">
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-[#ce1126]"></span>
-                    <span>核心战略节点</span>
+                    <span>{t('core_strategic_node')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-[#fbbf24]"></span>
-                    <span>拓展合作节点</span>
+                    <span>{t('expansion_cooperation_node')}</span>
                   </div>
                 </div>
               </div>
@@ -269,8 +270,8 @@ export default function CooperationMap() {
                     <h4 className="font-bold text-[#ce1126] mb-1">{hoveredCity}</h4>
                     <p className="text-xs text-gray-600">
                       {coreCities.find(c => c.name === hoveredCity) 
-                        ? "企来集团核心战略合作伙伴，已落地数字经济产业园项目。" 
-                        : "企来集团重点拓展区域，正在推进数据要素市场化配置改革合作。"}
+                        ? t('core_strategic_partner_desc') 
+                        : t('key_expansion_area_desc')}
                     </p>
                   </div>
                 )}
@@ -282,7 +283,7 @@ export default function CooperationMap() {
 
       {/* 页脚 */}
       <footer className="bg-[#f0f0f0] border-t border-gray-300 mt-12 py-8 font-song text-center text-gray-500 text-sm">
-        <p>主办单位：企来集团 &nbsp;&nbsp; 版权所有：企来集团</p>
+        <p>{t('sponsor_unit')} &nbsp;&nbsp; {t('copyright_unit')}</p>
       </footer>
     </div>
   );
