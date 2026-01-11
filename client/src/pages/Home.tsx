@@ -47,10 +47,7 @@ export default function Home() {
       <div className="bg-[#ce1126] text-white h-10">
         <div className="container mx-auto px-4 h-full flex justify-between items-center text-sm font-song">
           <div className="flex space-x-6">
-            <Link href="/" className="hover:underline">首页</Link>
-            <Link href="/page/policy" className="hover:underline">政策</Link>
-            <Link href="/page/service" className="hover:underline">服务</Link>
-            <Link href="/page/interaction" className="hover:underline">互动</Link>
+            {/* 顶部导航已移除，避免重复 */}
           </div>
           <div className="flex space-x-4">
             <span className="cursor-pointer hover:underline">English</span>
@@ -168,25 +165,24 @@ export default function Home() {
           
           <div className="grid grid-cols-6 gap-4">
             {[
-              { name: "兰州市", desc: "西部数字经济产业园", id: "2", color: "bg-blue-900" },
-              { name: "珠海市", desc: "大湾区数据要素节点", id: "news-zh-cx", color: "bg-cyan-700" },
-              { name: "长兴县", desc: "绿色智造数据高地", id: "news-zh-cx", color: "bg-green-700" },
-              { name: "厦门市", desc: "跨境数据流动试点", id: "news-xm", color: "bg-indigo-700" },
-              { name: "常州市", desc: "工业互联网数据赋能", id: "news-xm", color: "bg-orange-700" },
-              { name: "都江堰", desc: "智慧文旅数据融合", id: "news-xm", color: "bg-teal-700" }
+              { name: "兰州市", id: "2", color: "bg-blue-900" },
+              { name: "珠海市", id: "news-zh-cx", color: "bg-cyan-700" },
+              { name: "长兴县", id: "news-zh-cx", color: "bg-green-700" },
+              { name: "厦门市", id: "news-xm", color: "bg-indigo-700" },
+              { name: "常州市", id: "news-xm", color: "bg-orange-700" },
+              { name: "都江堰", id: "news-xm", color: "bg-teal-700" }
             ].map((city) => (
               <Link 
                 key={city.name} 
                 href={`/news/${city.id}`}
-                className="group relative h-32 overflow-hidden rounded-sm shadow-sm hover:shadow-md transition-all block"
+                className="group relative h-24 overflow-hidden rounded-sm shadow-sm hover:shadow-md transition-all block"
               >
                 <div className={`absolute inset-0 ${city.color} opacity-90 group-hover:opacity-100 transition-opacity`}></div>
                 {/* 装饰性地图纹理 */}
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E")' }}></div>
                 
                 <div className="absolute inset-0 p-4 flex flex-col justify-center items-center text-center text-white">
-                  <h3 className="text-xl font-bold font-song mb-1 group-hover:scale-110 transition-transform">{city.name}</h3>
-                  <p className="text-xs opacity-80 font-sans">{city.desc}</p>
+                  <h3 className="text-2xl font-bold font-song group-hover:scale-110 transition-transform tracking-widest">{city.name}</h3>
                 </div>
               </Link>
             ))}
