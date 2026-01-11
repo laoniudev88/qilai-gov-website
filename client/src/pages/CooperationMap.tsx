@@ -41,7 +41,29 @@ const extendedCities = [
   { name: "银川市", coordinates: [106.278179, 38.46637], type: "extended" },
   { name: "西宁市", coordinates: [101.778916, 36.623178], type: "extended" },
   { name: "乌鲁木齐", coordinates: [87.617733, 43.792818], type: "extended" },
-  { name: "柳州市", coordinates: [109.411703, 24.314617], type: "extended" }
+  { name: "柳州市", coordinates: [109.411703, 24.314617], type: "extended" },
+  
+  // 新增随机城市
+  { name: "哈尔滨市", coordinates: [126.642464, 45.756967], type: "extended" },
+  { name: "长春市", coordinates: [125.3245, 43.886841], type: "extended" },
+  { name: "沈阳市", coordinates: [123.429096, 41.796767], type: "extended" },
+  { name: "大连市", coordinates: [121.618622, 38.91459], type: "extended" },
+  { name: "呼和浩特市", coordinates: [111.670801, 40.818311], type: "extended" },
+  { name: "包头市", coordinates: [109.840405, 40.658168], type: "extended" },
+  { name: "西安市", coordinates: [108.948024, 34.263161], type: "extended" },
+  { name: "宝鸡市", coordinates: [107.14487, 34.369315], type: "extended" },
+  { name: "咸阳市", coordinates: [108.705117, 34.333439], type: "extended" },
+  { name: "汉中市", coordinates: [107.028621, 33.077668], type: "extended" },
+  { name: "成都市", coordinates: [104.065735, 30.659462], type: "extended" },
+  { name: "重庆市", coordinates: [106.504962, 29.533155], type: "extended" },
+  { name: "南宁市", coordinates: [108.320004, 22.82402], type: "extended" },
+  { name: "桂林市", coordinates: [110.299121, 25.274215], type: "extended" },
+  { name: "北海市", coordinates: [109.119254, 21.473343], type: "extended" },
+  { name: "拉萨市", coordinates: [91.132212, 29.660361], type: "extended" },
+  { name: "日喀则市", coordinates: [88.885148, 29.267519], type: "extended" },
+  { name: "喀什地区", coordinates: [75.989138, 39.467664], type: "extended" },
+  { name: "伊犁州", coordinates: [81.317946, 43.92186], type: "extended" },
+  { name: "酒泉市", coordinates: [98.510795, 39.744023], type: "extended" }
 ];
 
 const allCities = [...coreCities, ...extendedCities];
