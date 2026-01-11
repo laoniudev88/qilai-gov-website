@@ -106,7 +106,7 @@ export default function Home() {
             <Link href="/" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">首页</Link>
             <Link href="/page/about" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">集团概况</Link>
             <Link href="/page/policy" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">政策要闻</Link>
-            <Link href="/page/service" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">政务服务</Link>
+            <Link href="/page/service" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">数字服务</Link>
             <Link href="/page/interaction" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">互动交流</Link>
             <Link href="/page/data" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">数据开放</Link>
             <Link href="/page/cooperation" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">地方合作</Link>
@@ -322,7 +322,7 @@ export default function Home() {
             <div className="mt-6 grid grid-cols-2 gap-4">
               <Link href="/page/service" className="bg-[#ce1126] text-white p-4 text-center rounded-sm hover:bg-[#a30d1d] transition-colors flex flex-col items-center justify-center h-24">
                 <Building2 className="w-8 h-8 mb-2" />
-                <span className="font-bold font-song">政务服务</span>
+                <span className="font-bold font-song">数字服务</span>
               </Link>
               <Link href="/page/data" className="bg-[#ce1126] text-white p-4 text-center rounded-sm hover:bg-[#a30d1d] transition-colors flex flex-col items-center justify-center h-24">
                 <BarChart3 className="w-8 h-8 mb-2" />
@@ -333,7 +333,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* 底部数据政务服务板块 */}
+      {/* 底部数据数字服务板块 */}
       <div className="bg-gray-100 py-12 border-t border-gray-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">

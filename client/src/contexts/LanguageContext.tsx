@@ -47,7 +47,7 @@ const translations: Translations = {
     fr: "Nouvelles"
   },
   "nav_services": {
-    zh: "政务服务",
+    zh: "数字服务",
     en: "Services",
     fr: "Services"
   },
