@@ -124,7 +124,7 @@ export default function Home() {
             {/* 图片层 */}
             <div className="absolute inset-0 transition-opacity duration-1000">
               <img 
-                src={xiSlides[currentXiSlide].image.replace('.jpg', '_hd.jpg')} 
+                src={xiSlides[currentXiSlide].image} 
                 alt={xiSlides[currentXiSlide].title} 
                 className="w-full h-full object-cover object-top"
               />
@@ -160,7 +160,7 @@ export default function Home() {
             {/* 上半部分：照片 */}
             <div className="h-[60%] overflow-hidden relative">
               <img 
-                src={liSlides[currentLiSlide].image.replace('.jpg', '_hd.jpg')} 
+                src={liSlides[currentLiSlide].image} 
                 alt={liSlides[currentLiSlide].title} 
                 className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               />
