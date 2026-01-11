@@ -10,11 +10,7 @@ const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(
 
 // Determine base path based on environment
 const getBase = () => {
-  // For GitHub Pages deployment
-  if (process.env.GITHUB_PAGES === 'true') {
-    return '/qilai-gov-website/';
-  }
-  // For Manus platform and local development
+  // For GitHub Pages deployment (always use root path for user.github.io)
   return '/';
 };
 
