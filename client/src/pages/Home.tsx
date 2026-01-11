@@ -102,7 +102,7 @@ export default function Home() {
       {/* 主导航栏 */}
       <nav className="bg-[#ce1126] text-white shadow-md">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-14 text-lg font-bold font-song">
+          <div className="flex justify-between items-center h-16 text-xl font-bold font-song">
             <Link href="/" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_home')}</Link>
             <Link href="/page/about" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('nav_about')}</Link>
             <Link href="/page/policy" className="flex-1 text-center hover:bg-[#a30d1d] h-full flex items-center justify-center transition-colors">{t('policy_news_title')}</Link>
