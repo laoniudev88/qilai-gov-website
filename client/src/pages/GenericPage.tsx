@@ -182,7 +182,6 @@ export default function GenericPage() {
       <div className="bg-white border-b-4 border-[#b91c1c] shadow-sm">
         <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src="/images/logo.png" alt="国徽" className="w-16 h-16" />
             <div>
               <h1 className="text-4xl font-bold text-[#b91c1c] font-song">{t('company_name')}</h1>
             </div>
