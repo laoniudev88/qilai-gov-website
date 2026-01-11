@@ -161,7 +161,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-[#ce1126] font-song flex items-center">
               <span className="w-2 h-8 bg-[#ce1126] mr-3"></span>
-              地方合作示范
+              地方合作
             </h2>
             <Link href="/page/cooperation" className="text-sm text-gray-600 hover:text-[#ce1126] font-song">查看全国合作网络 &gt;</Link>
           </div>
