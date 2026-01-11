@@ -385,37 +385,37 @@ React keys must be passed directly to JSX without using spread:
  * LICENSE file in the root directory of this source tree.
  */return(function(){function n(x,_){return x===_&&(x!==0||1/x===1/_)||x!==x&&_!==_}function r(x,_){p||s.startTransition===void 0||(p=!0,console.error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."));var E=_();if(!m){var O=_();c(E,O)||(console.error("The result of getSnapshot should be cached to avoid an infinite loop"),m=!0)}O=d({inst:{value:E,getSnapshot:_}});var C=O[0].inst,B=O[1];return y(function(){C.value=E,C.getSnapshot=_,a(C)&&B({inst:C})},[x,E,_]),h(function(){return a(C)&&B({inst:C}),x(function(){a(C)&&B({inst:C})})},[x]),g(E),E}function a(x){var _=x.getSnapshot;x=x.value;try{var E=_();return!c(x,E)}catch{return!0}}function o(x,_){return _()}typeof __REACT_DEVTOOLS_GLOBAL_HOOK__<"u"&&typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart=="function"&&__REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());var s=wu(),c=typeof Object.is=="function"?Object.is:n,d=s.useState,h=s.useEffect,y=s.useLayoutEffect,g=s.useDebugValue,p=!1,m=!1,b=typeof window>"u"||typeof window.document>"u"||typeof window.document.createElement>"u"?o:r;Mb.useSyncExternalStore=s.useSyncExternalStore!==void 0?s.useSyncExternalStore:b,typeof __REACT_DEVTOOLS_GLOBAL_HOOK__<"u"&&typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop=="function"&&__REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error())})(),Mb}var LC;function M8(){return LC||(LC=1,kb.exports=k8()),kb.exports}var O8=M8();const z8=I4.useInsertionEffect,j8=typeof window<"u"&&typeof window.document<"u"&&typeof window.document.createElement<"u",q8=j8?K.useLayoutEffect:K.useEffect,H8=z8||q8,HR=n=>{const r=K.useRef([n,(...a)=>r[0](...a)]).current;return H8(()=>{r[0]=n}),r[1]},P8="popstate",xx="pushState",wx="replaceState",L8="hashchange",VC=[P8,xx,wx,L8],V8=n=>{for(const r of VC)addEventListener(r,n);return()=>{for(const r of VC)removeEventListener(r,n)}},PR=(n,r)=>O8.useSyncExternalStore(V8,n,r),U8=()=>location.search,B8=({ssrSearch:n=""}={})=>PR(U8,()=>n),UC=()=>location.pathname,G8=({ssrPath:n}={})=>PR(UC,n?()=>n:UC),I8=(n,{replace:r=!1,state:a=null}={})=>history[r?wx:xx](a,"",n),$8=(n={})=>[G8(n),I8],BC=Symbol.for("wouter_v3");if(typeof history<"u"&&typeof window[BC]>"u"){for(const n of[xx,wx]){const r=history[n];history[n]=function(){const a=r.apply(this,arguments),o=new Event(n);return o.arguments=arguments,dispatchEvent(o),a}}Object.defineProperty(window,BC,{value:!0})}const Y8=(n,r)=>r.toLowerCase().indexOf(n.toLowerCase())?"~"+r:r.slice(n.length)||"/",LR=(n="")=>n==="/"?"":n,F8=(n,r)=>n[0]==="~"?n.slice(1):LR(r)+n,X8=(n="",r)=>Y8(GC(LR(n)),GC(r)),GC=n=>{try{return decodeURI(n)}catch{return n}},VR={hook:$8,searchHook:B8,parser:R8,base:"",ssrPath:void 0,ssrSearch:void 0,ssrContext:void 0,hrefs:n=>n},UR=K.createContext(VR),Tu=()=>K.useContext(UR),BR={},GR=K.createContext(BR),Q8=()=>K.useContext(GR),Rp=n=>{const[r,a]=n.hook(n);return[X8(n.base,r),HR((o,s)=>a(F8(o,n.base),s))]},_x=()=>Rp(Tu()),Sx=(n,r,a,o)=>{const{pattern:s,keys:c}=r instanceof RegExp?{keys:!1,pattern:r}:n(r||"*",o),d=s.exec(a)||[],[h,...y]=d;return h!==void 0?[!0,(()=>{const g=c!==!1?Object.fromEntries(c.map((m,b)=>[m,y[b]])):d.groups;let p={...y};return g&&Object.assign(p,g),p})(),...o?[h]:[]]:[!1,null]},IR=n=>Sx(Tu().parser,n,_x()[0]),Z8=({children:n,...r})=>{const a=Tu(),o=r.hook?VR:a;let s=o;const[c,d]=r.ssrPath?.split("?")??[];d&&(r.ssrSearch=d,r.ssrPath=c),r.hrefs=r.hrefs??r.hook?.hrefs;let h=K.useRef({}),y=h.current,g=y;for(let p in o){const m=p==="base"?o[p]+(r[p]||""):r[p]||o[p];y===g&&m!==g[p]&&(h.current=g={...g}),g[p]=m,(m!==o[p]||m!==s[p])&&(s=g)}return K.createElement(UR.Provider,{value:s,children:n})},IC=({children:n,component:r},a)=>r?K.createElement(r,{params:a}):typeof n=="function"?n(a):n,J8=n=>{let r=K.useRef(BR);const a=r.current;return r.current=Object.keys(n).length!==Object.keys(a).length||Object.entries(n).some(([o,s])=>s!==a[o])?n:a},eu=({path:n,nest:r,match:a,...o})=>{const s=Tu(),[c]=Rp(s),[d,h,y]=a??Sx(s.parser,n,c,r),g=J8({...Q8(),...h});if(!d)return null;const p=y?K.createElement(Z8,{base:y},IC(o,g)):IC(o,g);return K.createElement(GR.Provider,{value:g,children:p})},Nn=K.forwardRef((n,r)=>{const a=Tu(),[o,s]=Rp(a),{to:c="",href:d=c,onClick:h,asChild:y,children:g,className:p,replace:m,state:b,...x}=n,_=HR(O=>{O.ctrlKey||O.metaKey||O.altKey||O.shiftKey||O.button!==0||(h?.(O),O.defaultPrevented||(O.preventDefault(),s(d,n)))}),E=a.hrefs(d[0]==="~"?d.slice(1):a.base+d,a);return y&&K.isValidElement(g)?K.cloneElement(g,{onClick:_,href:E}):K.createElement("a",{...x,onClick:_,href:E,className:p?.call?p(o===d):p,children:g,ref:r})}),$R=n=>Array.isArray(n)?n.flatMap(r=>$R(r&&r.type===K.Fragment?r.props.children:r)):[n],K8=({children:n,location:r})=>{const a=Tu(),[o]=Rp(a);for(const s of $R(n)){let c=0;if(K.isValidElement(s)&&(c=Sx(a.parser,s.props.path,r||o,s.props.nest))[0])return K.cloneElement(s,{match:c})}return null};function $C(){const[,n]=_x(),r=()=>{n("/")};return D.jsxDEV("div",{"data-loc":"client/src/pages/NotFound.tsx:14",className:"min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100",children:D.jsxDEV(y8,{"data-loc":"client/src/pages/NotFound.tsx:15",className:"w-full max-w-lg mx-4 shadow-lg border-0 bg-white/80 backdrop-blur-sm",children:D.jsxDEV(b8,{"data-loc":"client/src/pages/NotFound.tsx:16",className:"pt-8 pb-8 text-center",children:[D.jsxDEV("div",{"data-loc":"client/src/pages/NotFound.tsx:17",className:"flex justify-center mb-6",children:D.jsxDEV("div",{"data-loc":"client/src/pages/NotFound.tsx:18",className:"relative",children:[D.jsxDEV("div",{"data-loc":"client/src/pages/NotFound.tsx:19",className:"absolute inset-0 bg-red-100 rounded-full animate-pulse"},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:19,columnNumber:15},this),D.jsxDEV(_8,{"data-loc":"client/src/pages/NotFound.tsx:20",className:"relative h-16 w-16 text-red-500"},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:20,columnNumber:15},this)]},void 0,!0,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:18,columnNumber:13},this)},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:17,columnNumber:11},this),D.jsxDEV("h1",{"data-loc":"client/src/pages/NotFound.tsx:24",className:"text-4xl font-bold text-slate-900 mb-2",children:"404"},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:24,columnNumber:11},this),D.jsxDEV("h2",{"data-loc":"client/src/pages/NotFound.tsx:26",className:"text-xl font-semibold text-slate-700 mb-4",children:"Page Not Found"},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:26,columnNumber:11},this),D.jsxDEV("p",{"data-loc":"client/src/pages/NotFound.tsx:30",className:"text-slate-600 mb-8 leading-relaxed",children:["Sorry, the page you are looking for doesn't exist.",D.jsxDEV("br",{"data-loc":"client/src/pages/NotFound.tsx:32"},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:32,columnNumber:13},this),"It may have been moved or deleted."]},void 0,!0,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:30,columnNumber:11},this),D.jsxDEV("div",{"data-loc":"client/src/pages/NotFound.tsx:36",className:"flex flex-col sm:flex-row gap-3 justify-center",children:D.jsxDEV(jR,{"data-loc":"client/src/pages/NotFound.tsx:37",onClick:r,className:"bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg",children:[D.jsxDEV(N8,{"data-loc":"client/src/pages/NotFound.tsx:41",className:"w-4 h-4 mr-2"},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:41,columnNumber:15},this),"Go Home"]},void 0,!0,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:37,columnNumber:13},this)},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:36,columnNumber:11},this)]},void 0,!0,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:16,columnNumber:9},this)},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:15,columnNumber:7},this)},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/pages/NotFound.tsx",lineNumber:14,columnNumber:5},this)}class W8 extends K.Component{constructor(r){super(r),this.state={hasError:!1,error:null}}static getDerivedStateFromError(r){return{hasError:!0,error:r}}render(){return this.state.hasError?D.jsxDEV("div",{"data-loc":"client/src/components/ErrorBoundary.tsx:27",className:"flex items-center justify-center min-h-screen p-8 bg-background",children:D.jsxDEV("div",{"data-loc":"client/src/components/ErrorBoundary.tsx:28",className:"flex flex-col items-center w-full max-w-2xl p-8",children:[D.jsxDEV(A8,{"data-loc":"client/src/components/ErrorBoundary.tsx:29",size:48,className:"text-destructive mb-6 flex-shrink-0"},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:29,columnNumber:13},this),D.jsxDEV("h2",{"data-loc":"client/src/components/ErrorBoundary.tsx:34",className:"text-xl mb-4",children:"An unexpected error occurred."},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:34,columnNumber:13},this),D.jsxDEV("div",{"data-loc":"client/src/components/ErrorBoundary.tsx:36",className:"p-4 w-full rounded bg-muted overflow-auto mb-6",children:D.jsxDEV("pre",{"data-loc":"client/src/components/ErrorBoundary.tsx:37",className:"text-sm text-muted-foreground whitespace-break-spaces",children:this.state.error?.stack},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:37,columnNumber:15},this)},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:36,columnNumber:13},this),D.jsxDEV("button",{"data-loc":"client/src/components/ErrorBoundary.tsx:42",onClick:()=>window.location.reload(),className:Ap("flex items-center gap-2 px-4 py-2 rounded-lg","bg-primary text-primary-foreground","hover:opacity-90 cursor-pointer"),children:[D.jsxDEV(C8,{"data-loc":"client/src/components/ErrorBoundary.tsx:50",size:16},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:50,columnNumber:15},this),"Reload Page"]},void 0,!0,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:42,columnNumber:13},this)]},void 0,!0,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:28,columnNumber:11},this)},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/components/ErrorBoundary.tsx",lineNumber:27,columnNumber:9},this):this.props.children}}const e7=K.createContext(void 0);function t7({children:n,defaultTheme:r="light",switchable:a=!1}){const[o,s]=K.useState(()=>a&&localStorage.getItem("theme")||r);K.useEffect(()=>{const d=document.documentElement;o==="dark"?d.classList.add("dark"):d.classList.remove("dark"),a&&localStorage.setItem("theme",o)},[o,a]);const c=a?()=>{s(d=>d==="light"?"dark":"light")}:void 0;return D.jsxDEV(e7.Provider,{"data-loc":"client/src/contexts/ThemeContext.tsx:52",value:{theme:o,toggleTheme:c,switchable:a},children:n},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/contexts/ThemeContext.tsx",lineNumber:52,columnNumber:5},this)}const n7={apply_download:"申请下载",appointment_cooperation:"预约合作",back_home:"返回首页",breadcrumb_content:"新闻",breadcrumb_home:"首页",business_environment_index_report:"业务环境指数报告",business_environment_service:"数字营商",business_environment_service_desc:"为企业提供一流的数字营商环境",changxing_city:"长兴县",changxing_desc:"长兴是我们的一个重要合作城市",changzhou_city:"常州市",changzhou_city_short:"常州",changzhou_desc:"常州是我们的一个重要合作城市",changxing_city_short:"长兴",city_baoji:"宝鸡",city_baotou:"包头",city_beihai:"北海",city_chamdo:"昭业",city_changchun:"长春",city_changsha:"长沙",city_changxing:"长兴",city_changzhou:"常州",city_chengdu:"成都",city_chongqing:"重庆",city_dali:"大理",city_dalian:"大连",city_datong:"大同",city_dujiangyan:"都江堰",city_fuzhou:"福州",city_ganzhou:"赣州",city_guilin:"桂林",city_guiyang:"贵阳",city_haikou:"海口",city_hanzhong:"汉中",city_harbin:"哈尔滨",city_hefei:"合肥",city_hengyang:"衡阳",city_hohhot:"呼和浩特",city_jinan:"济南",city_jiuquan:"酒泉",city_kashgar:"喀什",city_kunming:"昆明",city_lanzhou:"兰州",city_lhasa:"拉萨",city_liuzhou:"柳州",city_luoyang:"洛阳",city_mianyang:"绵阳",city_nanchang:"南昌",city_nanning:"南宁",city_nantong:"南通",city_nyingchi:"林芝",city_qingdao:"青岛",city_quanzhou:"泉州",city_shaoxing:"绍兴",city_shenyang:"沈阳",city_shigatse:"日喀则",city_shijiazhuang:"石家庄",city_taiyuan:"太原",city_tangshan:"唐山",city_tianshui:"天水",city_urumqi:"乌鲁木齐",city_weifang:"潍坊",city_wenzhou:"温州",city_wuhan:"武汉",city_wuhu:"芜湖",city_xiamen:"厦门",city_xian:"西安",city_xianyang:"咸阳",city_xining:"西宁",city_xuzhou:"徐州",city_yanan:"延安",city_yangzhou:"扬州",city_yantai:"烟台",city_yichang:"宜昌",city_yili:"伊犁",city_yinchuan:"银川",city_yueyang:"岳阳",city_yulin:"榆林",city_zhengzhou:"郑州",city_zhuhai:"珠海",city_zunyi:"遵义",column_navigation:"栏目导航",column_navigation_title:"栏目导航",company_name:"企来集团",company_name_with_logo:"企来集团",company_subtitle:"新闻中心",cooperation_overview:"合作概况",copyright:"版权信息",copyright_unit:"版权方",core_business:"8大核心业务",data_asset_registration:"数据资产登记",data_asset_registration_desc:"为企业和政府部门提供数据资产登记和管理服务",public_data_authorization:"公共数据授权",public_data_authorization_desc:"推动公共数据的安全授权和流通使用",industry_brain_construction:"产业大脑建设",industry_brain_construction_desc:"为产业园区和企业建设数据驱动的产业大脑",cross_border_data_flow_service:"跨境数据流动服务",cross_border_data_flow_desc:"支持国际数据流动和跨境数据合作",data_trading_matching:"数据交易撮合",data_trading_matching_desc:"提供数据交易平台和撮合服务",digital_government_consulting:"数字政府咨询",digital_government_consulting_desc:"为政府部门提供数字化转型咨询服务",data_security_assessment:"数据安全评估",data_security_assessment_desc:"提供数据安全评估和风险防控服务",digital_talent_training:"数字人才培训",digital_talent_training_desc:"培养数字经济领域的专业人才",comprehensive_support:"为政府、企业和社会提供全方位的数字化赋能",core_business_segments:"一级业务段",core_strategic_node:"核心战略节点",core_strategic_partner_desc:"核心战略合作城市",covered_cities_count:"合作城市数",cross_border_data_circulation:"跨境数据流动",data_element_assetization:"数据要素资产化",data_element_empowerment:"数据要素赋能服务",data_element_reform_cases:"数据要素改革案例",data_name:"数据名称",data_openness:"数据开放",data_trading:"数据交易",digital_economy_white_paper:"数字经济白皮书",digital_governance:"数字监管",digital_government_construction:"数字政府建设",digital_investment:"数字招商",digital_investment_promotion:"数字招商",digital_investment_promotion_desc:"为整个社会经济提供数字招商服务",digital_services:"数字服务",digital_services_intro:"企来集团为政府、企业、整个社会提供全方位的数字化转型服务",digital_services_link:"数字服务",digital_services_title:"数字服务",digital_supervision_service:"数字监管",digital_supervision_service_desc:"为政府部门提供数字监管服务",driven_investment_count:"带动投资额",editor_info:"编辑信息",expansion_cooperation_node:"拓展合作节点",footer_about:"关于我们",footer_contact:"联系我们",footer_copyright_full:"版权所有 2024 企来集团 保留所有权利",footer_privacy:"隐私政策",footer_terms:"服务条款",format:"格式",group_overview:"集团概况",group_overview_nav:"集团概况",group_overview_p1:"企来集团是一家专注于数字经济领域的战略性集团",group_overview_p2:"企来集团为整个社会经济打造数字经济新体系",group_overview_title:"集团概况",industrial_park_digital_investment:"产业园区数字招商",interaction_intro:"欢迎您的建议和反馈",interaction_title:"互动交流",interactive_exchange:"互动交流",key_expansion_area_desc:"重点拓展区域",landed_projects_count:"落地项目数",lanzhou_city:"兰州市",lanzhou_city_short:"兰州",lanzhou_desc:"兰州是我们的一个重要合作城市",local_cooperation:"地方合作",local_cooperation_intro:"了解我们的地方合作情况",local_cooperation_nav:"地方合作",local_cooperation_title:"地方合作",national_emblem_alt:"国徽",national_network:"全国网络格局",national_network_layout:"全国网络格局",nav_about:"集团概况",nav_cooperation:"地方合作",nav_data:"数据开放",nav_home:"首页",nav_interaction:"互动交流",nav_network:"全国网络格局",nav_news:"新闻中心",nav_services:"数字服务",news_category:"新闻分类",news_date:"发布日期",news_focus:"新闻聚焦",news_not_found:"新闻未找到",news_source:"信息来源",open_data_intro:"了解我们的数据开放情况",open_data_link:"数据开放",open_data_title:"数据开放",operation:"操作",policy_documents:"政策文件",policy_news:"政策要闻",policy_news_intro:"了解最新的政策资讯和行业动态",policy_news_title:"政策要闻",print_btn:"打印",publish_time:"发布时间",qilai_group_source:"企来集团",read_more:"查看详情",release_date:"发布日期",return_to_home:"返回首页",return_to_home_btn:"返回首页",search_button:"搜索",search_placeholder:"请输入关键字查询",share_btn:"分享",smart_city:"智慧城市",source:"来源",sponsor:"主办方",sponsor_unit:"主办方",submit_button:"提交",submit_intent:"提交意向",system_maintenance:"系统维护中",view_national_network:"查看全国合作网络格局",xiamen_city:"厦门市",xiamen_city_short:"厦门",xiamen_desc:"厦门是我们的一个重要合作城市",yueyang_city:"岳阳市",yueyang_city_short:"岳阳",yueyang_desc:"岳阳是我们的一个重要合作城市",zhuhai_city:"珠海市",zhuhai_city_short:"珠海",zhuhai_desc:"珠海是我们的一个重要合作城市"},YR=K.createContext(void 0),i7=({children:n})=>{const r=a=>n7[a]||a;return D.jsxDEV(YR.Provider,{"data-loc":"client/src/contexts/LanguageContext.tsx:228",value:{t:r},children:n},void 0,!1,{fileName:"/home/ubuntu/qilai_gov_website/client/src/contexts/LanguageContext.tsx",lineNumber:228,columnNumber:5},void 0)},kp=()=>{const n=K.useContext(YR);if(!n)throw new Error("useLanguage must be used within LanguageProvider");return n},FR=[{id:"news-qilai-xinzhili-5",title:"企来资讯｜企来集团与岳阳市政府共话新消费试点新机遇，共绘合作新篇章",date:"2025-11-21",category:"地方合作",content:`11月20日，岳阳市人民政府驻广深办事处黎宏主任带队，岳阳市人民政府驻粤港澳招商引资工作组相关领导一行五人莅临企来集团交流座谈。会议伊始，集团特别转达了董事长与总裁对岳阳市领导及企业家们到访的热烈欢迎。整场交流由刘昊璋总裁亲自主持，氛围热烈而富有前瞻性。
 
-**深度对话：新消费模式的探索与实践**
+深度对话：新消费模式的探索与实践
 
 座谈会上，企来集团首先向来访嘉宾详细介绍了集团的发展历程、核心业务板块及在数字经济领域的战略布局。作为一家致力于推动产业升级与数字化转型的领军企业，企来集团始终关注新消费领域的创新与发展。
 
 刘昊璋总裁重点阐述了集团在“新消费、新业态、新模式”方面的探索成果，特别是如何通过数字化手段赋能实体经济，激发消费潜力，推动地方经济高质量发展。他表示，岳阳市作为湖南省的副中心城市，拥有得天独厚的区位优势和深厚的文化底蕴，是发展新消费产业的沃土。
 
-**共谋发展：打造国家级试点城市的构想**
+共谋发展：打造国家级试点城市的构想
 
 黎宏主任对企来集团在数字经济领域的成就给予了高度评价，并详细介绍了岳阳市在招商引资、产业扶持等方面的优惠政策。他指出，岳阳市正积极响应国家关于促进消费扩容提质的号召，大力发展新消费产业，希望引进像企来集团这样有实力、有情怀的企业，共同推动岳阳经济的转型升级。
 
 双方围绕如何协助岳阳市申报“国家财政部商务部消费新业态新模式新场景试点城市”进行了深入探讨。企来集团提出了一套基于数字化通证确权与数据资产赋能的创新方案，旨在通过构建全域消费生态圈，打通生产、流通、消费各个环节，实现产业链上下游的协同发展。这一构想得到了岳阳市领导的一致认可与浓厚兴趣。
 
-**展望未来：携手共创美好明天**
+展望未来：携手共创美好明天
 
 此次座谈会不仅加深了企来集团与岳阳市政府的相互了解，更为双方未来的深度合作奠定了坚实基础。双方一致同意，将建立常态化沟通机制，尽快组建工作专班，就具体合作项目进行深入对接与落地实施。
 
 企来集团将充分发挥自身在技术、资源、运营等方面的优势，全力支持岳阳市的新消费试点城市建设，助力岳阳打造成为中部地区乃至全国的新消费高地。我们相信，在政企双方的共同努力下，必将开创出互利共赢、共谋发展的新局面，为岳阳市的经济社会发展注入新的强劲动力！`,image:"/images/yueyang_visit.jpg",source:"企来集团"},{id:"news-qilai-xinzhili-6",title:"企来资讯｜【政企同心·共创未来】兰州市政府投资项目座谈会成功举办",date:"2025-11-13",category:"地方合作",content:`2025年11月12日，由企来集团主办的《政府投资项目座谈会》在深圳隆重举行。兰州市人民政府驻深圳招商中心吕军主任、驻深圳办事处陈学义主任莅临指导，与深圳多家创新型企业家代表齐聚一堂，共商投资合作大计。
 
-**亲切交流，共绘合作蓝图**
+亲切交流，共绘合作蓝图
 
 会议伊始，企来集团副总裁刘昊璋先生主持会议，并转达了公司董事长、总裁对兰州市领导和企业家们的热烈欢迎。在温馨融洽的氛围中，政企双方进行了深入交流。
 
 下午3时许，座谈会正式拉开帷幕。在企来集团贵宾室，兰州市领导与企业家代表们首先进行了亲切会谈。刘昊璋副总裁主持党建办公室交流，为后续深入合作奠定了良好基础。
 
-**企业展示，亮点纷呈**
+企业展示，亮点纷呈
 
 农佳铺深圳供应链有限公司董事长卢继革首先发言，介绍了公司在现代农业供应链领域的创新实践。其独特的商业模式和市场前景，引发了与会嘉宾的浓厚兴趣。
 
 紧接着，友福同享深圳智能科技有限公司创始人黄容章先生登台分享。作为一家专注于智能科技领域的企业，友福同享展示了其在人工智能、物联网等前沿技术方面的突破性成果。
 
-**压轴登场，企来集团展现综合实力**
+压轴登场，企来集团展现综合实力
 
 作为本次会议的东道主，企来集团压轴亮相。集团资深讲师吴老师系统介绍了公司的愿景使命价值观，全面展示了公司产品体系与项目政策支撑。
 
@@ -423,7 +423,7 @@ React keys must be passed directly to JSX without using spread:
 
 随着企来集团宣传片的播放，会场气氛达到高潮。影片生动展现了企来集团在数字经济领域的深耕与创新，获得了兰州市领导的高度评价和持续关注。
 
-**深化合作，展望未来**
+深化合作，展望未来
 
 下午4时，座谈会在热烈的气氛中圆满落幕。与会领导与企业家们合影留念，记录下这一重要时刻。
 
@@ -433,7 +433,7 @@ React keys must be passed directly to JSX without using spread:
 
 交流伊始，企来集团以真诚的伙伴姿态，首先转达了集团董事长、总裁对各位嘉宾到来的热忱欢迎与高度重视。这场汇聚了地方政府招商引资的“政策高地”和前沿科技创新的“资本活水”的会议，为构建跨省域、多层次的产业合作模式奠定了坚实基础。
 
-**战略引领：区域经济发展融入国家宏观脉络**
+战略引领：区域经济发展融入国家宏观脉络
 
 会议聚焦于如何将地方的独特禀赋与国家的重大战略精准对标、高效融合。
 
@@ -443,7 +443,7 @@ React keys must be passed directly to JSX without using spread:
 
 双方的介绍充分体现了地方政府在落实国家区域协调发展战略中的积极作为和独特价值。
 
-**科技赋能：资本与实体经济的深度交融**
+科技赋能：资本与实体经济的深度交融
 
 中城院和高新科技企业的分享，为地方招商引资注入了“硬核”的科技创新元素：
 
@@ -453,7 +453,7 @@ React keys must be passed directly to JSX without using spread:
 
 这些项目的引入，无疑将加速地方产业结构向高附加值、可持续发展方向迈进。
 
-**价值驱动：企来集团的担当与共赢理念**
+价值驱动：企来集团的担当与共赢理念
 
 企来集团作为产业生态的构建者与资源链接者，在所有项目分享的尾声，讲解员吴老师对集团的使命、愿景与核心价值观进行了深刻诠释，并展示了企来集团在推动企业成长与地方经济发展中的责任担当，获得了在场地方政府领导和企业家们的高度共鸣和赞赏。
 
@@ -463,73 +463,73 @@ React keys must be passed directly to JSX without using spread:
 
 期待下一次的深化对接，开启更多共赢合作的新可能！`,image:"/images/zhuhai_changxing_visit.jpg",source:"企来集团"},{id:"news-qilai-xinzhili-7",title:"企来集团与心之力强强联手，共启产业跃迁新篇章",date:"2025-12-27",category:"要闻聚焦",content:`　　近日，企来集团与心之力商学院正式宣布达成深度战略合作，并举行了隆重的签约仪式。此次合作标志着双方将在数字经济与企业管理培训领域实现优势互补，共同探索“技术+心法”赋能企业的新模式。
 
-**强强联手，共创未来**
+强强联手，共创未来
 
 　　企来集团作为国内领先的数证经济流通技术服务商，一直致力于通过数字化手段推动产业升级。而心之力商学院在企业战略定位、领导力发展及商业模式设计方面拥有深厚的积淀。双方的结合，将为中国企业提供从技术落地到组织进化的全方位解决方案。
 
-**深度融合，全面赋能**
+深度融合，全面赋能
 
 　　根据合作协议，双方将在以下几个方面展开深度合作：
 
-1. **课程体系共建**：将企来的数字化实战经验与心之力的管理哲学相结合，开发出一套既有高度又有深度的企业赋能课程。
-2. **资源共享互通**：打通双方的企业客户资源，构建更加开放、多元的商业生态圈。
-3. **项目联合孵化**：共同筛选优质项目，提供从资金、技术到管理的“一站式”孵化服务。
+1. 课程体系共建：将企来的数字化实战经验与心之力的管理哲学相结合，开发出一套既有高度又有深度的企业赋能课程。
+2. 资源共享互通：打通双方的企业客户资源，构建更加开放、多元的商业生态圈。
+3. 项目联合孵化：共同筛选优质项目，提供从资金、技术到管理的“一站式”孵化服务。
 
 　　此次合作不仅是两家企业的联手，更是数字经济时代产业生态构建的一次重要探索。我们相信，在双方的共同努力下，必将为更多企业插上腾飞的翅膀，共同书写产业跃迁的新篇章！`,image:"/images/qilai_xinzhili_coop.jpg",source:"企来集团"},{id:"news-qilai-xinzhili-4",title:"【企来·新纪元】热烈祝贺熊仲权总裁携全新高管团队正式入驻，企来集团今日换“芯”上线！",date:"2025-12-25",category:"要闻聚焦",content:`　　12月23日清晨，总部周一晨会现场掌声雷动——来自四川成都、拥有丰富商业实战经验并著有畅销战略专著的熊仲权先生，首次以“企来集团新总裁”身份亮相。短短30分钟发言，一张“未来企来”的宏伟蓝图清晰落笔：以“附近+”为圆心，用数字化去中心化之笔，为地方政府描绘“一区一县一业一上市”本地生活产业生态。
 
 　　熊总裁现场抛出三大价值主张，句句直击行业痛点：
 
-**1、数字化通证确权**——让企业价值有“身份证”，沟通零摩擦；
+1、数字化通证确权——让企业价值有“身份证”，沟通零摩擦；
 
-**2、数据资产赋能**——把沉睡数据炼成资产，客户交付转化率飙至90%+；
+2、数据资产赋能——把沉睡数据炼成资产，客户交付转化率飙至90%+；
 
-**3、数字化技术全案**——以叶总工为核心，做企业背后“技术外挂”。
+3、数字化技术全案——以叶总工为核心，做企业背后“技术外挂”。
 
-　　更燃的是组织模式**“换引擎”**：从“公司+员工”升级为“平台+个人”，一人一企业、赛马不相马，信息即时重构，优势瞬间变现。
+　　更燃的是组织模式“换引擎”：从“公司+员工”升级为“平台+个人”，一人一企业、赛马不相马，信息即时重构，优势瞬间变现。
 
-**未来三年，我们将携手**
+未来三年，我们将携手
 
-● 130→1000→6000个项目，滚动筛选**“金种子”**；
+ 130→1000→6000个项目，滚动筛选“金种子”；
 
-● 组建高端智囊团，助力人才与企业**“登顶”**；
+ 组建高端智囊团，助力人才与企业“登顶”；
 
-**● “积汇通”**绿色积分兑换中心，让每一次贡献都有价；
+ “积汇通”绿色积分兑换中心，让每一次贡献都有价；
 
-● 原小程序全面升级为**“财富通系统”**，一键打通销售、融资、发展三大关卡。
+ 原小程序全面升级为“财富通系统”，一键打通销售、融资、发展三大关卡。
 
 　　会议最后，熊总裁一句话点燃全场：“以后，会议就是我们的‘作战室’，每一次碰撞都是组织智商的充值。”
 
 　　企来人，新引擎已点火，新赛道已亮灯。让我们以周一晨会为新的起跑线，与熊仲权总裁及全体新高管并肩，把战略写进代码，把愿景落进订单，把个人价值写进企来的上市钟声中！`,image:"/images/xiong_president_team.jpg",source:"企来集团"},{id:"news-qilai-xinzhili-2",title:"企来资讯 | 聚势赋能区域经济 企来集团携手川闽苏三地政府共拓产业合作新版图",date:"2026-01-08",category:"要闻聚焦",content:`1月7日下午，一场旨在深化跨区域资源整合、精准链接新质生产力的产业交流会在企来集团总部圆满举行 。成都都江堰市商务和投资促进局、厦门市人民政府驻深圳经济联络办事处、常州经开区深圳创新中心相关负责同志，与深圳小安生活控股、浙江腾视算擎科技有限公司、深圳市晶汇通科技有限公司等领军企业代表齐聚一堂，共同探讨政企协同发展的新路径、新范式 。
 
-**政策高地与产业沃土的深度“握手”**
+政策高地与产业沃土的深度“握手”
 
 交流会伊始，企来集团对远道而来的政府及企业宾客致以热烈欢迎 。这场会议不仅是地理空间上的跨越，更是地方引资政策与前沿科创力量的深度碰撞 。
 
 在交流环节，三地政府代表分别展示了各具特色的产业底色：
 
-**都江堰市商务和投资促进局**分享了其立足成渝地区双城经济圈，在绿色生态产业与文旅融合发展中的独特优势 。
+都江堰市商务和投资促进局分享了其立足成渝地区双城经济圈，在绿色生态产业与文旅融合发展中的独特优势 。
 
-**厦门市驻深办**详细介绍了特区在“丝路海运”与高新技术领域的创新扶持政策，彰显了深耕东南沿海开放高地的窗口价值 。
+厦门市驻深办详细介绍了特区在“丝路海运”与高新技术领域的创新扶持政策，彰显了深耕东南沿海开放高地的窗口价值 。
 
-**常州经开区深圳创新中心**则重点推介了其在“苏南模式”引领下，先进制造业及智电产业的雄厚根基与合作诚意 。
+常州经开区深圳创新中心则重点推介了其在“苏南模式”引领下，先进制造业及智电产业的雄厚根基与合作诚意 。
 
-**创新驱动：硬核科技与贸易新格局**
+创新驱动：硬核科技与贸易新格局
 
 来自科创一线的分享，为地方产业升级提供了极具参考价值的实战样本 ：
 
-**深圳市晶汇通科技有限公司：**
+深圳市晶汇通科技有限公司：
 
 重点介绍了其在全球贸易格局下的跨境电商业务。该项目通过数字化链路打通出海通道，不仅响应了国家“贸易强国”的号召，更为地方传统制造业数字化转型、拓展海外增量市场提供了强力支撑 。
 
-**深圳小安生活控股与浙江腾视算擎科技有限公司：**
+深圳小安生活控股与浙江腾视算擎科技有限公司：
 
 分别就智慧民生与智能算力等前沿领域分享了最新成果，展示了高新技术在赋能城市智慧化治理与提升区域算力能级方面的巨大潜力 。
 
-**使命传承：共筑产业生态共同体**
+使命传承：共筑产业生态共同体
 
 交流会上，企来集团资深讲师吴老师详细介绍了公司文化及定位，带领嘉宾们移步公司文化墙进行参观讲解 。通过对集团使命、愿景与核心价值观的深刻诠释，生动展示了企来集团作为“产业生态构建者”在链接政企资源、推动区域高质量发展中的责任与情怀 。
 
-**厦门市、常州市、都江堰市三地政府代表**对企来集团精准的资源配置能力给予了高度认可 。各方一致表示，将以此次交流为契机，建立长效沟通机制，加速推动相关优质产业项目在属地落地生根，共同谱写政企合作、互利共赢的时代新篇 。
+厦门市、常州市、都江堰市三地政府代表对企来集团精准的资源配置能力给予了高度认可 。各方一致表示，将以此次交流为契机，建立长效沟通机制，加速推动相关优质产业项目在属地落地生根，共同谱写政企合作、互利共赢的时代新篇 。
 
 这不仅是一场资源的汇聚，更是一次信心的传递 。在落实国家区域协调发展战略的征程中，政企双方正以更加开放、平等的姿态，共同开启协同创新的美好未来 。`,image:"/images/xiamen_changzhou_dujiangyan_visit.jpg",source:"企来集团"},{id:"xi-1",title:"习近平：不断做强做优做大我国数字经济",date:"2021-10-18",category:"领导讲话",content:`习近平总书记强调，要不断做强做优做大我国数字经济。数字技术、数字经济可以推动各类资源要素快捷流动、各类市场主体加速融合，帮助市场主体重构组织模式。
 
