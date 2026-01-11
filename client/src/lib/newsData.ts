@@ -70,7 +70,7 @@ export const leaderSlides = [
     id: 1,
     leader: "习近平",
     title: "习近平：不断做强做优做大我国数字经济",
-    image: "/images/xi_jinping_1.jpg", // Reverted to original user-preferred image
+    image: "/images/xi_2025_hd_1.jpg", // New HD image from 2025
     summary: "习近平总书记强调，要不断做强做优做大我国数字经济。数字技术、数字经济可以推动各类资源要素快捷流动、各类市场主体加速融合，帮助市场主体重构组织模式。",
     date: "2021-10-18",
     source: "新华社",
