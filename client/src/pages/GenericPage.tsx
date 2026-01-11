@@ -57,17 +57,17 @@ export default function GenericPage() {
       )
     },
     service: {
-      title: "政务服务",
+      title: "数字服务",
       content: (
         <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
           <p className="indent-8">
-            企来集团政务服务平台，旨在为政府部门提供高效、便捷的数字化服务工具。我们通过“互联网+政务服务”模式，助力政府实现“一网通办”、“跨省通办”，提升行政效能和公共服务水平。
+            企来集团数字服务平台，旨在为政府部门提供高效、便捷的数字化服务工具。我们通过“互联网+数字服务”模式，助力政府实现“一网通办”、“跨省通办”，提升行政效能和公共服务水平。
           </p>
           <div className="grid grid-cols-3 gap-6 mt-8">
             {[
-              { title: "招商引资", desc: "产业分析、项目匹配、全流程跟踪" },
+              { title: "数字招商", desc: "产业分析、项目匹配、全流程跟踪" },
               { title: "营商环境", desc: "政策推送、诉求直达、满意度测评" },
-              { title: "智慧监管", desc: "数据监测、风险预警、协同执法" }
+              { title: "数字监管", desc: "数据监测、风险预警、协同执法" }
             ].map((item, idx) => (
               <div key={idx} className="bg-white border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow text-center">
                 <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
