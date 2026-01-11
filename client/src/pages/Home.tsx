@@ -12,8 +12,8 @@ export default function Home() {
   const [, setLocation] = useLocation();
 
   // 分离领导人数据
-  const xiSlides = leaderSlides.filter(slide => slide.id === 1);
-  const liSlides = leaderSlides.filter(slide => slide.id === 2);
+  const xiSlides = leaderSlides.filter(slide => typeof slide.id === 'string' && slide.id.startsWith('xi'));
+  const liSlides = leaderSlides.filter(slide => typeof slide.id === 'string' && slide.id.startsWith('li'));
 
   // 过滤出企来集团新闻（排除领导人新闻），并优先展示地方考察新闻
   const groupNews = newsData.filter(item => 
