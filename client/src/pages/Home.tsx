@@ -136,7 +136,7 @@ export default function Home() {
                 {xiSlides[currentXiSlide].title}
               </h2>
               <p className="text-white/90 text-lg font-song line-clamp-2 drop-shadow-md">
-                {xiSlides[currentXiSlide].desc}
+                {xiSlides[currentXiSlide].summary}
               </p>
             </div>
 
