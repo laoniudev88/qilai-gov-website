@@ -142,7 +142,7 @@ export default function GenericPage() {
       content: (
         <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
           <p className="indent-8">
-            企来集团已与全国多个省市建立了深度战略合作伙伴关系，通过“数字+产业”双轮驱动，助力地方经济腾飞。
+            企来集团已与全国多个省市建立了深度交流对接合作关系，通过“数字+产业”双轮驱动对接，助力地方经济腾飞。
           </p>
           <div className="grid grid-cols-2 gap-6 mt-6">
             {[
