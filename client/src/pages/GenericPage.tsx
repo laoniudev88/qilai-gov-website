@@ -40,7 +40,7 @@ export default function GenericPage() {
             <ul className="divide-y divide-dashed divide-gray-200">
               {policyDocuments.map((doc, index) => (
                 <li key={index} className="py-4 hover:bg-gray-50 transition-colors px-2">
-                  <a href={doc.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between group">
+                  <a href={doc.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between group">
                     <div className="flex-1">
                       <h4 className="text-lg font-song text-gray-800 group-hover:text-[#b91c1c] group-hover:font-bold transition-all">
                         {doc.title}

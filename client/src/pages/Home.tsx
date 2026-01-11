@@ -10,8 +10,8 @@ export default function Home() {
   const [, setLocation] = useLocation();
 
   // 分离领导人数据
-  const xiSlides = leaderSlides.filter(slide => slide.leader === 'xi');
-  const liSlides = leaderSlides.filter(slide => slide.leader === 'li');
+  const xiSlides = leaderSlides.filter(slide => slide.id === 1);
+  const liSlides = leaderSlides.filter(slide => slide.id === 2);
 
   // 过滤出企来集团新闻（排除领导人新闻），并优先展示地方考察新闻
   const groupNews = newsData.filter(item => 
@@ -136,7 +136,7 @@ export default function Home() {
                 {xiSlides[currentXiSlide].title}
               </h2>
               <p className="text-white/90 text-lg font-song line-clamp-2 drop-shadow-md">
-                {xiSlides[currentXiSlide].content}
+                {xiSlides[currentXiSlide].desc}
               </p>
             </div>
 
@@ -207,12 +207,12 @@ export default function Home() {
           
           <div className="grid grid-cols-6 gap-4">
             {[
-              { name: "岳阳市", id: "news-yueyang-2024", image: "/images/yueyang_bg_hd.jpg" },
-              { name: "兰州市", id: "2", image: "/images/lanzhou_bg_hd.jpg" },
-              { name: "珠海市", id: "news-zh-cx", image: "/images/zhuhai_bg_hd.jpg" },
-              { name: "长兴县", id: "news-zh-cx", image: "/images/changxing_bg_hd.jpg" },
-              { name: "厦门市", id: "news-xm", image: "/images/xiamen_bg_hd.jpg" },
-              { name: "常州市", id: "news-xm", image: "/images/changzhou_bg_hd.jpg" }
+              { name: "岳阳市", id: "news-qilai-xinzhili-5", image: "/images/yueyang_bg_hd.jpg" },
+              { name: "兰州市", id: "news-qilai-xinzhili-6", image: "/images/lanzhou_bg_hd.jpg" },
+              { name: "珠海市", id: "news-qilai-xinzhili-1", image: "/images/zhuhai_bg_hd.jpg" },
+              { name: "长兴县", id: "news-qilai-xinzhili-1", image: "/images/changxing_bg_hd.jpg" },
+              { name: "厦门市", id: "news-qilai-xinzhili-2", image: "/images/xiamen_bg_hd.jpg" },
+              { name: "常州市", id: "news-qilai-xinzhili-2", image: "/images/changzhou_bg_hd.jpg" }
             ].map((city) => (
               <Link 
                 key={city.name} 
@@ -304,7 +304,7 @@ export default function Home() {
               <ul className="space-y-4">
                 {policyDocuments.map((doc, index) => (
                   <li key={index} className="group">
-                    <a href={doc.url} target="_blank" rel="noopener noreferrer" className="block">
+                    <a href={doc.link} target="_blank" rel="noopener noreferrer" className="block">
                       <h3 className="text-base font-song text-gray-800 group-hover:text-[#ce1126] transition-colors leading-snug mb-1">
                         {doc.title}
                       </h3>
