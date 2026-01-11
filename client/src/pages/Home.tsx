@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, Search, Building2, FileText, BarChart3, Glob
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Home() {
-  const { t, language, setLanguage } = useLanguage();
+  const { t } = useLanguage();
   const [currentXiSlide, setCurrentXiSlide] = useState(0);
   const [currentLiSlide, setCurrentLiSlide] = useState(0);
   const [currentNewsSlide, setCurrentNewsSlide] = useState(0);
@@ -64,27 +64,7 @@ export default function Home() {
           <div className="flex space-x-6">
             {/* 顶部导航已移除 */}
           </div>
-          <div className="flex space-x-4">
-            <span 
-              className={`cursor-pointer hover:underline ${language === 'en' ? 'font-bold underline' : ''}`}
-              onClick={() => setLanguage('en')}
-            >
-              English
-            </span>
-            <span 
-              className={`cursor-pointer hover:underline ${language === 'fr' ? 'font-bold underline' : ''}`}
-              onClick={() => setLanguage('fr')}
-            >
-              Français
-            </span>
-            <span 
-              className={`cursor-pointer hover:underline ${language === 'zh' ? 'font-bold underline' : ''}`}
-              onClick={() => setLanguage('zh')}
-            >
-              {t('language_chinese')}
-            </span>
-            <span className="cursor-pointer hover:underline">{t('accessibility')}</span>
-          </div>
+          <div className="flex space-x-4"></div>
         </div>
       </div>
 
@@ -96,11 +76,7 @@ export default function Home() {
             <h1 className="text-[72px] font-bold text-[#ce1126] tracking-widest font-song leading-none" style={{ fontFamily: '"FZXiaoBiaoSong-B05S", "FangSong", serif', textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
               {t('company_name')}
             </h1>
-            {language !== 'zh' && (
-              <p className="text-xl text-gray-600 mt-2 tracking-[0.3em] font-sans uppercase">
-                {t('official_website')}
-              </p>
-            )}
+
           </div>
           
           {/* 右侧搜索框 */}
