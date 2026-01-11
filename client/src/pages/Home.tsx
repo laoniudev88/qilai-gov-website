@@ -96,9 +96,11 @@ export default function Home() {
             <h1 className="text-[72px] font-bold text-[#ce1126] tracking-widest font-song leading-none" style={{ fontFamily: '"FZXiaoBiaoSong-B05S", "FangSong", serif', textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
               {t('company_name')}
             </h1>
-            <p className="text-xl text-gray-600 mt-2 tracking-[0.3em] font-sans uppercase">
-              {t('official_website')}
-            </p>
+            {language !== 'zh' && (
+              <p className="text-xl text-gray-600 mt-2 tracking-[0.3em] font-sans uppercase">
+                {t('official_website')}
+              </p>
+            )}
           </div>
           
           {/* 右侧搜索框 */}
@@ -340,11 +342,11 @@ export default function Home() {
             <div className="mt-6 grid grid-cols-2 gap-4">
               <Link href="/page/service" className="bg-[#ce1126] text-white p-4 text-center rounded-sm hover:bg-[#a30d1d] transition-colors flex flex-col items-center justify-center h-24">
                 <Building2 className="w-8 h-8 mb-2" />
-                <span className="font-bold font-song">数字服务</span>
+                <span className="font-bold font-song">{t('digital_services_link')}</span>
               </Link>
               <Link href="/page/data" className="bg-[#ce1126] text-white p-4 text-center rounded-sm hover:bg-[#a30d1d] transition-colors flex flex-col items-center justify-center h-24">
                 <BarChart3 className="w-8 h-8 mb-2" />
-                <span className="font-bold font-song">数据开放</span>
+                <span className="font-bold font-song">{t('open_data_link')}</span>
               </Link>
             </div>
           </div>
@@ -355,20 +357,20 @@ export default function Home() {
       <div className="bg-gray-100 py-12 border-t border-gray-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#ce1126] font-song mb-2">数据要素赋能服务</h2>
-            <p className="text-gray-600 font-song">全方位助力政府数字化转型与数据价值释放</p>
+            <h2 className="text-3xl font-bold text-[#ce1126] font-song mb-2">{t('data_element_empowerment')}</h2>
+            <p className="text-gray-600 font-song">{t('comprehensive_support')}</p>
           </div>
           
           <div className="grid grid-cols-4 gap-6">
             {[
-              { title: "数据资产登记", icon: FileText, desc: "提供合规的数据资产权属登记与确权服务" },
-              { title: "公共数据授权", icon: ShieldCheck, desc: "协助政府构建公共数据授权运营机制" },
-              { title: "产业大脑建设", icon: Cpu, desc: "打造区域特色产业大脑，赋能产业升级" },
-              { title: "跨境数据流动", icon: Globe, desc: "提供安全合规的跨境数据传输解决方案" },
-              { title: "数据交易撮合", icon: BarChart3, desc: "连接供需双方，促进数据要素高效流通" },
-              { title: "数字政府咨询", icon: Building2, desc: "提供顶层设计与数字化转型战略咨询" },
-              { title: "数据安全评估", icon: ShieldCheck, desc: "全流程数据安全风险评估与合规审计" },
-              { title: "数字人才培训", icon: FileText, desc: "培养专业化的数字经济管理与技术人才" }
+              { title: t('data_asset_registration'), icon: FileText, desc: t('data_asset_registration_desc') },
+              { title: t('public_data_authorization'), icon: ShieldCheck, desc: t('public_data_authorization_desc') },
+              { title: t('industry_brain_construction'), icon: Cpu, desc: t('industry_brain_construction_desc') },
+              { title: t('cross_border_data_flow_service'), icon: Globe, desc: t('cross_border_data_flow_desc') },
+              { title: t('data_trading_matching'), icon: BarChart3, desc: t('data_trading_matching_desc') },
+              { title: t('digital_government_consulting'), icon: Building2, desc: t('digital_government_consulting_desc') },
+              { title: t('data_security_assessment'), icon: ShieldCheck, desc: t('data_security_assessment_desc') },
+              { title: t('digital_talent_training'), icon: FileText, desc: t('digital_talent_training_desc') }
             ].map((service, idx) => (
               <div key={idx} className="bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition-all border-t-4 border-[#ce1126] group cursor-pointer">
                 <div className="flex items-center mb-4">
@@ -389,9 +391,9 @@ export default function Home() {
       {/* 页脚 */}
       <footer className="bg-[#ce1126] text-white py-8 mt-auto">
         <div className="container mx-auto px-4 text-center font-song">
-          <p className="mb-4 text-lg font-bold">企来集团 QILAI GROUP</p>
+          <p className="mb-4 text-lg font-bold">{t('company_name_with_logo')}</p>
           <div className="text-sm opacity-80 space-y-2">
-            <p>版权所有 © 2025 企来集团 保留所有权利</p>
+            <p>{t('footer_copyright_full')}</p>
             
           </div>
         </div>

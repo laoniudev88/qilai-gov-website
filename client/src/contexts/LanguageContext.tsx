@@ -395,6 +395,116 @@ const translations: Translations = {
     zh: "打造长三角工业互联网与数字制造融合发展标杆，赋能新能源之都建设。",
     en: "Create a benchmark for the integrated development of industrial Internet and digital manufacturing in the Yangtze River Delta, and empower the construction of the new energy capital.",
     fr: "Créer une référence pour le développement intégré de l'Internet industriel et de la fabrication numérique dans le delta du fleuve Yangtze, et autonomiser la construction de la capitale des nouvelles énergies."
+  },
+  "data_element_empowerment": {
+    zh: "数据要素赋能服务",
+    en: "Data Element Empowerment Services",
+    fr: "Services d'Autonomisation des Éléments de Données"
+  },
+  "comprehensive_support": {
+    zh: "全方位助力政府数字化转型与数据价值释放",
+    en: "Comprehensive support for government digital transformation and data value release",
+    fr: "Soutien complet à la transformation numérique du gouvernement et à la libération de la valeur des données"
+  },
+  "data_asset_registration": {
+    zh: "数据资产登记",
+    en: "Data Asset Registration",
+    fr: "Enregistrement des Actifs de Données"
+  },
+  "data_asset_registration_desc": {
+    zh: "提供合规的数据资产权属登记与确权服务",
+    en: "Provide compliant data asset ownership registration and confirmation services",
+    fr: "Fournir des services d'enregistrement et de confirmation de propriété d'actifs de données conformes"
+  },
+  "public_data_authorization": {
+    zh: "公共数据授权",
+    en: "Public Data Authorization",
+    fr: "Autorisation des Données Publiques"
+  },
+  "public_data_authorization_desc": {
+    zh: "协助政府构建公共数据授权运营机制",
+    en: "Assist governments in building public data authorization and operation mechanisms",
+    fr: "Aider les gouvernements à construire des mécanismes d'autorisation et d'exploitation des données publiques"
+  },
+  "industry_brain_construction": {
+    zh: "产业大脑建设",
+    en: "Industry Brain Construction",
+    fr: "Construction du Cerveau Industriel"
+  },
+  "industry_brain_construction_desc": {
+    zh: "打造区域特色产业大脑，赋能产业升级",
+    en: "Build regional characteristic industry brain, empower industry upgrade",
+    fr: "Construire un cerveau industriel caractéristique régional, autonomiser la mise à niveau industrielle"
+  },
+  "cross_border_data_flow_service": {
+    zh: "跨境数据流动",
+    en: "Cross-border Data Flow",
+    fr: "Flux de Données Transfrontaliers"
+  },
+  "cross_border_data_flow_desc": {
+    zh: "提供安全合规的跨境数据传输解决方案",
+    en: "Provide secure and compliant cross-border data transmission solutions",
+    fr: "Fournir des solutions de transmission de données transfrontalières sécurisées et conformes"
+  },
+  "data_trading_matching": {
+    zh: "数据交易撮合",
+    en: "Data Trading Matching",
+    fr: "Appariement du Commerce de Données"
+  },
+  "data_trading_matching_desc": {
+    zh: "连接供需双方，促进数据要素高效流通",
+    en: "Connect supply and demand, promote efficient circulation of data elements",
+    fr: "Connecter l'offre et la demande, promouvoir la circulation efficace des éléments de données"
+  },
+  "digital_government_consulting": {
+    zh: "数字政府咨询",
+    en: "Digital Government Consulting",
+    fr: "Consultation sur le Gouvernement Numérique"
+  },
+  "digital_government_consulting_desc": {
+    zh: "提供顶层设计与数字化转型战略咨询",
+    en: "Provide top-level design and digital transformation strategy consulting",
+    fr: "Fournir des conseils en conception de haut niveau et en stratégie de transformation numérique"
+  },
+  "data_security_assessment": {
+    zh: "数据安全评估",
+    en: "Data Security Assessment",
+    fr: "Évaluation de la Sécurité des Données"
+  },
+  "data_security_assessment_desc": {
+    zh: "全流程数据安全风险评估与合规审计",
+    en: "Full-process data security risk assessment and compliance audit",
+    fr: "Évaluation des risques de sécurité des données et audit de conformité du processus complet"
+  },
+  "digital_talent_training": {
+    zh: "数字人才培训",
+    en: "Digital Talent Training",
+    fr: "Formation des Talents Numériques"
+  },
+  "digital_talent_training_desc": {
+    zh: "培养专业化的数字经济管理与技术人才",
+    en: "Cultivate professional digital economy management and technical talents",
+    fr: "Cultiver des talents professionnels en gestion de l'économie numérique et en technologie"
+  },
+  "company_name_with_logo": {
+    zh: "企来集团 QILAI GROUP",
+    en: "Qilai Group QILAI GROUP",
+    fr: "Groupe Qilai QILAI GROUP"
+  },
+  "footer_copyright_full": {
+    zh: "版权所有 © 2025 企来集团 保留所有权利",
+    en: "Copyright © 2025 Qilai Group All Rights Reserved",
+    fr: "Droit d'auteur © 2025 Groupe Qilai Tous Droits Réservés"
+  },
+  "digital_services_link": {
+    zh: "数字服务",
+    en: "Digital Services",
+    fr: "Services Numériques"
+  },
+  "open_data_link": {
+    zh: "数据开放",
+    en: "Open Data",
+    fr: "Données Ouvertes"
   }
 };
 
