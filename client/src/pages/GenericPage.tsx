@@ -12,14 +12,58 @@ export default function GenericPage() {
     overview: {
       title: t('group_overview_title'),
       content: (
-        <div className="space-y-6 text-lg leading-loose text-gray-800 font-song">
-          <p className="indent-8">
-            {t('group_overview_p1')}
-          </p>
-          <p className="indent-8">
-            {t('group_overview_p2')}
-          </p>
-          <div className="bg-gray-50 p-6 border border-gray-200 rounded-sm mt-8">
+        <div className="space-y-8 text-lg leading-loose text-gray-800 font-song">
+          <div>
+            <h3 className="text-2xl font-bold text-[#b91c1c] mb-4">企来集团简介</h3>
+            <p className="indent-8 mb-4">
+              {t('group_overview_p1')}
+            </p>
+            <p className="indent-8">
+              {t('group_overview_p2')}
+            </p>
+          </div>
+
+          {/* 愿景、使命、价值观 */}
+          <div className="grid grid-cols-3 gap-6 mt-8">
+            <div className="bg-gradient-to-br from-red-50 to-white p-6 border-l-4 border-[#b91c1c] rounded-sm shadow-sm">
+              <h4 className="text-lg font-bold text-[#b91c1c] mb-3">愿景</h4>
+              <p className="text-gray-700 leading-relaxed">推动数字经济与实体经济深度融合，为全国2862个区县提供高效、安全、透明的数证经济解决方案</p>
+            </div>
+            <div className="bg-gradient-to-br from-red-50 to-white p-6 border-l-4 border-[#b91c1c] rounded-sm shadow-sm">
+              <h4 className="text-lg font-bold text-[#b91c1c] mb-3">使命</h4>
+              <p className="text-gray-700 leading-relaxed">创新式解决企业"融资难、销售难"，助力产业升级和价值重构，赋能中小微企业数字化转型</p>
+            </div>
+            <div className="bg-gradient-to-br from-red-50 to-white p-6 border-l-4 border-[#b91c1c] rounded-sm shadow-sm">
+              <h4 className="text-lg font-bold text-[#b91c1c] mb-3">价值观</h4>
+              <p className="text-gray-700 leading-relaxed">以技术服务创新为核心，将流动的数字转化为留存的资产，构建本地经济自循环生态</p>
+            </div>
+          </div>
+
+          {/* 核心竞争力 */}
+          <div className="bg-white border border-gray-200 p-8 rounded-sm mt-8">
+            <h3 className="text-xl font-bold text-[#b91c1c] mb-6">核心竞争力</h3>
+            <div className="grid grid-cols-2 gap-8">
+              <div>
+                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2"><span className="text-[#b91c1c] text-xl">◆</span>信用赋能</h4>
+                <p className="text-gray-700 ml-6">建立企业数据信用画像，通过信用积分体系为企业提供无抵押、低成本的信贷支持，让"数据资产"真正成为"金融资产"</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2"><span className="text-[#b91c1c] text-xl">◆</span>智能升级</h4>
+                <p className="text-gray-700 ml-6">开发企业专属小程序，集智能营销、供应链管理、员工服务于一体，精准触达消费者，解决销售难题</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2"><span className="text-[#b91c1c] text-xl">◆</span>数据驱动</h4>
+                <p className="text-gray-700 ml-6">依托人工智能和大数据等前沿科技，构建完善的数字经济流通技术服务体系，赋能企业数字化转型</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2"><span className="text-[#b91c1c] text-xl">◆</span>资金闭环</h4>
+                <p className="text-gray-700 ml-6">通过绿色积分体系构建本地资金生态，形成"本地消费—本地积分—本地企业增收—本地税收"的良性闭环</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 一级业务段 */}
+          <div className="bg-gray-50 p-6 border border-gray-200 rounded-sm">
             <h3 className="text-xl font-bold text-[#b91c1c] mb-4">{t('core_business_segments')}</h3>
             <ul className="grid grid-cols-2 gap-4">
               <li className="flex items-center gap-2"><span className="text-[#b91c1c]">●</span> {t('digital_government_construction')}</li>
