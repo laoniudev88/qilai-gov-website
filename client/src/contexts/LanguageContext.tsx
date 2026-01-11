@@ -660,6 +660,146 @@ const translations: Translations = {
     zh: "江苏省常州市",
     en: "Changzhou, Jiangsu Province",
     fr: "Changzhou, Province du Jiangsu"
+  },
+  "news_not_found": {
+    zh: "未找到相关新闻",
+    en: "News not found",
+    fr: "Actualité non trouvée"
+  },
+  "return_to_home_btn": {
+    zh: "返回首页",
+    en: "Return to Home",
+    fr: "Retour à l'Accueil"
+  },
+  "breadcrumb_home": {
+    zh: "首页",
+    en: "Home",
+    fr: "Accueil"
+  },
+  "breadcrumb_content": {
+    zh: "正文",
+    en: "Content",
+    fr: "Contenu"
+  },
+  "publish_time": {
+    zh: "发布时间",
+    en: "Publish Time",
+    fr: "Heure de Publication"
+  },
+  "source": {
+    zh: "来源",
+    en: "Source",
+    fr: "Source"
+  },
+  "print_btn": {
+    zh: "打印",
+    en: "Print",
+    fr: "Imprimer"
+  },
+  "share_btn": {
+    zh: "分享",
+    en: "Share",
+    fr: "Partager"
+  },
+  "editor_info": {
+    zh: "责任编辑：企来集团新闻中心",
+    en: "Editor: Qilai Group News Center",
+    fr: "Éditeur : Centre d'Actualités du Groupe Qilai"
+  },
+  "local_cooperation_category": {
+    zh: "地方合作",
+    en: "Local Cooperation",
+    fr: "Coopération Locale"
+  },
+  "news_focus_category": {
+    zh: "要闻聘焦",
+    en: "News Focus",
+    fr: "Actualités Principales"
+  },
+  "qilai_group_source": {
+    zh: "企来集团",
+    en: "Qilai Group",
+    fr: "Groupe Qilai"
+  },
+  "xinhua_source": {
+    zh: "新华社",
+    en: "Xinhua News Agency",
+    fr: "Agence de Presse Xinhua"
+  },
+  "gov_source": {
+    zh: "中国政府网",
+    en: "China Government Website",
+    fr: "Site Web du Gouvernement Chinois"
+  },
+  "news_yueyang_title": {
+    zh: "企来资讯｜企来集团与岳阳市政府共话新消費试点新机遭，共绘合作新篇章",
+    en: "Qilai News | Qilai Group and Yueyang Municipal Government Discuss New Opportunities in New Consumption Pilot, Co-create New Chapter of Cooperation",
+    fr: "Actualités Qilai | Le Groupe Qilai et le Gouvernement Municipal de Yueyang Discutent des Nouvelles Opportunités dans le Projet Pilote de Nouvelle Consommation"
+  },
+  "news_lanzhou_title": {
+    zh: "企来资讯｜【政企同心·共创未来】兰州市政府投资项目座谈会成功举办",
+    en: "Qilai News | [Government-Enterprise Collaboration · Creating the Future] Lanzhou Municipal Government Investment Project Seminar Successfully Held",
+    fr: "Actualités Qilai | [Collaboration Gouvernement-Entreprise · Créer l'Avenir] Séminaire de Projets d'Investissement du Gouvernement Municipal de Lanzhou Organisé avec Succès"
+  },
+  "news_zhuhai_title": {
+    zh: "企来资讯｜赋能国家战略布局 企来集团携手珠海市、长兴县两地政府共探产业发展新格局",
+    en: "Qilai News | Empowering National Strategic Layout: Qilai Group Partners with Zhuhai and Changxing Governments to Explore New Industrial Development Landscape",
+    fr: "Actualités Qilai | Autonomiser la Stratégie Nationale : Le Groupe Qilai S'Associe aux Gouvernements de Zhuhai et Changxing"
+  },
+  "news_xinzhili_title": {
+    zh: "企来集团与心之力强强联手，共启产业跃迁新篇章",
+    en: "Qilai Group and Xinzhili Join Forces for Strategic Partnership, Co-launching New Chapter of Industrial Transformation",
+    fr: "Le Groupe Qilai et Xinzhili S'Associent pour un Partenariat Stratégique"
+  },
+  "news_xiong_title": {
+    zh: "【企来·新纪元】热烈祖贺熊中权总裑携全新高管团队正式入驻，企来集团今日换“芯”上线！",
+    en: "[Qilai · New Era] Warmly Welcome President Xiong Zhongquan and New Executive Team Officially Joining, Qilai Group Upgrades Today!",
+    fr: "[Qilai · Nouvelle Ère] Bienvenue au Président Xiong Zhongquan et à la Nouvelle Équipe de Direction"
+  },
+  "news_multiregion_title": {
+    zh: "企来资讯 | 聚势赋能区域经济 企来集团携手川闽苏三地政府共拓产业合作新版图",
+    en: "Qilai News | Aggregating Momentum to Empower Regional Economy: Qilai Group Partners with Sichuan, Fujian, and Jiangsu Governments to Explore New Industrial Cooperation Landscape",
+    fr: "Actualités Qilai | Agréger l'Élan pour Autonomiser l'Économie Régionale"
+  },
+  "language_chinese": {
+    zh: "中文",
+    en: "Chinese",
+    fr: "Chinois"
+  },
+  "policy_documents": {
+    zh: "政策文件",
+    en: "Policy Documents",
+    fr: "Documents Politiques"
+  },
+  "yueyang_city_short": {
+    zh: "岳阳市",
+    en: "Yueyang",
+    fr: "Yueyang"
+  },
+  "lanzhou_city_short": {
+    zh: "兰州市",
+    en: "Lanzhou",
+    fr: "Lanzhou"
+  },
+  "zhuhai_city_short": {
+    zh: "珠海市",
+    en: "Zhuhai",
+    fr: "Zhuhai"
+  },
+  "changxing_city_short": {
+    zh: "长兴县",
+    en: "Changxing",
+    fr: "Changxing"
+  },
+  "xiamen_city_short": {
+    zh: "厦门市",
+    en: "Xiamen",
+    fr: "Xiamen"
+  },
+  "changzhou_city_short": {
+    zh: "常州市",
+    en: "Changzhou",
+    fr: "Changzhou"
   }
 };
 

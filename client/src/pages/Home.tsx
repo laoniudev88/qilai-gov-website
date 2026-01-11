@@ -81,7 +81,7 @@ export default function Home() {
               className={`cursor-pointer hover:underline ${language === 'zh' ? 'font-bold underline' : ''}`}
               onClick={() => setLanguage('zh')}
             >
-              中文
+              {t('language_chinese')}
             </span>
             <span className="cursor-pointer hover:underline">{t('accessibility')}</span>
           </div>
@@ -227,12 +227,12 @@ export default function Home() {
           
           <div className="grid grid-cols-6 gap-4">
             {[
-              { name: "岳阳市", id: "news-qilai-xinzhili-5", image: "/images/yueyang_bg_hd.jpg" },
-              { name: "兰州市", id: "news-qilai-xinzhili-6", image: "/images/lanzhou_bg_hd.jpg" },
-              { name: "珠海市", id: "news-qilai-xinzhili-1", image: "/images/zhuhai_bg_hd.jpg" },
-              { name: "长兴县", id: "news-qilai-xinzhili-1", image: "/images/changxing_bg_hd.jpg" },
-              { name: "厦门市", id: "news-qilai-xinzhili-2", image: "/images/xiamen_bg_hd.jpg" },
-              { name: "常州市", id: "news-qilai-xinzhili-2", image: "/images/changzhou_bg_hd.jpg" }
+              { name: t('yueyang_city_short'), id: "news-qilai-xinzhili-5", image: "/images/yueyang_bg_hd.jpg" },
+              { name: t('lanzhou_city_short'), id: "news-qilai-xinzhili-6", image: "/images/lanzhou_bg_hd.jpg" },
+              { name: t('zhuhai_city_short'), id: "news-qilai-xinzhili-1", image: "/images/zhuhai_bg_hd.jpg" },
+              { name: t('changxing_city_short'), id: "news-qilai-xinzhili-1", image: "/images/changxing_bg_hd.jpg" },
+              { name: t('xiamen_city_short'), id: "news-qilai-xinzhili-2", image: "/images/xiamen_bg_hd.jpg" },
+              { name: t('changzhou_city_short'), id: "news-qilai-xinzhili-2", image: "/images/changzhou_bg_hd.jpg" }
             ].map((city) => (
               <Link 
                 key={city.name} 
@@ -318,7 +318,7 @@ export default function Home() {
           {/* 右侧：政策文件 */}
           <div className="col-span-4">
             <div className="flex items-center mb-6 border-b-2 border-[#ce1126] pb-2">
-              <h2 className="text-2xl font-bold text-[#ce1126] font-song">政策文件</h2>
+              <h2 className="text-2xl font-bold text-[#ce1126] font-song">{t('policy_documents')}</h2>
             </div>
             <div className="bg-gray-50 p-6 rounded-sm border border-gray-100 h-[350px] overflow-y-auto custom-scrollbar">
               <ul className="space-y-4">
