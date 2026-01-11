@@ -4,42 +4,55 @@ import { newsData, policyDocuments, leaderSlides } from "@/lib/newsData";
 import { ChevronLeft, ChevronRight, Search, Building2, FileText, BarChart3, Globe, ShieldCheck, Cpu } from "lucide-react";
 
 export default function Home() {
-  const [currentLeaderSlide, setCurrentLeaderSlide] = useState(0);
+  const [currentXiSlide, setCurrentXiSlide] = useState(0);
+  const [currentLiSlide, setCurrentLiSlide] = useState(0);
   const [currentNewsSlide, setCurrentNewsSlide] = useState(0);
   const [, setLocation] = useLocation();
 
-  // 过滤出带图的新闻用于要闻聚焦轮播
-  const featuredNews = newsData.filter(item => item.image && !item.id.startsWith('xi') && !item.id.startsWith('ding') && !item.id.startsWith('zhang'));
+  // 分离领导人数据
+  const xiSlides = leaderSlides.filter(slide => slide.leader === 'xi');
+  const liSlides = leaderSlides.filter(slide => slide.leader === 'li');
 
+  // 过滤出企来集团新闻（排除领导人新闻），并优先展示地方考察新闻
+  const groupNews = newsData.filter(item => 
+    !item.id.startsWith('xi') && 
+    !item.id.startsWith('li') && 
+    item.image
+  ).sort((a, b) => {
+    // 优先展示特定的地方考察新闻
+    const priorityIds = ['news-yueyang-2024', '2', 'news-zh-cx', 'news-xm'];
+    const aPriority = priorityIds.indexOf(a.id);
+    const bPriority = priorityIds.indexOf(b.id);
+    
+    if (aPriority !== -1 && bPriority !== -1) return aPriority - bPriority;
+    if (aPriority !== -1) return -1;
+    if (bPriority !== -1) return 1;
+    return 0;
+  });
+
+  // 习近平轮播自动切换
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentLeaderSlide((prev) => (prev + 1) % leaderSlides.length);
+      setCurrentXiSlide((prev) => (prev + 1) % xiSlides.length);
     }, 8000);
     return () => clearInterval(timer);
-  }, []);
+  }, [xiSlides.length]);
 
+  // 李强轮播自动切换
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentNewsSlide((prev) => (prev + 1) % featuredNews.length);
+      setCurrentLiSlide((prev) => (prev + 1) % liSlides.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [liSlides.length]);
+
+  // 集团新闻轮播自动切换
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentNewsSlide((prev) => (prev + 1) % groupNews.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [featuredNews.length]);
-
-  const nextLeaderSlide = () => {
-    setCurrentLeaderSlide((prev) => (prev + 1) % leaderSlides.length);
-  };
-
-  const prevLeaderSlide = () => {
-    setCurrentLeaderSlide((prev) => (prev - 1 + leaderSlides.length) % leaderSlides.length);
-  };
-
-  const nextNewsSlide = () => {
-    setCurrentNewsSlide((prev) => (prev + 1) % featuredNews.length);
-  };
-
-  const prevNewsSlide = () => {
-    setCurrentNewsSlide((prev) => (prev - 1 + featuredNews.length) % featuredNews.length);
-  };
+  }, [groupNews.length]);
 
   return (
     <div className="min-h-screen bg-white font-serif text-[#333]">
@@ -47,7 +60,7 @@ export default function Home() {
       <div className="bg-[#ce1126] text-white h-10">
         <div className="container mx-auto px-4 h-full flex justify-between items-center text-sm font-song">
           <div className="flex space-x-6">
-            {/* 顶部导航已移除，避免重复 */}
+            {/* 顶部导航已移除 */}
           </div>
           <div className="flex space-x-4">
             <span className="cursor-pointer hover:underline">English</span>
@@ -101,29 +114,55 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* 核心展示区 (Hero Section) */}
+      {/* 核心展示区 (Hero Section) - 双轮播 */}
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-12 gap-8 h-[550px]">
           
-          {/* 左侧：习近平总书记 (8列) */}
-          <div className="col-span-8 h-full relative overflow-hidden shadow-sm border border-gray-200 bg-gray-100">
-            <img 
-              src="/images/xi_jinping_2025.jpg" 
-              alt="习近平总书记" 
-              className="w-full h-full object-cover object-top"
-            />
-            {/* 渐变遮罩，确保文字可读性 */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent"></div>
+          {/* 左侧：习近平总书记轮播 (8列) */}
+          <div className="col-span-8 h-full relative overflow-hidden shadow-sm border border-gray-200 bg-gray-100 group cursor-pointer"
+               onClick={() => setLocation(`/news/${xiSlides[currentXiSlide].id}`)}>
+            {/* 图片层 */}
+            <div className="absolute inset-0 transition-opacity duration-1000">
+              <img 
+                src={xiSlides[currentXiSlide].image.replace('.jpg', '_hd.jpg')} 
+                alt={xiSlides[currentXiSlide].title} 
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            
+            {/* 渐变遮罩与文字 */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8 pt-24">
+              <h2 className="text-3xl font-bold text-white mb-3 font-song leading-tight drop-shadow-lg">
+                {xiSlides[currentXiSlide].title}
+              </h2>
+              <p className="text-white/90 text-lg font-song line-clamp-2 drop-shadow-md">
+                {xiSlides[currentXiSlide].content}
+              </p>
+            </div>
+
+            {/* 轮播指示器 */}
+            <div className="absolute bottom-4 right-4 flex space-x-2">
+              {xiSlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => { e.stopPropagation(); setCurrentXiSlide(idx); }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    idx === currentXiSlide ? "bg-[#ce1126] w-6" : "bg-white/50 hover:bg-white"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
-          {/* 右侧：李强总理 (4列) */}
-          <div className="col-span-4 h-full flex flex-col space-y-0 shadow-sm border border-gray-200 bg-white">
+          {/* 右侧：李强总理轮播 (4列) */}
+          <div className="col-span-4 h-full flex flex-col shadow-sm border border-gray-200 bg-white group cursor-pointer"
+               onClick={() => setLocation(`/news/${liSlides[currentLiSlide].id}`)}>
             {/* 上半部分：照片 */}
             <div className="h-[60%] overflow-hidden relative">
               <img 
-                src="/images/li_qiang_2025.jpg" 
-                alt="李强总理" 
-                className="w-full h-full object-cover object-top"
+                src={liSlides[currentLiSlide].image.replace('.jpg', '_hd.jpg')} 
+                alt={liSlides[currentLiSlide].title} 
+                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               />
             </div>
             
@@ -134,25 +173,28 @@ export default function Home() {
                    style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '10px 10px' }}>
               </div>
               
-              <h2 className="text-xl font-bold mb-4 leading-tight font-song relative z-10">
-                李强：大力发展数字经济，加快数据要素市场化配置
+              <h2 className="text-xl font-bold mb-4 leading-tight font-song relative z-10 line-clamp-3">
+                {liSlides[currentLiSlide].title}
               </h2>
-              <ul className="space-y-3 text-sm font-song text-white/90 relative z-10">
-                <li className="flex items-start">
-                  <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-white rounded-full flex-shrink-0"></span>
-                  <span>坚持改革创新和开放合作，持续优化数字经济发展环境</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-white rounded-full flex-shrink-0"></span>
-                  <span>协同完善数据基础制度和数字基础设施，推进数据要素市场化配置</span>
-                </li>
-              </ul>
+              
+              {/* 轮播指示器 */}
+              <div className="absolute bottom-4 right-4 flex space-x-2 z-20">
+                {liSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => { e.stopPropagation(); setCurrentLiSlide(idx); }}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      idx === currentLiSlide ? "bg-white w-4" : "bg-white/40 hover:bg-white/80"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 地方合作通栏 (提升至显耀位置) */}
+      {/* 地方合作通栏 */}
       <div className="bg-[#f8f9fa] border-y border-gray-200 py-8 mb-8">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-6">
@@ -165,24 +207,22 @@ export default function Home() {
           
           <div className="grid grid-cols-6 gap-4">
             {[
-              { name: "兰州市", id: "2", color: "bg-blue-900" },
-              { name: "珠海市", id: "news-zh-cx", color: "bg-cyan-700" },
-              { name: "长兴县", id: "news-zh-cx", color: "bg-green-700" },
-              { name: "厦门市", id: "news-xm", color: "bg-indigo-700" },
-              { name: "常州市", id: "news-xm", color: "bg-orange-700" },
-              { name: "都江堰", id: "news-xm", color: "bg-teal-700" }
+              { name: "岳阳市", id: "news-yueyang-2024", image: "/images/岳阳市调研企来集团.jpg" },
+              { name: "兰州市", id: "2", image: "/images/lanzhou_bg.jpg" },
+              { name: "珠海市", id: "news-zh-cx", image: "/images/zhuhai_bg.jpg" },
+              { name: "长兴县", id: "news-zh-cx", image: "/images/changxing_bg.jpg" },
+              { name: "厦门市", id: "news-xm", image: "/images/xiamen_bg.jpg" },
+              { name: "常州市", id: "news-xm", image: "/images/changzhou_bg.jpg" }
             ].map((city) => (
               <Link 
                 key={city.name} 
                 href={`/news/${city.id}`}
-                className="group relative h-24 overflow-hidden rounded-sm shadow-sm hover:shadow-md transition-all block"
+                className="group relative h-32 overflow-hidden rounded-lg shadow-sm border border-gray-200 hover:shadow-xl transition-all duration-300 block"
               >
-                <div className={`absolute inset-0 ${city.color} opacity-90 group-hover:opacity-100 transition-opacity`}></div>
-                {/* 装饰性地图纹理 */}
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E")' }}></div>
-                
-                <div className="absolute inset-0 p-4 flex flex-col justify-center items-center text-center text-white">
-                  <h3 className="text-2xl font-bold font-song group-hover:scale-110 transition-transform tracking-widest">{city.name}</h3>
+                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url(${city.image})` }}></div>
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h3 className="text-2xl font-bold text-white drop-shadow-md tracking-wider font-song">{city.name}</h3>
                 </div>
               </Link>
             ))}
@@ -193,18 +233,18 @@ export default function Home() {
       {/* 主要内容区 */}
       <main className="container mx-auto px-4 pb-12">
         <div className="grid grid-cols-12 gap-8">
-          {/* 左侧：要闻聚焦 */}
+          {/* 左侧：要闻聚焦 (仅展示集团新闻) */}
           <div className="col-span-8">
             <div className="flex items-center mb-6 border-b-2 border-[#ce1126] pb-2">
               <h2 className="text-2xl font-bold text-[#ce1126] font-song">要闻聚焦</h2>
             </div>
             
             <div className="relative h-[350px] overflow-hidden rounded-sm shadow-sm group cursor-pointer"
-                 onClick={() => setLocation(`/news/${featuredNews[currentNewsSlide].id}`)}>
+                 onClick={() => setLocation(`/news/${groupNews[currentNewsSlide].id}`)}>
               <div className="absolute inset-0 transition-transform duration-700 ease-in-out"
                    style={{ transform: `translateX(-${currentNewsSlide * 100}%)` }}>
                 <div className="flex h-full">
-                  {featuredNews.map((news) => (
+                  {groupNews.map((news) => (
                     <div key={news.id} className="min-w-full h-full relative">
                       <img 
                         src={news.image} 
@@ -226,72 +266,102 @@ export default function Home() {
 
               {/* 新闻轮播控制 */}
               <button 
-                onClick={(e) => { e.stopPropagation(); prevNewsSlide(); }}
+                onClick={(e) => { e.stopPropagation(); setCurrentNewsSlide((prev) => (prev - 1 + groupNews.length) % groupNews.length); }}
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 p-2 rounded-full text-white hover:bg-black/50 transition-colors backdrop-blur-sm"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button 
-                onClick={(e) => { e.stopPropagation(); nextNewsSlide(); }}
+                onClick={(e) => { e.stopPropagation(); setCurrentNewsSlide((prev) => (prev + 1) % groupNews.length); }}
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 p-2 rounded-full text-white hover:bg-black/50 transition-colors backdrop-blur-sm"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
             </div>
+
+            {/* 新闻列表 */}
+            <div className="mt-6 space-y-4">
+              {groupNews.slice(0, 5).map((news) => (
+                <Link key={news.id} href={`/news/${news.id}`} className="block group border-b border-gray-100 pb-4 last:border-0">
+                  <div className="flex justify-between items-baseline">
+                    <h3 className="text-lg font-song text-gray-800 group-hover:text-[#ce1126] transition-colors truncate flex-1 pr-8">
+                      {news.title}
+                    </h3>
+                    <span className="text-sm text-gray-500 font-sans whitespace-nowrap">{news.date}</span>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1 line-clamp-1 font-song">{news.content}</p>
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* 右侧：政策文件 */}
-          <div className="col-span-4 space-y-8">
-            {/* 政策文件直通车 */}
-            <div className="bg-white border-t-4 border-[#ce1126] shadow-sm h-full">
-              <div className="bg-[#f8f9fa] p-3 border-b border-gray-200 flex justify-between items-center">
-                <h3 className="text-lg font-bold text-[#ce1126] font-song">政策文件直通车</h3>
-                <Link href="/page/policy" className="text-xs text-gray-500 hover:text-[#ce1126]">更多 &gt;</Link>
-              </div>
-              <ul className="divide-y divide-gray-100">
-                {policyDocuments.slice(0, 6).map((doc, index) => (
-                  <li key={index} className="p-3 hover:bg-gray-50 transition-colors">
-                    <a href={doc.url} target="_blank" rel="noopener noreferrer" className="block group">
-                      <p className="text-sm text-gray-800 group-hover:text-[#ce1126] line-clamp-2 font-song leading-relaxed">
+          <div className="col-span-4">
+            <div className="flex items-center mb-6 border-b-2 border-[#ce1126] pb-2">
+              <h2 className="text-2xl font-bold text-[#ce1126] font-song">政策文件</h2>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-sm border border-gray-100 h-[350px] overflow-y-auto custom-scrollbar">
+              <ul className="space-y-4">
+                {policyDocuments.map((doc, index) => (
+                  <li key={index} className="group">
+                    <a href={doc.url} target="_blank" rel="noopener noreferrer" className="block">
+                      <h3 className="text-base font-song text-gray-800 group-hover:text-[#ce1126] transition-colors leading-snug mb-1">
                         {doc.title}
-                      </p>
-                      <span className="text-xs text-gray-400 mt-1 block">{doc.source}</span>
+                      </h3>
+                      <div className="flex justify-between text-xs text-gray-500 font-sans mt-1">
+                        <span>{doc.source}</span>
+                        <span>{doc.date}</span>
+                      </div>
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
+            
+            {/* 快速入口 */}
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <Link href="/page/service" className="bg-[#ce1126] text-white p-4 text-center rounded-sm hover:bg-[#a30d1d] transition-colors flex flex-col items-center justify-center h-24">
+                <Building2 className="w-8 h-8 mb-2" />
+                <span className="font-bold font-song">政务服务</span>
+              </Link>
+              <Link href="/page/data" className="bg-[#ce1126] text-white p-4 text-center rounded-sm hover:bg-[#a30d1d] transition-colors flex flex-col items-center justify-center h-24">
+                <BarChart3 className="w-8 h-8 mb-2" />
+                <span className="font-bold font-song">数据开放</span>
+              </Link>
+            </div>
           </div>
         </div>
       </main>
 
-      {/* 底部：数据政务服务 (新增板块) */}
-      <div className="bg-[#f0f4f8] py-12 border-t border-gray-200">
+      {/* 底部数据政务服务板块 */}
+      <div className="bg-gray-100 py-12 border-t border-gray-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#333] font-song mb-2">数据要素赋能服务</h2>
-            <div className="w-16 h-1 bg-[#ce1126] mx-auto"></div>
+            <h2 className="text-3xl font-bold text-[#ce1126] font-song mb-2">数据要素赋能服务</h2>
+            <p className="text-gray-600 font-song">全方位助力政府数字化转型与数据价值释放</p>
           </div>
           
           <div className="grid grid-cols-4 gap-6">
             {[
-              { icon: <Building2 className="w-8 h-8" />, title: "数据资产登记", desc: "合规确权，资产入表" },
-              { icon: <ShieldCheck className="w-8 h-8" />, title: "公共数据授权", desc: "安全开放，价值流通" },
-              { icon: <BarChart3 className="w-8 h-8" />, title: "数据产品挂牌", desc: "场内交易，撮合匹配" },
-              { icon: <Globe className="w-8 h-8" />, title: "跨境数据流动", desc: "合规出海，全球互联" },
-              { icon: <Cpu className="w-8 h-8" />, title: "产业大脑建设", desc: "数智赋能，强链补链" },
-              { icon: <FileText className="w-8 h-8" />, title: "数字化转型", desc: "咨询规划，落地实施" },
-              { icon: <Search className="w-8 h-8" />, title: "数据信用查询", desc: "企业征信，风险画像" },
-              { icon: <Building2 className="w-8 h-8" />, title: "园区智慧运营", desc: "招商引资，降本增效" }
-            ].map((service, index) => (
-              <div key={index} className="bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex items-start space-x-4 group cursor-pointer">
-                <div className="p-3 bg-blue-50 text-[#2d68c4] rounded-full group-hover:bg-[#ce1126] group-hover:text-white transition-colors">
-                  {service.icon}
+              { title: "数据资产登记", icon: FileText, desc: "提供合规的数据资产权属登记与确权服务" },
+              { title: "公共数据授权", icon: ShieldCheck, desc: "协助政府构建公共数据授权运营机制" },
+              { title: "产业大脑建设", icon: Cpu, desc: "打造区域特色产业大脑，赋能产业升级" },
+              { title: "跨境数据流动", icon: Globe, desc: "提供安全合规的跨境数据传输解决方案" },
+              { title: "数据交易撮合", icon: BarChart3, desc: "连接供需双方，促进数据要素高效流通" },
+              { title: "数字政府咨询", icon: Building2, desc: "提供顶层设计与数字化转型战略咨询" },
+              { title: "数据安全评估", icon: ShieldCheck, desc: "全流程数据安全风险评估与合规审计" },
+              { title: "数字人才培训", icon: FileText, desc: "培养专业化的数字经济管理与技术人才" }
+            ].map((service, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition-all border-t-4 border-[#ce1126] group cursor-pointer">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-[#ce1126] group-hover:bg-[#ce1126] group-hover:text-white transition-colors">
+                    <service.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold ml-4 font-song text-gray-800">{service.title}</h3>
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-1 font-song group-hover:text-[#ce1126] transition-colors">{service.title}</h3>
-                  <p className="text-sm text-gray-500">{service.desc}</p>
-                </div>
+                <p className="text-gray-600 text-sm font-song leading-relaxed">
+                  {service.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -299,42 +369,12 @@ export default function Home() {
       </div>
 
       {/* 页脚 */}
-      <footer className="bg-[#333] text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-4 gap-8 mb-8 border-b border-gray-700 pb-8">
-            <div>
-              <h4 className="text-lg font-bold mb-4 font-song">关于我们</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link href="/page/about" className="hover:text-white">集团简介</Link></li>
-                <li><Link href="/page/about" className="hover:text-white">组织架构</Link></li>
-                <li><Link href="/page/about" className="hover:text-white">发展历程</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4 font-song">政策法规</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link href="/page/policy" className="hover:text-white">国家政策</Link></li>
-                <li><Link href="/page/policy" className="hover:text-white">地方条例</Link></li>
-                <li><Link href="/page/policy" className="hover:text-white">行业标准</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4 font-song">政务服务</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link href="/page/service" className="hover:text-white">办事指南</Link></li>
-                <li><Link href="/page/service" className="hover:text-white">常见问题</Link></li>
-                <li><Link href="/page/service" className="hover:text-white">在线咨询</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4 font-song">联系方式</h4>
-              <p className="text-gray-400 text-sm mb-2">地址：北京市海淀区...</p>
-              <p className="text-gray-400 text-sm">邮箱：contact@qilai.gov.cn</p>
-            </div>
-          </div>
-          <div className="text-center text-sm text-gray-500 font-song">
-            <p>Copyright © 2025 企来集团 版权所有 | 京ICP备12345678号</p>
-            <p className="mt-2">建议使用 1920x1080 分辨率浏览本站</p>
+      <footer className="bg-[#ce1126] text-white py-8 mt-auto">
+        <div className="container mx-auto px-4 text-center font-song">
+          <p className="mb-4 text-lg font-bold">企来集团 QILAI GROUP</p>
+          <div className="text-sm opacity-80 space-y-2">
+            <p>版权所有 © 2025 企来集团 保留所有权利</p>
+            
           </div>
         </div>
       </footer>

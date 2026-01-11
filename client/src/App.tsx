@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
+import CooperationMap from "./pages/CooperationMap";
 import NewsDetail from "./pages/NewsDetail";
 import GenericPage from "./pages/GenericPage";
 
@@ -14,6 +15,7 @@ function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/cooperation-map"} component={CooperationMap} />
       <Route path={"/news/:id"} component={NewsDetail} />
       <Route path={"/page/:id"} component={GenericPage} />
       <Route path={"/404"} component={NotFound} />
