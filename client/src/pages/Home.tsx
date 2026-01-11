@@ -208,10 +208,10 @@ export default function Home() {
           <div className="grid grid-cols-6 gap-4">
             {[
               { name: "岳阳市", id: "news-yueyang-2024", image: "/images/岳阳市调研企来集团.jpg" },
-              { name: "兰州市", id: "2", image: "/images/lanzhou_bg.jpg" },
-              { name: "珠海市", id: "news-zh-cx", image: "/images/zhuhai_bg.jpg" },
+              { name: "兰州市", id: "2", image: "/images/lanzhou_bg_hd.jpg" },
+              { name: "珠海市", id: "news-zh-cx", image: "/images/zhuhai_bg_hd.jpg" },
               { name: "长兴县", id: "news-zh-cx", image: "/images/changxing_bg.jpg" },
-              { name: "厦门市", id: "news-xm", image: "/images/xiamen_bg.jpg" },
+              { name: "厦门市", id: "news-xm", image: "/images/xiamen_bg_hd.jpg" },
               { name: "常州市", id: "news-xm", image: "/images/changzhou_bg.jpg" }
             ].map((city) => (
               <Link 
