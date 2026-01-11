@@ -173,7 +173,7 @@ export default function Home() {
                    style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '10px 10px' }}>
               </div>
               
-              <h2 className="text-base font-bold mb-0 leading-tight font-song relative z-10 line-clamp-2">
+              <h2 className="text-lg font-bold mb-0 leading-tight font-song relative z-10 line-clamp-2">
                 {liSlides[currentLiSlide].title}
               </h2>
               
