@@ -9,6 +9,8 @@ export default function Home() {
   const [currentXiSlide, setCurrentXiSlide] = useState(0);
   const [currentLiSlide, setCurrentLiSlide] = useState(0);
   const [currentNewsSlide, setCurrentNewsSlide] = useState(0);
+  const [xiAutoPlay, setXiAutoPlay] = useState(true);
+  const [liAutoPlay, setLiAutoPlay] = useState(true);
   const [, setLocation] = useLocation();
 
   // 分离领导人数据
@@ -34,19 +36,21 @@ export default function Home() {
 
   // 习近平轮播自动切换
   useEffect(() => {
+    if (!xiAutoPlay) return;
     const timer = setInterval(() => {
       setCurrentXiSlide((prev) => (prev + 1) % xiSlides.length);
     }, 8000);
     return () => clearInterval(timer);
-  }, [xiSlides.length]);
+  }, [xiSlides.length, xiAutoPlay]);
 
   // 李强轮播自动切换
   useEffect(() => {
+    if (!liAutoPlay) return;
     const timer = setInterval(() => {
       setCurrentLiSlide((prev) => (prev + 1) % liSlides.length);
     }, 8000);
     return () => clearInterval(timer);
-  }, [liSlides.length]);
+  }, [liSlides.length, liAutoPlay]);
 
   // 集团新闻轮播自动切换
   useEffect(() => {
@@ -116,7 +120,7 @@ export default function Home() {
           
           {/* 左侧：习近平总书记轮播 (8列) */}
           <div className="col-span-8 h-full relative overflow-hidden shadow-sm border border-gray-200 bg-gray-100 group cursor-pointer"
-               onClick={() => setLocation(`/news/${xiSlides[currentXiSlide].id}`)}>
+               onClick={(e) => { if (!(e.target as HTMLElement).closest('button')) setLocation(`/news/${xiSlides[currentXiSlide].id}`); }}>
             {/* 图片层 */}
             <div className="absolute inset-0 transition-opacity duration-1000">
               <img 
@@ -141,7 +145,7 @@ export default function Home() {
               {xiSlides.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={(e) => { e.stopPropagation(); setCurrentXiSlide(idx); }}
+                  onClick={(e) => { e.stopPropagation(); setCurrentXiSlide(idx); setXiAutoPlay(false); setTimeout(() => setXiAutoPlay(true), 10000); }}
                   className={`w-2.5 h-2.5 rounded-full transition-all ${
                     idx === currentXiSlide ? "bg-[#ce1126] w-6" : "bg-white/50 hover:bg-white"
                   }`}
@@ -152,7 +156,7 @@ export default function Home() {
 
           {/* 右侧：李强总理轮播 (4列) */}
           <div className="col-span-4 h-full flex flex-col shadow-sm border border-gray-200 bg-white group cursor-pointer"
-               onClick={() => setLocation(`/news/${liSlides[currentLiSlide].id}`)}>
+               onClick={(e) => { if (!(e.target as HTMLElement).closest('button')) setLocation(`/news/${liSlides[currentLiSlide].id}`); }}>
             {/* 上半部分：照片 */}
             <div className="h-[60%] overflow-hidden relative">
               <img 
@@ -176,13 +180,13 @@ export default function Home() {
               {/* 轮播指示器 */}
               <div className="absolute bottom-4 right-4 flex space-x-2 z-20">
                 {liSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={(e) => { e.stopPropagation(); setCurrentLiSlide(idx); }}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      idx === currentLiSlide ? "bg-white w-4" : "bg-white/40 hover:bg-white/80"
-                    }`}
-                  />
+                <button
+                  key={idx}
+                  onClick={(e) => { e.stopPropagation(); setCurrentLiSlide(idx); setLiAutoPlay(false); setTimeout(() => setLiAutoPlay(true), 10000); }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    idx === currentLiSlide ? "bg-[#ce1126] w-6" : "bg-white/50 hover:bg-white"
+                  }`}
+                />
                 ))}
               </div>
             </div>
