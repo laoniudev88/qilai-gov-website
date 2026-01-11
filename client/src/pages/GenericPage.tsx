@@ -170,9 +170,6 @@ export default function GenericPage() {
       <header className="bg-[#b91c1c] text-white">
         <div className="container mx-auto px-4 py-2 flex justify-between items-center text-sm">
           <div className="flex gap-4">
-            <Link href="/" className="hover:underline cursor-pointer">国务院首页</Link>
-            <span className="hover:underline cursor-pointer">政策</span>
-            <span className="hover:underline cursor-pointer">服务</span>
           </div>
         </div>
       </header>
