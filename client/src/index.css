@@ -132,7 +132,26 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-serif;
+    @apply bg-background text-foreground;
+    font-family: "SimSun", "Songti SC", serif;
+  }
+  
+  /* 人民日报文章排版标准 */
+  .article-content p {
+    text-indent: 2em; /* 首行空两格 */
+    font-family: "SimSun", "Songti SC", serif; /* 宋体 */
+    font-size: 18px; /* 18px字号 */
+    line-height: 2.0; /* 2.0行距 */
+    text-align: justify; /* 两端对齐 */
+    margin-bottom: 1.5em;
+    color: #333;
+  }
+  
+  .article-title {
+    font-family: "SimHei", "Heiti SC", sans-serif; /* 标题黑体 */
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-bold tracking-wide;
