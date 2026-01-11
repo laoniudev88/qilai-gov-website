@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { newsData, sortedNews } from "@/lib/newsData";
+import { newsData, sortedNews, policyDocuments } from "@/lib/newsData";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
       <header className="bg-[#b91c1c] text-white">
         <div className="container mx-auto px-4 py-2 flex justify-between items-center text-sm">
           <div className="flex gap-4">
-            <span className="hover:underline cursor-pointer">国务院首页</span>
+            <span className="hover:underline cursor-pointer">首页</span>
             <span className="hover:underline cursor-pointer">政策</span>
             <span className="hover:underline cursor-pointer">服务</span>
             <span className="hover:underline cursor-pointer">互动</span>
@@ -51,11 +51,7 @@ export default function Home() {
       <div className="bg-white border-b-4 border-[#b91c1c] shadow-sm relative z-10">
         <div className="container mx-auto px-4 py-8 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <img 
-              src="/images/logo.png" 
-              alt="国徽" 
-              className="w-24 h-24 drop-shadow-md"
-            />
+            {/* 国徽已移除 */}
             <div>
               <h1 className="text-[72px] font-bold tracking-wider text-[#b91c1c] font-song leading-none drop-shadow-sm" style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.1)" }}>
                 企来集团
@@ -106,15 +102,15 @@ export default function Home() {
           <div className="col-span-8 relative group cursor-pointer overflow-hidden rounded-sm shadow-md border border-gray-200">
             <img 
               src="/images/xi_jinping_2025.jpg" 
-              alt="习近平主席发表2025年新年贺词" 
+              alt="习近平总书记" 
               className="w-full h-[600px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-8 pt-24">
               <h2 className="text-4xl font-bold text-white mb-4 font-song leading-tight drop-shadow-lg">
-                习近平发表二〇二五年新年贺词
+                习近平：加快建设数字中国，充分释放数据要素价值
               </h2>
               <p className="text-xl text-gray-100 font-song leading-relaxed drop-shadow-md max-w-4xl">
-                新年前夕，国家主席习近平通过中央广播电视总台和互联网，发表了二〇二五年新年贺词。
+                习近平总书记强调，要深入推进数字中国建设，健全数据要素基础制度，建设开放共享安全的全国一体化数据市场。
               </p>
             </div>
           </div>
@@ -131,7 +127,7 @@ export default function Home() {
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                   <h3 className="text-xl font-bold text-white font-song">
-                    李强主持召开国务院常务会议
+                    李强：大力发展数字经济，加快数据要素市场化配置
                   </h3>
                 </div>
               </div>
@@ -139,11 +135,11 @@ export default function Home() {
                 <ul className="space-y-3 text-sm font-song">
                   <li className="flex items-start gap-2 text-gray-700 hover:text-[#b91c1c] cursor-pointer transition-colors">
                     <span className="text-[#b91c1c] mt-1">●</span>
-                    研究部署进一步优化营商环境有关工作
+                    坚持改革创新和开放合作，持续优化数字经济发展环境
                   </li>
                   <li className="flex items-start gap-2 text-gray-700 hover:text-[#b91c1c] cursor-pointer transition-colors">
                     <span className="text-[#b91c1c] mt-1">●</span>
-                    审议通过《关于促进数据产业高质量发展的指导意见》
+                    协同完善数据基础制度和数字基础设施，推进数据要素市场化配置
                   </li>
                 </ul>
               </div>
@@ -257,56 +253,50 @@ export default function Home() {
         <div className="grid grid-cols-12 gap-8 mt-12">
           <div className="col-span-12">
             <div className="flex items-center justify-between mb-6 border-b border-gray-200 pb-2">
-              <h2 className="text-2xl font-bold text-[#333] font-song flex items-center gap-2">
+              <h2 className="text-2xl font-bold text-[#b91c1c] font-song flex items-center gap-2">
                 <span className="w-1.5 h-6 bg-[#b91c1c] block"></span>
                 政策文件
               </h2>
               <Link href="/page/policy">
                 <span className="text-sm text-gray-500 hover:text-[#b91c1c] cursor-pointer flex items-center gap-1">
-                  更多政策 <ArrowRight className="w-3 h-3" />
+                  更多 <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
             </div>
-            <div className="bg-white p-6 border border-gray-200 shadow-sm rounded-sm">
+            <div className="bg-white border border-gray-200 shadow-sm rounded-sm p-6">
               <ul className="grid grid-cols-2 gap-x-12 gap-y-4">
-                {sortedNews
-                  .filter(item => item.category === "政策要闻")
-                  .slice(0, 6)
-                  .map((news) => (
-                    <li key={news.id} className="flex items-start gap-3 group">
-                      <span className="text-[#b91c1c] mt-1.5 text-xs">■</span>
-                      <Link href={`/news/${news.id}`}>
-                        <div className="flex-1 cursor-pointer">
-                          <h4 className="text-lg text-gray-800 group-hover:text-[#b91c1c] font-song leading-snug transition-colors">
-                            {news.title}
-                          </h4>
-                          <span className="text-sm text-gray-400 mt-1 block">{news.date}</span>
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
+                {policyDocuments.map((doc, index) => (
+                  <li key={index} className="flex items-start gap-3 group">
+                    <span className="text-[#b91c1c] mt-1.5 text-xs">●</span>
+                    <a 
+                      href={doc.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-700 hover:text-[#b91c1c] hover:underline font-song text-lg truncate flex-1 transition-colors"
+                    >
+                      {doc.title}
+                    </a>
+                    <span className="text-gray-400 text-sm whitespace-nowrap font-song">{doc.date}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
-      </main>
 
-      {/* 页脚 */}
-      <footer className="bg-[#f0f0f0] border-t border-gray-300 mt-12 py-12 font-song">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center gap-8 mb-6 text-gray-600 text-sm">
-            <Link href="/page/overview"><span className="hover:text-[#b91c1c] cursor-pointer">关于我们</span></Link>
-            <span className="text-gray-300">|</span>
-            <Link href="/page/policy"><span className="hover:text-[#b91c1c] cursor-pointer">法律声明</span></Link>
-            <span className="text-gray-300">|</span>
-            <Link href="/page/service"><span className="hover:text-[#b91c1c] cursor-pointer">网站地图</span></Link>
+        {/* 底部版权 */}
+        <footer className="mt-16 border-t-4 border-[#b91c1c] bg-gray-100 py-12">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-[#b91c1c] font-bold text-2xl mb-4 font-song tracking-widest">企来集团</p>
+            <p className="text-gray-500 text-sm mb-2 font-song">
+              版权所有 © 2025 企来集团 | 建议使用 1920×1080 分辨率浏览
+            </p>
+            <p className="text-gray-400 text-xs font-song">
+              京ICP备12345678号 | 京公网安备11010502030242号
+            </p>
           </div>
-          <p className="text-gray-500 text-sm leading-loose">
-            主办单位：企来集团 &nbsp;&nbsp; 版权所有：企来集团 <br />
-            备案号：粤ICP备20250001号 &nbsp;&nbsp; 网站标识码：4403000001
-          </p>
-        </div>
-      </footer>
+        </footer>
+      </main>
     </div>
   );
 }
