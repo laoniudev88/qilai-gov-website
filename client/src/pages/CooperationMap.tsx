@@ -43,7 +43,7 @@ const extendedCities = [
   { name: "乌鲁木齐", coordinates: [87.617733, 43.792818], type: "extended" },
   { name: "柳州市", coordinates: [109.411703, 24.314617], type: "extended" },
   
-  // 新增随机城市
+  // 新增随机城市 (第一批)
   { name: "哈尔滨市", coordinates: [126.642464, 45.756967], type: "extended" },
   { name: "长春市", coordinates: [125.3245, 43.886841], type: "extended" },
   { name: "沈阳市", coordinates: [123.429096, 41.796767], type: "extended" },
@@ -63,7 +63,29 @@ const extendedCities = [
   { name: "日喀则市", coordinates: [88.885148, 29.267519], type: "extended" },
   { name: "喀什地区", coordinates: [75.989138, 39.467664], type: "extended" },
   { name: "伊犁州", coordinates: [81.317946, 43.92186], type: "extended" },
-  { name: "酒泉市", coordinates: [98.510795, 39.744023], type: "extended" }
+  { name: "酒泉市", coordinates: [98.510795, 39.744023], type: "extended" },
+
+  // 新增随机城市 (第二批)
+  { name: "合肥市", coordinates: [117.227239, 31.820587], type: "extended" },
+  { name: "芜湖市", coordinates: [118.376278, 31.326319], type: "extended" },
+  { name: "南昌市", coordinates: [115.854691, 28.683258], type: "extended" },
+  { name: "赣州市", coordinates: [114.934719, 25.831829], type: "extended" },
+  { name: "太原市", coordinates: [112.548879, 37.87059], type: "extended" },
+  { name: "大同市", coordinates: [113.295259, 40.09031], type: "extended" },
+  { name: "郑州市", coordinates: [113.625368, 34.7466], type: "extended" },
+  { name: "洛阳市", coordinates: [112.431965, 34.647308], type: "extended" },
+  { name: "武汉市", coordinates: [114.305393, 30.593099], type: "extended" },
+  { name: "宜昌市", coordinates: [111.286471, 30.691967], type: "extended" },
+  { name: "长沙市", coordinates: [112.938814, 28.228209], type: "extended" },
+  { name: "衡阳市", coordinates: [112.572521, 26.896835], type: "extended" },
+  { name: "石家庄市", coordinates: [114.51486, 38.042307], type: "extended" },
+  { name: "唐山市", coordinates: [118.180194, 39.630867], type: "extended" },
+  { name: "济南市", coordinates: [117.1205, 36.651017], type: "extended" },
+  { name: "潍坊市", coordinates: [119.161756, 36.706774], type: "extended" },
+  { name: "林芝市", coordinates: [94.36149, 29.649128], type: "extended" },
+  { name: "昌都市", coordinates: [97.17292, 31.14005], type: "extended" },
+  { name: "延安市", coordinates: [109.489727, 36.585455], type: "extended" },
+  { name: "榆林市", coordinates: [109.734734, 38.278863], type: "extended" }
 ];
 
 const allCities = [...coreCities, ...extendedCities];
@@ -203,18 +225,19 @@ export default function CooperationMap() {
                         onMouseLeave={() => setHoveredCity(null)}
                       >
                         <g className="cursor-pointer group">
-                          {/* 呼吸灯效果光圈 */}
+                          {/* 呼吸灯效果光圈 - 所有节点都发光 */}
                           <circle 
-                            r={city.type === 'core' ? 8 : 5} 
+                            r={city.type === 'core' ? 8 : 6} 
                             fill={city.type === 'core' ? "#ce1126" : "#fbbf24"} 
                             className="animate-ping opacity-75" 
                           />
-                          {/* 实心点 */}
+                          {/* 实心点 - 所有节点都点亮 */}
                           <circle 
                             r={city.type === 'core' ? 4 : 3} 
                             fill={city.type === 'core' ? "#ce1126" : "#fbbf24"} 
                             stroke="#fff" 
                             strokeWidth={1} 
+                            className="drop-shadow-[0_0_4px_rgba(251,191,36,0.8)]"
                           />
                           
                           {/* 悬停或核心城市显示名称 */}

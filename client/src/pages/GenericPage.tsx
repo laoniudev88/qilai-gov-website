@@ -151,8 +151,7 @@ export default function GenericPage() {
               { city: "广东省珠海市", desc: "深化粤港澳大湾区产业协同，推动海洋经济与智慧城市的数字化转型。" },
               { city: "浙江省长兴县", desc: "聚焦新能源与智能制造，构建长三角绿色智造高地与县域数字治理样板。" },
               { city: "福建省厦门市", desc: "探索跨境数据流动试点，建设数字自贸区与两岸数字经济融合发展示范区。" },
-              { city: "江苏省常州市", desc: "打造长三角工业互联网与数字制造融合发展标杆，赋能新能源之都建设。" },
-              { city: "四川省都江堰市", desc: "推动智慧旅游与数字文创深度融合，构建世界遗产地的数字文旅新生态。" }
+              { city: "江苏省常州市", desc: "打造长三角工业互联网与数字制造融合发展标杆，赋能新能源之都建设。" }
             ].map((item, idx) => (
               <div key={idx} className="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:border-[#b91c1c] transition-colors group cursor-pointer">
                 <h4 className="text-xl font-bold text-gray-800 group-hover:text-[#b91c1c] mb-2">{item.city}</h4>
