@@ -63,24 +63,7 @@ export const newsData: NewsItem[] = [
     image: "/images/xiong_president_team.jpg",
     source: "企来集团"
   },
-  {
-    id: "1",
-    title: "习近平：加快建设数字中国",
-    date: "2023-02-27",
-    category: "要闻聚焦",
-    content: "习近平总书记强调，要加快建设数字中国，构建以数据为关键要素的数字经济。数字中国建设是数字时代推进中国式现代化的重要引擎，是构筑国家竞争新优势的有力支撑。要夯实数字中国建设基础，打通数字基础设施大动脉，畅通数据资源大循环，全面赋能经济社会发展。",
-    image: "/images/xi_jinping_hd.jpg",
-    source: "新华社"
-  },
-  {
-    id: "2",
-    title: "李强：大力发展数字经济",
-    date: "2024-03-05",
-    category: "要闻聚焦",
-    content: "李强总理指出，要大力发展数字经济，促进数字技术和实体经济深度融合。深入推进数字经济创新发展，制定支持数字经济高质量发展政策，积极推进数字产业化、产业数字化，促进数字技术和实体经济深度融合。深化大数据、人工智能等研发应用，开展“人工智能+”行动，打造具有国际竞争力的数字产业集群。",
-    image: "/images/li_qiang_hd.jpg",
-    source: "新华社"
-  }
+
 ];
 
 export const leaderSlides = [
